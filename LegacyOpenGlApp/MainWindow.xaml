@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LegacyOpenGlApp"
+        xmlns:wpfOpenGlControl="clr-namespace:WpfOpenGlControl;assembly=WpfOpenGlControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
     <DockPanel>
@@ -40,16 +41,17 @@
                 </DockPanel>
                 <DockPanel Margin="10" Grid.Row="1">
                     <Label Content="Lights" HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                        <ScrollViewer>
-                        <StackPanel Name="Lights">
-                            <Label Content="Light 0" /> 
-                            <Label Content="Light 1" /> 
+                    <ScrollViewer>
+                        <StackPanel Name="LightsList">
+                            <Label Content="Light 0" />
+                            <Label Content="Light 1" />
                             <Label Content="Light 2" />
                         </StackPanel>
                     </ScrollViewer>
                 </DockPanel>
-                <Button Content="Generate code" Grid.Row="2"/>
+                <Button Content="Generate code" Margin="100,5,100,5" Grid.Row="2"/>
             </Grid>
+            <wpfOpenGlControl:WpfOpenGLControl  Name="GlControl" Grid.Column="1"/>
         </Grid>
     </DockPanel>
 </Window>
