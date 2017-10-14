@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LegacyOpenGlApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="900" Width="1600">
+    <DockPanel>
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_Toggles"></MenuItem>
+            <MenuItem Header="_Transformations"></MenuItem>
+            <MenuItem Header="_Camera"></MenuItem>
+            <MenuItem Header="_Shading"></MenuItem>
+            <MenuItem Header="_Lighting"></MenuItem>
+            <MenuItem Header="_Surfaces"></MenuItem>
+            <MenuItem Header="_Texturing"></MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Margin="10" Grid.Row="0">
+                    <Label Content="Transformations" HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                    <ScrollViewer>
+                        <StackPanel Name="TransformationsList">
+                            <Label Content="Transorm 0"/>
+                            <Label Content="Transorm 1"/>
+                            <Label Content="Transorm 2"/>
+                            <Label Content="Transorm 3"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+                <DockPanel Margin="10" Grid.Row="1">
+                    <Label Content="Lights" HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                        <ScrollViewer>
+                        <StackPanel Name="Lights">
+                            <Label Content="Light 0" /> 
+                            <Label Content="Light 1" /> 
+                            <Label Content="Light 2" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+                <Button Content="Generate code" Grid.Row="2"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
