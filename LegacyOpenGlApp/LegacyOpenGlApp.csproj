@@ -77,6 +77,8 @@
     </ApplicationDefinition>
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Models\OpenGlSettingsModel.cs" />
+    <Compile Include="Services\OpenGlService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
