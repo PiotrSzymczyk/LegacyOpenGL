@@ -3,13 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LegacyOpenGlApp"
-        xmlns:wpfOpenGlControl="clr-namespace:WpfOpenGlControl;assembly=WpfOpenGlControl"
+        xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
+    <Window.Resources>
+    </Window.Resources>
     <DockPanel>
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
-            <MenuItem Header="_Toggles"></MenuItem>
+            <MenuItem Name="TogglesList" ItemsSource="{Binding Toggles}" Header="_StateVariables">
+                <MenuItem.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Menu item header bound to enum converter -->
+                        <!-- IsChecked bound to current selection -->
+                        <!-- Toggle bound to a command, setting current selection -->
+                        <MenuItem 
+                            Header="{Binding}"
+                            IsCheckable="True"
+                            IsChecked="{Binding Path=IsActive}">
+                        </MenuItem>
+                    </DataTemplate>
+                </MenuItem.ItemTemplate>
+            </MenuItem>
             <MenuItem Header="_Transformations"></MenuItem>
             <MenuItem Header="_Camera"></MenuItem>
             <MenuItem Header="_Shading"></MenuItem>
@@ -51,7 +65,7 @@
                 </DockPanel>
                 <Button Content="Generate code" Margin="100,5,100,5" Grid.Row="2"/>
             </Grid>
-            <wpfOpenGlControl:WpfOpenGLControl  Name="GlControl" Grid.Column="1"/>
+            <sharpGL:OpenGLControl Grid.Column="1" OpenGLDraw="OpenGLControl_OnOpenGLDraw" Resized="OpenGLControl_OnResized"></sharpGL:OpenGLControl>
         </Grid>
     </DockPanel>
 </Window>
