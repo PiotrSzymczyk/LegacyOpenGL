@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using LegacyOpenGlApp.DataAccess;
+using LegacyOpenGlApp.Models;
 using Unity;
 
 namespace LegacyOpenGlApp.Services
@@ -14,5 +15,7 @@ namespace LegacyOpenGlApp.Services
 			Models.Toggles.ToDictionary(
 				toggle => toggle.StateVariable,
 				toggle => toggle.IsActive);
+
+		public IList<TransformationModel> Transformations => Models.Transformations;
 	}
 }

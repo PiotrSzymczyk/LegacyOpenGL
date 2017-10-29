@@ -16,10 +16,10 @@ namespace LegacyOpenGlApp.Services
 
 		private Scene scene => OpenGlSceneDefinitionService.Scene;
 
-		private float rotate;
-
 		public void Draw(OpenGL gl)
 		{
+			int i = 1;
+
 			FeaturesService.SetToggles(gl, SettingsService.Toggles);
 
 			//  Clear the color and depth buffers.
@@ -27,14 +27,8 @@ namespace LegacyOpenGlApp.Services
 
 			//  Reset the modelview matrix.
 			gl.LoadIdentity();
-			int i = 1;
-			gl.Translate(0.0f, 0.0f, -4.0f);
 
-			gl.Rotate(rotate, 0.0f, 0.5f, 0.0f);
-
-			gl.Translate(1.0f, 0.0f, 0.0f);
-			gl.Rotate(rotate, 0.5f, 0.0f, 0.1f);
-
+			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
 			gl.Begin(OpenGL.GL_QUADS);
 			
@@ -58,8 +52,6 @@ namespace LegacyOpenGlApp.Services
 
 			gl.End();
 			gl.Flush();
-
-			rotate++;
 		}
 
 		public void Resize(OpenGL gl)

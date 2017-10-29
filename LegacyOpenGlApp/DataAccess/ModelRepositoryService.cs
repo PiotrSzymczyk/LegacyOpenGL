@@ -7,5 +7,7 @@ namespace LegacyOpenGlApp.DataAccess
     public class ModelRepositoryService
     {
 	    public IList<ToggleModel> Toggles { get; set; } = Config.OpenGlToggles;
+
+	    public IList<TransformationModel> Transformations { get; set; } = Config.Transformations;
 	}
 }

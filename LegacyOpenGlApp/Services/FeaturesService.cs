@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LegacyOpenGlApp.Models;
+using LegacyOpenGlApp.Primitives;
 using SharpGL;
 
 namespace LegacyOpenGlApp.Services
@@ -8,18 +10,33 @@ namespace LegacyOpenGlApp.Services
 	{
 		public static void SetToggles(OpenGL gl, IDictionary<uint, bool> toggles)
 		{
-			toggles.ToList().ForEach(toggle => SetToggle(gl, toggle));
+			foreach (var toggle in toggles)
+			{
+				if (toggle.Value)
+				{
+					gl.Enable(toggle.Key);
+				}
+				else
+				{
+					gl.Disable(toggle.Key);
+				}
+			}
+				
 		}
 
-		private static void SetToggle(OpenGL gl, KeyValuePair<uint, bool> toggle)
+		public static void SetTransformations(OpenGL gl, IList<TransformationModel> transformations)
 		{
-			if (toggle.Value)
+			foreach (var transformation in transformations)
 			{
-				gl.Enable(toggle.Key);
-			}
-			else
-			{
-				gl.Disable(toggle.Key);
+				switch (transformation.Transform)
+				{
+					case Transform.Translate:
+						gl.Translate(transformation.X, transformation.Y, transformation.Z);
+						break;
+					case Transform.Rotate:
+						gl.Rotate(transformation.X, transformation.Y, transformation.Z);
+						break;
+				}
 			}
 		}
 	}

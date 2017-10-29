@@ -10,5 +10,7 @@ namespace LegacyOpenGlApp.Models
 		public ModelRepositoryService Models { get; set; }
 
 		public IList<ToggleModel> Toggles => Models.Toggles;
+
+		public IList<TransformationModel> Transformations => Models.Transformations;
 	}
 }
