@@ -3,7 +3,6 @@ using System.Windows;
 using LegacyOpenGlApp.Models;
 using LegacyOpenGlApp.Services;
 using LegacyOpenGlApp.ViewModels;
-using SharpGL;
 using SharpGL.SceneGraph;
 using Unity;
 
@@ -14,7 +13,6 @@ namespace LegacyOpenGlApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-
 		[Dependency]
 		public MainWindowViewModel ViewModel
 		{
@@ -25,9 +23,6 @@ namespace LegacyOpenGlApp
 		[Dependency]
 		public OpenGlService OpenGlService { get; set; }
 
-		[Dependency]
-		public SceneDefinitionService SceneDefinitionService { get; set; }
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -35,11 +30,7 @@ namespace LegacyOpenGlApp
 
 		private void OpenGLControl_OnOpenGLDraw(object sender, OpenGLEventArgs args)
 		{
-			OpenGlService.Draw(args.OpenGL, new OpenGlSettingsModel
-			{
-				Toggles = ViewModel.Toggles.ToDictionary(tg => tg.StateVariable, tg => tg.IsActive)
-			},
-			SceneDefinitionService.Scene);
+			OpenGlService.Draw(args.OpenGL);
 		}
 
 		private void OpenGLControl_OnResized(object sender, OpenGLEventArgs args)

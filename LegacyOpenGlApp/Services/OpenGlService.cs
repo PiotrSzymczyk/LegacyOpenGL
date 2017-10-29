@@ -1,18 +1,26 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Assimp;
-using LegacyOpenGlApp.Models;
+using LegacyOpenGlApp.Primitives;
 using SharpGL;
+using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
     public class OpenGlService
 	{
-		float rotate;
+		[Dependency]
+		public OpenGlSceneDefinitionService OpenGlSceneDefinitionService { get; set; }
 
-		public void Draw(OpenGL gl, OpenGlSettingsModel settings, Scene scene)
+		[Dependency]
+		public OpenGlSettingsService SettingsService { get; set; }
+
+		private Scene scene => OpenGlSceneDefinitionService.Scene;
+
+		private float rotate;
+
+		public void Draw(OpenGL gl)
 		{
-			FeaturesService.SetToggles(gl, settings.Toggles);
+			FeaturesService.SetToggles(gl, SettingsService.Toggles);
 
 			//  Clear the color and depth buffers.
 			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -21,8 +29,12 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 			int i = 1;
 			gl.Translate(0.0f, 0.0f, -4.0f);
-			
-			gl.Rotate(rotate, 0.0f, 0.5f, 0.1f);
+
+			gl.Rotate(rotate, 0.0f, 0.5f, 0.0f);
+
+			gl.Translate(1.0f, 0.0f, 0.0f);
+			gl.Rotate(rotate, 0.5f, 0.0f, 0.1f);
+
 
 			gl.Begin(OpenGL.GL_QUADS);
 			
@@ -46,6 +58,8 @@ namespace LegacyOpenGlApp.Services
 
 			gl.End();
 			gl.Flush();
+
+			rotate++;
 		}
 
 		public void Resize(OpenGL gl)

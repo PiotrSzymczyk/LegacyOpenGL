@@ -1,10 +1,9 @@
 ﻿using System.IO;
-using System.Linq;
 using Assimp;
 
 namespace LegacyOpenGlApp.Services
 {
-    public class SceneDefinitionService
+    public class OpenGlSceneDefinitionService
     {
 	    private Scene _scene;
 	    private string _path = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\scene.off";

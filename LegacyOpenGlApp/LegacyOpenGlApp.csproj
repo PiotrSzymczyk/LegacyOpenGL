@@ -80,11 +80,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\ModelRepositoryService.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
+    <Compile Include="Models\TransformationModel.cs" />
+    <Compile Include="Primitives\Transform.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Models\OpenGlSettingsModel.cs" />
     <Compile Include="Services\OpenGlService.cs" />
-    <Compile Include="Services\SceneDefinitionService.cs" />
+    <Compile Include="Services\OpenGlSettingsService.cs" />
+    <Compile Include="Services\OpenGlSceneDefinitionService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -94,8 +97,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\OpenGlToggle.cs" />
-    <Compile Include="Services\Config.cs" />
+    <Compile Include="Models\ToggleModel.cs" />
+    <Compile Include="Primitives\Config.cs" />
     <Compile Include="Services\FeaturesService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -130,7 +133,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Primitives\" />
     <Folder Include="ValueConverters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

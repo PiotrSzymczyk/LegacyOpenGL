@@ -1,6 +1,6 @@
 ﻿namespace LegacyOpenGlApp.Models
 {
-	public class OpenGlToggle
+	public class ToggleModel
 	{
 		public uint StateVariable { get; set; }
 

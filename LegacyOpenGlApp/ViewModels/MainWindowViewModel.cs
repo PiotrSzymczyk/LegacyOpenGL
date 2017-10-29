@@ -1,19 +1,17 @@
 ﻿using System.Collections.Generic;
 using LegacyOpenGlApp.Models;
-using LegacyOpenGlApp.Services;
 
 namespace LegacyOpenGlApp.ViewModels
 {
 	public class MainWindowViewModel
 	{
-		private MainWindowModel _model;
-
-		public MainWindowViewModel()
+		public MainWindowViewModel(MainWindowModel Model)
 		{
-			_model = new MainWindowModel { Toggles = Config.OpenGlToggles };
-			Toggles = new List<OpenGlToggle>(_model.Toggles);
+			Toggles = new List<ToggleModel>(Model.Toggles);
 		}
 
-		public IList<OpenGlToggle> Toggles { get; set; }
+		public IList<ToggleModel> Toggles { get; set; }
+
+		public IList<TransformationModel> Transformations { get; set; }
 	}
 }
