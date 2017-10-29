@@ -24,7 +24,10 @@ namespace LegacyOpenGlApp
 
 		[Dependency]
 		public OpenGlService OpenGlService { get; set; }
-		
+
+		[Dependency]
+		public SceneDefinitionService SceneDefinitionService { get; set; }
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -35,7 +38,8 @@ namespace LegacyOpenGlApp
 			OpenGlService.Draw(args.OpenGL, new OpenGlSettingsModel
 			{
 				Toggles = ViewModel.Toggles.ToDictionary(tg => tg.StateVariable, tg => tg.IsActive)
-			});
+			},
+			SceneDefinitionService.Scene);
 		}
 
 		private void OpenGLControl_OnResized(object sender, OpenGLEventArgs args)

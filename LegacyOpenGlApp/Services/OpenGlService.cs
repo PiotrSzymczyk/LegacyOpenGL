@@ -1,13 +1,16 @@
-﻿using LegacyOpenGlApp.Models;
+﻿using System;
+using System.Linq;
+using Assimp;
+using LegacyOpenGlApp.Models;
 using SharpGL;
 
 namespace LegacyOpenGlApp.Services
 {
     public class OpenGlService
 	{
-		float rotatePyramid;
+		float rotate;
 
-		public void Draw(OpenGL gl, OpenGlSettingsModel settings)
+		public void Draw(OpenGL gl, OpenGlSettingsModel settings, Scene scene)
 		{
 			FeaturesService.SetToggles(gl, settings.Toggles);
 
@@ -16,49 +19,33 @@ namespace LegacyOpenGlApp.Services
 
 			//  Reset the modelview matrix.
 			gl.LoadIdentity();
+			int i = 1;
+			gl.Translate(0.0f, 0.0f, -4.0f);
+			
+			gl.Rotate(rotate, 0.0f, 0.5f, 0.1f);
 
-			//  Move the geometry into a fairly central position.
-			gl.Translate(0.0f, 0.0f, -6.0f);
+			gl.Begin(OpenGL.GL_QUADS);
+			
+			var meshes = scene.Meshes;
+			foreach (var mesh in meshes)
+			{
+				var faces = mesh.Faces;
 
-			//  Draw a pyramid. First, rotate the modelview matrix.
-			gl.Rotate(rotatePyramid, 0.0f, 1.0f, 0.0f);
+				foreach (var face in faces)
+				{
+					var vertices = face.Indices.Select(indice => mesh.Vertices[indice]);
+					gl.Color(1-i/15f, 1-i/10f, 1f-i/15f);
 
-			//  Start drawing triangles.
-			gl.Begin(OpenGL.GL_TRIANGLES);
-
-			gl.Color(1.0f, 0.0f, 0.0f);
-			gl.Vertex(0.0f, 1.0f, 0.0f);
-			gl.Color(0.0f, 1.0f, 0.0f);
-			gl.Vertex(-1.0f, -1.0f, 1.0f);
-			gl.Color(0.0f, 0.0f, 1.0f);
-			gl.Vertex(1.0f, -1.0f, 1.0f);
-
-			gl.Color(1.0f, 0.0f, 0.0f);
-			gl.Vertex(0.0f, 1.0f, 0.0f);
-			gl.Color(0.0f, 0.0f, 1.0f);
-			gl.Vertex(1.0f, -1.0f, 1.0f);
-			gl.Color(0.0f, 1.0f, 0.0f);
-			gl.Vertex(1.0f, -1.0f, -1.0f);
-
-			gl.Color(1.0f, 0.0f, 0.0f);
-			gl.Vertex(0.0f, 1.0f, 0.0f);
-			gl.Color(0.0f, 1.0f, 0.0f);
-			gl.Vertex(1.0f, -1.0f, -1.0f);
-			gl.Color(0.0f, 0.0f, 1.0f);
-			gl.Vertex(-1.0f, -1.0f, -1.0f);
-
-			gl.Color(1.0f, 0.0f, 0.0f);
-			gl.Vertex(0.0f, 1.0f, 0.0f);
-			gl.Color(0.0f, 0.0f, 1.0f);
-			gl.Vertex(-1.0f, -1.0f, -1.0f);
-			gl.Color(0.0f, 1.0f, 0.0f);
-			gl.Vertex(-1.0f, -1.0f, 1.0f);
+					foreach (var vertex in vertices)
+					{
+						gl.Vertex(vertex.X, vertex.Y, vertex.Z);
+					}
+					i++;
+				}
+			}
 
 			gl.End();
 			gl.Flush();
-
-			//  Rotate the geometry a bit.
-			rotatePyramid += 3.0f;
 		}
 
 		public void Resize(OpenGL gl)
