@@ -18,6 +18,8 @@ namespace LegacyOpenGlApp.Services
 		{
 			new TransformationModel { Transform = Transform.Translate, Z = -4f },
 			new TransformationModel { Transform = Transform.Rotate, X = 20, Y = 50, Z = 80 },
+			new TransformationModel { Transform = Transform.Translate, X = -1f },
+			new TransformationModel { Transform = Transform.Rotate, X = 20, Y = 50, Z = 80 },
 		};
 	}
 }

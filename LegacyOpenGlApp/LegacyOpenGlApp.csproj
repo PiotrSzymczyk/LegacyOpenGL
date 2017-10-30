@@ -83,6 +83,7 @@
     <Compile Include="DataAccess\ModelRepositoryService.cs" />
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\TransformationModel.cs" />
+    <Compile Include="Primitives\ObservableListProxy.cs" />
     <Compile Include="Primitives\Transform.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\OpenGlService.cs" />

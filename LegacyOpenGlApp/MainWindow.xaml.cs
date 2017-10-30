@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
-using LegacyOpenGlApp.Models;
+﻿using System.Windows;
 using LegacyOpenGlApp.Services;
 using LegacyOpenGlApp.ViewModels;
 using SharpGL.SceneGraph;
@@ -36,6 +34,11 @@ namespace LegacyOpenGlApp
 		private void OpenGLControl_OnResized(object sender, OpenGLEventArgs args)
 		{
 			OpenGlService.Resize(args.OpenGL);
+		}
+
+		private void Button_OnClick_RemoveTransform(object sender, RoutedEventArgs e)
+		{
+			ViewModel.Transformations.RemoveAt(TransformationsList.SelectedIndex);
 		}
 	}
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600">
+        Title="MainWindow"  Width="1600" Height="860" Left="0" Top="0">
     <Window.Resources>
     </Window.Resources>
     <DockPanel>
@@ -43,15 +43,23 @@
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <DockPanel Margin="10" Grid.Row="0">
-                    <Label Content="Transformations" HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                    <ScrollViewer>
-                        <StackPanel Name="TransformationsList">
-                            <Label Content="Transorm 0"/>
-                            <Label Content="Transorm 1"/>
-                            <Label Content="Transorm 2"/>
-                            <Label Content="Transorm 3"/>
-                        </StackPanel>
-                    </ScrollViewer>
+                    <Label Content="Transformations" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                    <Grid DockPanel.Dock="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="-" Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform"/>
+                        <Button Content="+" Grid.Column="1" Margin="3"/>
+                    </Grid>
+                    <ListView Name="TransformationsList" ItemsSource="{Binding Transformations}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ListViewItem Content="{Binding}" Height="40" FontSize="15" Padding="5">
+                                </ListViewItem>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </DockPanel>
                 <DockPanel Margin="10" Grid.Row="1">
                     <Label Content="Lights" HorizontalAlignment="Center" DockPanel.Dock="Top" />
