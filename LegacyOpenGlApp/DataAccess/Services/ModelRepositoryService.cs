@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using LegacyOpenGlApp.Models;
-using LegacyOpenGlApp.Services;
+using LegacyOpenGlApp.DataAccess.Models;
+using LegacyOpenGlApp.Primitives;
 
-namespace LegacyOpenGlApp.DataAccess
+namespace LegacyOpenGlApp.DataAccess.Services
 {
     public class ModelRepositoryService
     {

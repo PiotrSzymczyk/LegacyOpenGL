@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using LegacyOpenGlApp.Models;
+using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
+using LegacyOpenGlApp.WindowModels;
 
 namespace LegacyOpenGlApp.ViewModels
 {

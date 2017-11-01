@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using LegacyOpenGlApp.DataAccess;
-using LegacyOpenGlApp.Models;
+using LegacyOpenGlApp.DataAccess.Models;
+using LegacyOpenGlApp.DataAccess.Services;
 using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-    public class OpenGlSettingsService
+    public class OpenGlSettingsServiceModel
 	{
 		[Dependency]
 		public ModelRepositoryService Models { get; set; }

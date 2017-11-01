@@ -1,16 +1,10 @@
 ﻿using System.IO;
 using Assimp;
 
-namespace LegacyOpenGlApp.Services
+namespace LegacyOpenGlApp.DataAccess.Services
 {
     public class OpenGlSceneDefinitionService
     {
-	    private Scene _scene;
-	    private string _path = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\scene.off";
-
-
-		public Scene Scene => _scene ?? (_scene = LoadScene(_path));
-
 		public Scene LoadScene(string path)
 	    {
 		    path = Path.GetFullPath(path);

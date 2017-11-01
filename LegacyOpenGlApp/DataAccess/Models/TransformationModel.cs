@@ -1,6 +1,6 @@
 ﻿using LegacyOpenGlApp.Primitives;
 
-namespace LegacyOpenGlApp.Models
+namespace LegacyOpenGlApp.DataAccess.Models
 {
     public class TransformationModel
     {

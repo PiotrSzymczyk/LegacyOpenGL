@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Assimp;
-using LegacyOpenGlApp.Primitives;
 using SharpGL;
 using Unity;
 
@@ -9,10 +8,10 @@ namespace LegacyOpenGlApp.Services
     public class OpenGlService
 	{
 		[Dependency]
-		public OpenGlSceneDefinitionService OpenGlSceneDefinitionService { get; set; }
+		public OpenGlSceneDefinitionServiceModel OpenGlSceneDefinitionService { get; set; }
 
 		[Dependency]
-		public OpenGlSettingsService SettingsService { get; set; }
+		public OpenGlSettingsServiceModel SettingsService { get; set; }
 
 		private Scene scene => OpenGlSceneDefinitionService.Scene;
 

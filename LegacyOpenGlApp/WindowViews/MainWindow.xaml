@@ -1,4 +1,4 @@
-﻿<Window x:Class="LegacyOpenGlApp.MainWindow"
+﻿<Window x:Class="LegacyOpenGlApp.WindowModels.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -50,7 +50,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Button Content="-" Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform"/>
-                        <Button Content="+" Grid.Column="1" Margin="3"/>
+                        <Button Content="+" Grid.Column="1" Margin="3" Click="Button_OnClick_AddTransform"/>
                     </Grid>
                     <ListView Name="TransformationsList" ItemsSource="{Binding Transformations}">
                         <ListView.ItemTemplate>

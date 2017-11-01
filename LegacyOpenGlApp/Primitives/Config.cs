@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using LegacyOpenGlApp.Models;
-using LegacyOpenGlApp.Primitives;
+using LegacyOpenGlApp.DataAccess.Models;
 
-namespace LegacyOpenGlApp.Services
+namespace LegacyOpenGlApp.Primitives
 {
 	public static class Config
 	{

@@ -1,4 +1,4 @@
-﻿namespace LegacyOpenGlApp.Models
+﻿namespace LegacyOpenGlApp.DataAccess.Models
 {
 	public class ToggleModel
 	{

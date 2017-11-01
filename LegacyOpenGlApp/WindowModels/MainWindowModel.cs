@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using LegacyOpenGlApp.DataAccess;
+using LegacyOpenGlApp.DataAccess.Models;
+using LegacyOpenGlApp.DataAccess.Services;
 using Unity;
 
-namespace LegacyOpenGlApp.Models
+namespace LegacyOpenGlApp.WindowModels
 {
 	public class MainWindowModel
 	{

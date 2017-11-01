@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using LegacyOpenGlApp.WindowModels;
 using Unity;
 
 namespace LegacyOpenGlApp
