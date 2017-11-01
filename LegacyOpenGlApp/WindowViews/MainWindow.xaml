@@ -62,14 +62,23 @@
                     </ListView>
                 </DockPanel>
                 <DockPanel Margin="10" Grid.Row="1">
-                    <Label Content="Lights" HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                    <ScrollViewer>
-                        <StackPanel Name="LightsList">
-                            <Label Content="Light 0" />
-                            <Label Content="Light 1" />
-                            <Label Content="Light 2" />
-                        </StackPanel>
-                    </ScrollViewer>
+                    <Label Content="Lights" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                    <Grid DockPanel.Dock="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="-" Grid.Column="0" Margin="3"/>
+                        <Button Content="+" Grid.Column="1" Margin="3"/>
+                    </Grid>
+                    <ListView Name="LightsList" ItemsSource="{Binding Lights}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ListViewItem Content="{Binding}" Height="40" FontSize="15" Padding="5">
+                                </ListViewItem>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </DockPanel>
                 <Button Content="Generate code" Margin="100,5,100,5" Grid.Row="2"/>
             </Grid>

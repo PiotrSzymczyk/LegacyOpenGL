@@ -11,10 +11,13 @@ namespace LegacyOpenGlApp.WindowViewModels
 		{
 			Toggles = new List<ToggleModel>(model.Toggles);
 			Transformations = new ObservableListProxy<TransformationModel>(() => model.Transformations);
+			Lights = new ObservableListProxy<LightModel>(() => model.Lights);
 		}
 
 		public IList<ToggleModel> Toggles { get; set; }
 
 		public IList<TransformationModel> Transformations { get; set; }
+
+		public IList<LightModel> Lights { get; set; }
 	}
 }

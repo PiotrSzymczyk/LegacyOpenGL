@@ -15,6 +15,8 @@ namespace LegacyOpenGlApp.Services
 
 		private Scene scene => OpenGlSceneDefinitionService.Scene;
 
+		private float test = 0;
+
 		public void Draw(OpenGL gl)
 		{
 			int i = 1;
@@ -28,6 +30,8 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
+
+			FeaturesService.SetLights(gl, SettingsService.Lights);
 
 			gl.Begin(OpenGL.GL_QUADS);
 			

@@ -17,5 +17,7 @@ namespace LegacyOpenGlApp.Services
 				toggle => toggle.IsActive);
 
 		public IList<TransformationModel> Transformations => Models.Transformations;
+
+		public IList<LightModel> Lights => Models.Lights;
 	}
 }

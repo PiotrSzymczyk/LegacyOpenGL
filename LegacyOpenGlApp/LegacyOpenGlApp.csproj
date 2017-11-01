@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
+    <Compile Include="DataAccess\Models\LightModel.cs" />
     <Compile Include="Services\SceneDefinitionServiceModel.cs" />
     <Compile Include="WindowModels\MainWindowModel.cs" />
     <Compile Include="DataAccess\Models\TransformationModel.cs" />

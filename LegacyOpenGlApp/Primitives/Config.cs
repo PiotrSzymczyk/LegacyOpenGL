@@ -17,8 +17,36 @@ namespace LegacyOpenGlApp.Primitives
 		{
 			new TransformationModel { Transform = Transform.Translate, Z = -4f },
 			new TransformationModel { Transform = Transform.Rotate, X = 20, Y = 50, Z = 80 },
-			new TransformationModel { Transform = Transform.Translate, X = -1f },
-			new TransformationModel { Transform = Transform.Rotate, X = 20, Y = 50, Z = 80 },
+		};
+
+		public  static readonly IList<LightModel> Lights = new List<LightModel>
+		{
+			new LightModel
+			{
+				Ambient = new []{0f,0f,0f,1f},
+				Diffuse = new []{1f,1f,1f,1f},
+				Specular = new []{1f,1f,1f,1f},
+				Position = new []{0f,0f,1f,0f},
+				SpotlightDirection = new []{0f,0f,-1f},
+				SpotlightExponent = 0f,
+				SpotlightCutoff = 180f,
+				ConstantAttenuation = 1,
+				LinearAttenuation = 0,
+				QuadraticAttenuation = 0
+			},
+			new LightModel
+			{
+				Ambient = new []{1f,0f,0f,1f},
+				Diffuse = new []{0f,0f,0f,1f},
+				Specular = new []{0f,0f,0f,1f},
+				Position = new []{0f,0f,1f,0f},
+				SpotlightDirection = new []{0f,0f,-1f},
+				SpotlightExponent = 0f,
+				SpotlightCutoff = 1f,
+				ConstantAttenuation = 1,
+				LinearAttenuation = 0,
+				QuadraticAttenuation = 0
+			}
 		};
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using LegacyOpenGlApp.DataAccess;
 using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.DataAccess.Services;
 using Unity;
@@ -21,6 +20,12 @@ namespace LegacyOpenGlApp.WindowModels
 		{
 			get => Models.Transformations;
 			set => Models.Transformations = value;
+		}
+
+		public IList<LightModel> Lights
+		{
+			get => Models.Lights;
+			set => Models.Lights = value;
 		}
 	}
 }
