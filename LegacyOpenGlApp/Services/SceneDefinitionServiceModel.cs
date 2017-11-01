@@ -4,7 +4,7 @@ using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-    public class OpenGlSceneDefinitionServiceModel
+    public class SceneDefinitionServiceModel
     {
 		[Dependency]
 		public OpenGlSceneDefinitionService SceneDefinitionService { get; set; }

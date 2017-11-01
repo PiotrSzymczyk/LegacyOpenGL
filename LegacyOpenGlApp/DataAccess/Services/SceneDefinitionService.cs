@@ -3,7 +3,7 @@ using Assimp;
 
 namespace LegacyOpenGlApp.DataAccess.Services
 {
-    public class OpenGlSceneDefinitionService
+    public class SceneDefinitionService
     {
 		public Scene LoadScene(string path)
 	    {
