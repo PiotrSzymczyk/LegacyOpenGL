@@ -7,7 +7,7 @@ namespace LegacyOpenGlApp.Services
     public class SceneDefinitionServiceModel
     {
 		[Dependency]
-		public OpenGlSceneDefinitionService SceneDefinitionService { get; set; }
+		public SceneDefinitionService SceneDefinitionService { get; set; }
 
 	    private Scene _scene;
 	    private string _path = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\scene.off";

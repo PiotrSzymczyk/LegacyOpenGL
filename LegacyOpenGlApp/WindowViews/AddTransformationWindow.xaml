@@ -1,0 +1,82 @@
+﻿<Window x:Class="LegacyOpenGlApp.WindowViews.AddTransformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LegacyOpenGlApp.WindowViews"
+        mc:Ignorable="d"
+        Title="AddTransformationWindow" Height="191" Width="298">
+    <StackPanel>
+        <TabControl SelectedIndex="{Binding Path=Transform}" Margin="0,0,0,10">
+            <TabItem Header="Translate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Translation over X axis:" Grid.Column="0"  Grid.Row="0"/>
+                    <TextBox  Text="{Binding Path=TranslateX}" Grid.Column="1"  Grid.Row="0"/>
+
+                    <Label Content="Translation over Y axis:" Grid.Column="0"  Grid.Row="1"/>
+                    <TextBox  Text="{Binding Path=TranslateY}" Grid.Column="1"  Grid.Row="1"/>
+
+                    <Label Content="Translation over Z axis:" Grid.Column="0"  Grid.Row="2"/>
+                    <TextBox  Text="{Binding Path=TranslateZ}" Grid.Column="1"  Grid.Row="2"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Rotate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Rotation over X axis (°):" Grid.Column="0"  Grid.Row="0"/>
+                    <TextBox  Text="{Binding Path=RotateX}" Grid.Column="1"  Grid.Row="0"/>
+
+                    <Label Content="Rotation over Y axis (°):" Grid.Column="0"  Grid.Row="1"/>
+                    <TextBox  Text="{Binding Path=RotateY}" Grid.Column="1"  Grid.Row="1"/>
+
+                    <Label Content="Rotation over Z axis (°):" Grid.Column="0"  Grid.Row="2"/>
+                    <TextBox  Text="{Binding Path=RotateZ}" Grid.Column="1"  Grid.Row="2"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Scale">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Scaling along X axis (%):" Grid.Column="0"  Grid.Row="0"/>
+                    <TextBox  Text="{Binding Path=ScaleX}" Grid.Column="1"  Grid.Row="0"/>
+
+                    <Label Content="Scaling along Y axis (%):" Grid.Column="0"  Grid.Row="1"/>
+                    <TextBox  Text="{Binding Path=ScaleY}" Grid.Column="1"  Grid.Row="1"/>
+
+                    <Label Content="Scaling along Z axis (%):" Grid.Column="0"  Grid.Row="2"/>
+                    <TextBox  Text="{Binding Path=ScaleZ}" Grid.Column="1"  Grid.Row="2"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Add Transformation" Click="Button_AddTransformation_OnClick"></Button>
+    </StackPanel>
+</Window>

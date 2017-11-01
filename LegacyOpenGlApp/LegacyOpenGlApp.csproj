@@ -81,16 +81,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
-    <Compile Include="Services\OpenGlSceneDefinitionServiceModel.cs" />
+    <Compile Include="Services\SceneDefinitionServiceModel.cs" />
     <Compile Include="WindowModels\MainWindowModel.cs" />
     <Compile Include="DataAccess\Models\TransformationModel.cs" />
     <Compile Include="Primitives\ObservableListProxy.cs" />
     <Compile Include="Primitives\Transform.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\OpenGlService.cs" />
-    <Compile Include="Services\OpenGlSettingsServiceModel.cs" />
-    <Compile Include="DataAccess\Services\OpenGlSceneDefinitionService.cs" />
+    <Compile Include="Services\SceneSettingsServiceModel.cs" />
+    <Compile Include="DataAccess\Services\SceneDefinitionService.cs" />
+    <Compile Include="WindowViewModels\AddTransformationWindowViewModel.cs" />
     <Compile Include="WindowViewModels\MainWindowViewModel.cs" />
+    <Page Include="WindowViews\AddTransformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowViews\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +107,9 @@
     <Compile Include="DataAccess\Models\ToggleModel.cs" />
     <Compile Include="Primitives\Config.cs" />
     <Compile Include="Services\FeaturesService.cs" />
+    <Compile Include="WindowViews\AddTransformationWindow.xaml.cs">
+      <DependentUpon>AddTransformationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowViews\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

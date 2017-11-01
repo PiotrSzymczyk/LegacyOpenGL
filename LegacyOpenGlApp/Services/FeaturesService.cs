@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
 using SharpGL;
@@ -35,6 +36,11 @@ namespace LegacyOpenGlApp.Services
 					case Transform.Rotate:
 						gl.Rotate(transformation.X, transformation.Y, transformation.Z);
 						break;
+					case Transform.Scale:
+						gl.Scale(transformation.X, transformation.Y, transformation.Z);
+						break;
+					default:
+						throw new InvalidEnumArgumentException();
 				}
 			}
 		}

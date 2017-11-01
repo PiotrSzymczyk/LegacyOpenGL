@@ -3,7 +3,7 @@ using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
 using LegacyOpenGlApp.WindowModels;
 
-namespace LegacyOpenGlApp.ViewModels
+namespace LegacyOpenGlApp.WindowViewModels
 {
 	public class MainWindowViewModel
 	{

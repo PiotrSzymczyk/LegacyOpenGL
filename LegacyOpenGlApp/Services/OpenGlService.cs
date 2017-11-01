@@ -8,10 +8,10 @@ namespace LegacyOpenGlApp.Services
     public class OpenGlService
 	{
 		[Dependency]
-		public OpenGlSceneDefinitionServiceModel OpenGlSceneDefinitionService { get; set; }
+		public SceneDefinitionServiceModel OpenGlSceneDefinitionService { get; set; }
 
 		[Dependency]
-		public OpenGlSettingsServiceModel SettingsService { get; set; }
+		public SceneSettingsServiceModel SettingsService { get; set; }
 
 		private Scene scene => OpenGlSceneDefinitionService.Scene;
 

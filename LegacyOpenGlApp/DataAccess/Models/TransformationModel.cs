@@ -1,4 +1,5 @@
-﻿using LegacyOpenGlApp.Primitives;
+﻿using System;
+using LegacyOpenGlApp.Primitives;
 
 namespace LegacyOpenGlApp.DataAccess.Models
 {
@@ -12,9 +13,16 @@ namespace LegacyOpenGlApp.DataAccess.Models
 
 	    public float Z { get; set; }
 
-	    public override string ToString() => $"{Transform} ( X: {X}{_symbol}, Y: {Y}{_symbol}, Z: {Z}{_symbol} )";
+	    public override string ToString() => string.Format("{0} ( X: {1}{4}, Y: {2}{4}, Z: {3}{4} )", Transform, X, Y, Z, GetSymbol());
 
-	    private char? _symbol => Transform == Transform.Rotate ? '\xB0' : (char?) null;
-
+	    private char? GetSymbol()
+	    {
+		    switch (Transform)
+		    {
+			    case Transform.Rotate: return '\xB0';
+			    case Transform.Scale: return '\x25';
+			    default: return null;
+		    }
+	    }
     }
 }

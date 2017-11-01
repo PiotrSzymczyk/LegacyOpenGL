@@ -3,9 +3,10 @@ using System.Windows;
 using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
 using LegacyOpenGlApp.Services;
-using LegacyOpenGlApp.ViewModels;
+using LegacyOpenGlApp.WindowViewModels;
 using SharpGL.SceneGraph;
 using Unity;
+using LegacyOpenGlApp.WindowViews;
 
 namespace LegacyOpenGlApp.WindowModels
 {
@@ -50,26 +51,9 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_OnClick_AddTransform(object sender, RoutedEventArgs e)
 		{
-			if (Random.NextDouble() < 0.5)
-			{
-				ViewModel.Transformations.Add(new TransformationModel
-				{
-					Transform = Transform.Rotate,
-					X = (float) Random.Next(720) - 360,
-					Y = (float) Random.Next(720) - 360,
-					Z = (float) Random.Next(720) - 360
-				});
-			}
-			else
-			{
-				ViewModel.Transformations.Add(new TransformationModel
-				{
-					Transform = Transform.Translate,
-					X = (float)Random.NextDouble() * 2 - 1,
-					Y = (float)Random.NextDouble() * 2 - 1,
-					Z = (float)Random.NextDouble() * 2 - 1
-				});
-			}
+			var popup = new AddTransformationWindow();
+			popup.Add += value => ViewModel.Transformations.Add(value);
+			popup.ShowDialog();
 		}
 	}
 }
