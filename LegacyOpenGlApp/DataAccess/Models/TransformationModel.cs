@@ -5,6 +5,18 @@ namespace LegacyOpenGlApp.DataAccess.Models
 {
     public class TransformationModel
     {
+	    public TransformationModel()
+	    {
+	    }
+
+	    public TransformationModel(TransformationModel transformation)
+	    {
+		    this.Transform = transformation.Transform;
+		    this.X = transformation.X;
+		    this.Y = transformation.Y;
+		    this.Z = transformation.Z;
+	    }
+
 	    public Transform Transform { get; set; }
 
 	    public float X { get; set; }
