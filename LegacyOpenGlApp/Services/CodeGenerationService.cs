@@ -25,7 +25,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{indent}gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);");
 			code.AppendLine();
 
-			code.AppendLine($"{indent}//  Reset the modelview matriX:F.");
+			code.AppendLine($"{indent}//  Reset the modelview matrix.");
 			code.AppendLine($"{indent}gl.LoadIdentity();");
 			code.AppendLine();
 

@@ -33,19 +33,6 @@ namespace LegacyOpenGlApp.Primitives
 				ConstantAttenuation = 1,
 				LinearAttenuation = 0,
 				QuadraticAttenuation = 0
-			},
-			new LightModel
-			{
-				Ambient = new []{1f,0f,0f,1f},
-				Diffuse = new []{0f,0f,0f,1f},
-				Specular = new []{0f,0f,0f,1f},
-				Position = new []{0f,0f,1f,0f},
-				SpotlightDirection = new []{0f,0f,-1f},
-				SpotlightExponent = 0f,
-				SpotlightCutoff = 1f,
-				ConstantAttenuation = 1,
-				LinearAttenuation = 0,
-				QuadraticAttenuation = 0
 			}
 		};
 	}

@@ -82,6 +82,7 @@
     </ApplicationDefinition>
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
     <Compile Include="DataAccess\Models\LightModel.cs" />
+    <Compile Include="Services\CodeGenerationService.cs" />
     <Compile Include="Services\SceneDefinitionServiceModel.cs" />
     <Compile Include="WindowModels\MainWindowModel.cs" />
     <Compile Include="DataAccess\Models\TransformationModel.cs" />
@@ -91,8 +92,16 @@
     <Compile Include="Services\OpenGlService.cs" />
     <Compile Include="Services\SceneSettingsServiceModel.cs" />
     <Compile Include="DataAccess\Services\SceneDefinitionService.cs" />
+    <Compile Include="WindowViewModels\AddLightWindowViewModel.cs" />
+    <Compile Include="WindowViews\AddLightWindow.xaml.cs">
+      <DependentUpon>AddLightWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowViewModels\AddTransformationWindowViewModel.cs" />
     <Compile Include="WindowViewModels\MainWindowViewModel.cs" />
+    <Page Include="WindowViews\AddLightWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowViews\AddTransformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

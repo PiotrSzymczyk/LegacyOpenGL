@@ -13,9 +13,7 @@ namespace LegacyOpenGlApp.Services
 		[Dependency]
 		public SceneSettingsServiceModel SettingsService { get; set; }
 
-		private Scene scene => OpenGlSceneDefinitionService.Scene;
-
-		private float test = 0;
+		private Scene Scene => OpenGlSceneDefinitionService.Scene;
 
 		public void Draw(OpenGL gl)
 		{
@@ -35,7 +33,7 @@ namespace LegacyOpenGlApp.Services
 
 			gl.Begin(OpenGL.GL_QUADS);
 			
-			var meshes = scene.Meshes;
+			var meshes = Scene.Meshes;
 			foreach (var mesh in meshes)
 			{
 				var faces = mesh.Faces;
@@ -64,9 +62,7 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 
 			// Perform a perspective transformation
-			gl.Perspective(45.0f, (float)gl.RenderContextProvider.Width /
-								  (float)gl.RenderContextProvider.Height,
-				0.1f, 100.0f);
+			gl.Perspective(45.0f, (float) gl.RenderContextProvider.Width / (float) gl.RenderContextProvider.Height, 0.1f, 100.0f);
 
 			// Load the modelview.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);

@@ -44,9 +44,12 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_OnClick_RemoveTransform(object sender, RoutedEventArgs e)
 		{
-			var selectedIndex = TransformationsList.SelectedIndex;
-			ViewModel.Transformations.RemoveAt(selectedIndex);
-			TransformationsList.SelectedIndex = selectedIndex < TransformationsList.Items.Count ? selectedIndex : --selectedIndex;
+			if (ViewModel.Transformations.Count > 0)
+			{
+				var selectedIndex = TransformationsList.SelectedIndex;
+				ViewModel.Transformations.RemoveAt(selectedIndex);
+				TransformationsList.SelectedIndex = selectedIndex < TransformationsList.Items.Count ? selectedIndex : --selectedIndex;
+			}
 		}
 
 		private void Button_OnClick_AddTransform(object sender, RoutedEventArgs e)
@@ -54,6 +57,28 @@ namespace LegacyOpenGlApp.WindowModels
 			var popup = new AddTransformationWindow();
 			popup.Add += value => ViewModel.Transformations.Add(value);
 			popup.ShowDialog();
+		}
+
+		private void Button_GenerateCode_OnClick(object sender, RoutedEventArgs e)
+		{
+			System.IO.File.WriteAllText(@"C:\Code\LegacyOpenGL\LegacyOpenGlApp\GeneratedCode\code.cs", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
+		}
+
+		private void Button_AddLight_OnClick(object sender, RoutedEventArgs e)
+		{
+			var popup = new AddLightWindow();
+			popup.Add += value => ViewModel.Lights.Add(value);
+			popup.ShowDialog();
+		}
+
+		private void Button_RemoveLight_OnClick(object sender, RoutedEventArgs e)
+		{
+			if (ViewModel.Lights.Count > 0)
+			{
+				var selectedIndex = LightsList.SelectedIndex;
+				ViewModel.Lights.RemoveAt(selectedIndex);
+				LightsList.SelectedIndex = selectedIndex < LightsList.Items.Count ? selectedIndex : --selectedIndex;
+			}
 		}
 	}
 }
