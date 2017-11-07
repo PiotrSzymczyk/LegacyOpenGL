@@ -8,79 +8,77 @@
         Title="MainWindow"  Width="1600" Height="860" Left="0" Top="0">
     <Window.Resources>
     </Window.Resources>
-    <DockPanel>
-        <Menu IsMainMenu="True" DockPanel.Dock="Top">
-            <MenuItem Name="TogglesList" ItemsSource="{Binding Toggles}" Header="_StateVariables">
-                <MenuItem.ItemTemplate>
-                    <DataTemplate>
-                        <!-- Menu item header bound to enum converter -->
-                        <!-- IsChecked bound to current selection -->
-                        <!-- Toggle bound to a command, setting current selection -->
-                        <MenuItem 
-                            Header="{Binding}"
-                            IsCheckable="True"
-                            IsChecked="{Binding Path=IsActive}">
-                        </MenuItem>
-                    </DataTemplate>
-                </MenuItem.ItemTemplate>
-            </MenuItem>
-            <MenuItem Header="_Transformations"></MenuItem>
-            <MenuItem Header="_Camera"></MenuItem>
-            <MenuItem Header="_Shading"></MenuItem>
-            <MenuItem Header="_Lighting"></MenuItem>
-            <MenuItem Header="_Surfaces"></MenuItem>
-            <MenuItem Header="_Texturing"></MenuItem>
-        </Menu>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"></ColumnDefinition>
+            <ColumnDefinition Width="60*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid>
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10*"></RowDefinition>
-                    <RowDefinition Height="10*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <DockPanel Margin="10" Grid.Row="0">
-                    <Label Content="Transformations" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                    <Grid DockPanel.Dock="Bottom">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Button Content="-" Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform"/>
-                        <Button Content="+" Grid.Column="1" Margin="3" Click="Button_OnClick_AddTransform"/>
-                    </Grid>
-                    <ListView Name="TransformationsList" ItemsSource="{Binding Transformations}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding}" FontSize="15" Padding="5"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </DockPanel>
-                <DockPanel Margin="10" Grid.Row="1">
-                    <Label Content="Lights" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                    <Grid DockPanel.Dock="Bottom">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Button Content="-" Click="Button_RemoveLight_OnClick" Grid.Column="0" Margin="3"/>
-                        <Button Content="+" Click="Button_AddLight_OnClick" Grid.Column="1" Margin="3"/>
-                    </Grid>
-                    <ListView Name="LightsList" ItemsSource="{Binding Lights}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding}" FontSize="15" Padding="5"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </DockPanel>
-                <Button Content="Generate code" Click="Button_GenerateCode_OnClick" Margin="100,5,100,5" Grid.Row="2"/>
-            </Grid>
-            <sharpGL:OpenGLControl Grid.Column="1" OpenGLDraw="OpenGLControl_OnOpenGLDraw" Resized="OpenGLControl_OnResized" DrawFPS="True"></sharpGL:OpenGLControl>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TabControl>
+                <TabItem Header="Toggles">
+                    <DockPanel>
+                        <Label Content="StateVariables" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <ListView Name="TogglesList" ItemsSource="{Binding Toggles}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" FontSize="15" Padding="5"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Scene"></TabItem>
+                <TabItem Header="Camera"></TabItem>
+                <TabItem Header="Transformations">
+                    <DockPanel Margin="10">
+                        <Label Content="Transformations" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                        <Grid DockPanel.Dock="Bottom">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="-" Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform"/>
+                            <Button Content="+" Grid.Column="1" Margin="3" Click="Button_OnClick_AddTransform"/>
+                        </Grid>
+                        <ListView Name="TransformationsList" ItemsSource="{Binding Transformations}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}" FontSize="15" Padding="5"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Lighting">
+                    <DockPanel Margin="10">
+                        <Label Content="Lights" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                        <Grid DockPanel.Dock="Bottom">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="-" Click="Button_RemoveLight_OnClick" Grid.Column="0" Margin="3"/>
+                            <Button Content="+" Click="Button_AddLight_OnClick" Grid.Column="1" Margin="3"/>
+                        </Grid>
+                        <ListView Name="LightsList" ItemsSource="{Binding Lights}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}" FontSize="15" Padding="5"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Surfaces"></TabItem>
+                <TabItem Header="Shading"></TabItem>
+                <TabItem Header="Texturing"></TabItem>
+            </TabControl>
+            <Button Content="Generate code" Click="Button_GenerateCode_OnClick" Margin="100,5,100,5" Grid.Row="1"/>
         </Grid>
-    </DockPanel>
+        <sharpGL:OpenGLControl Grid.Column="1" OpenGLDraw="OpenGLControl_OnOpenGLDraw" Resized="OpenGLControl_OnResized" DrawFPS="True"></sharpGL:OpenGLControl>
+    </Grid>
 </Window>
