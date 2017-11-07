@@ -35,5 +35,7 @@ namespace LegacyOpenGlApp.Primitives
 				QuadraticAttenuation = 0
 			}
 		};
+
+		public static string DefaultScenePath = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\scene.off";
 	}
 }
