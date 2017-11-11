@@ -1,18 +1,24 @@
 ﻿using System.IO;
 using Assimp;
+using ObjectBuilder2;
+using Unity;
 
 namespace LegacyOpenGlApp.DataAccess.Services
 {
     public class SceneDefinitionService
     {
+		[Dependency]
+	    public AssimpContext Context { get; set; }
+
+	    public string SupportedFormats => "\t" + Context.GetSupportedImportFormats().JoinStrings("\t");
+
 		public Scene LoadScene(string path)
 	    {
 		    path = Path.GetFullPath(path);
-			var context = new AssimpContext();
 
-			if (context.IsImportFormatSupported(GetFileExtension(path)))
+			if (Context.IsImportFormatSupported(GetFileExtension(path)))
 		    {
-			    return context.ImportFile(path);
+			    return Context.ImportFile(path);
 		    }
 
 		    return null;

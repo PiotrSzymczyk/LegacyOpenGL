@@ -20,19 +20,43 @@
             </Grid.RowDefinitions>
             <TabControl>
                 <TabItem Header="Toggles">
-                    <DockPanel>
+                    <DockPanel Margin="5">
                         <Label Content="StateVariables" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                         <ListView Name="TogglesList" ItemsSource="{Binding Toggles}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" FontSize="15" Padding="5"/>
+                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" FontSize="15" Margin="5"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Scene"></TabItem>
-                <TabItem Header="Camera"></TabItem>
+                
+                <TabItem Header="Scene">
+                    <DockPanel Margin="5">
+                        <Label Content="SceneDefinition" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <StackPanel>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Path: " Grid.Column="0"/>
+                                <TextBox Text="{Binding Path=ScenePath}" Grid.Column="1"/>
+                                <Button Content="..." Click="Button_SelectDir_OnClick" DockPanel.Dock="Right" Grid.Column="2"/>
+                            </Grid>
+                            <Button Content="Load Scene" Click="Button_LoadScene_OnClick" Margin="5"/>
+                            <Label Content="Supported formats are:"/>
+                            <TextBlock Text="{Binding Path=SceneSupportedFormats}" TextWrapping="Wrap" TextAlignment="Justify" />
+                        </StackPanel>
+                    </DockPanel>
+                </TabItem>
+                
+                <TabItem Header="Camera">
+                    
+                </TabItem>
+                
                 <TabItem Header="Transformations">
                     <DockPanel Margin="10">
                         <Label Content="Transformations" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
@@ -53,6 +77,7 @@
                         </ListView>
                     </DockPanel>
                 </TabItem>
+                
                 <TabItem Header="Lighting">
                     <DockPanel Margin="10">
                         <Label Content="Lights" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
@@ -73,9 +98,18 @@
                         </ListView>
                     </DockPanel>
                 </TabItem>
-                <TabItem Header="Surfaces"></TabItem>
-                <TabItem Header="Shading"></TabItem>
-                <TabItem Header="Texturing"></TabItem>
+                
+                <TabItem Header="Surfaces">
+                    
+                </TabItem>
+                
+                <TabItem Header="Shading">
+                    
+                </TabItem>
+                
+                <TabItem Header="Texturing">
+                    
+                </TabItem>
             </TabControl>
             <Button Content="Generate code" Click="Button_GenerateCode_OnClick" Margin="100,5,100,5" Grid.Row="1"/>
         </Grid>

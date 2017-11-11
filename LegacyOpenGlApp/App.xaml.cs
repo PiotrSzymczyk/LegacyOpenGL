@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows;
 using LegacyOpenGlApp.DataAccess.Services;
+using LegacyOpenGlApp.Services;
 using LegacyOpenGlApp.WindowModels;
 using Unity;
 
@@ -21,6 +22,7 @@ namespace LegacyOpenGlApp
 			IUnityContainer container = new UnityContainer();
 
 			container.RegisterType<ModelRepositoryService>(new ContainerControlledLifetimeManager());
+			container.RegisterType<SceneDefinitionServiceModel>(new ContainerControlledLifetimeManager());
 			MainWindow mainWindow = container.Resolve<MainWindow>();
 			mainWindow.Show();
 		}

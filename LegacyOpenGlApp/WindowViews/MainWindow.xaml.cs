@@ -80,5 +80,22 @@ namespace LegacyOpenGlApp.WindowModels
 				LightsList.SelectedIndex = selectedIndex < LightsList.Items.Count ? selectedIndex : --selectedIndex;
 			}
 		}
+
+		private void Button_SelectDir_OnClick(object sender, RoutedEventArgs e)
+		{
+			using (var dialog = new System.Windows.Forms.OpenFileDialog())
+			{
+				var result = dialog.ShowDialog();
+				if (result == System.Windows.Forms.DialogResult.OK)
+				{
+					ViewModel.ScenePath = dialog.FileName;
+				}
+			}
+		}
+
+		private void Button_LoadScene_OnClick(object sender, RoutedEventArgs e)
+		{
+			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+		}
 	}
 }

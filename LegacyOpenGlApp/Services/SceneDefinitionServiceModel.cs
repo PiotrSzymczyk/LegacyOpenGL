@@ -15,5 +15,9 @@ namespace LegacyOpenGlApp.Services
 		public string Path { get; set; } = Config.DefaultScenePath;
 
 		public Scene Scene => _scene ?? (_scene = SceneDefinitionService.LoadScene(Path));
+
+		public string SupportedFormats => SceneDefinitionService.SupportedFormats;
+
+		public void ReloadScene() => _scene = null;
 	}
 }

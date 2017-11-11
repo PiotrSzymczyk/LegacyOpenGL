@@ -15,8 +15,8 @@ namespace LegacyOpenGlApp.Primitives
 
 		public static readonly IList<TransformationModel> Transformations = new List<TransformationModel>
 		{
+			new TransformationModel { Transform = Transform.Translate, Z = -5f },
 			new TransformationModel { Transform = Transform.Translate, Z = -4f },
-			new TransformationModel { Transform = Transform.Rotate, X = 20, Y = 50, Z = 80 },
 		};
 
 		public  static readonly IList<LightModel> Lights = new List<LightModel>
