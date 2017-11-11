@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Assimp;
+﻿using Assimp;
 using SharpGL;
 using Unity;
 
@@ -17,8 +16,6 @@ namespace LegacyOpenGlApp.Services
 
 		public void Draw(OpenGL gl)
 		{
-			int i = 1;
-
 			FeaturesService.SetToggles(gl, SettingsService.Toggles);
 
 			//  Clear the color and depth buffers.
@@ -30,28 +27,40 @@ namespace LegacyOpenGlApp.Services
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
 			FeaturesService.SetLights(gl, SettingsService.Lights);
-
-			gl.Begin(OpenGL.GL_QUADS);
 			
 			var meshes = Scene.Meshes;
 			foreach (var mesh in meshes)
 			{
-				var faces = mesh.Faces;
+				//TODO: apply material
 
-				foreach (var face in faces)
+				foreach (var face in mesh.Faces)
 				{
-					var vertices = face.Indices.Select(indice => mesh.Vertices[indice]);
-					gl.Color(1-i/15f, 1-i/10f, 1f-i/15f);
+					var faceMode = GetFaceDrawingMode(face.IndexCount);
 
-					foreach (var vertex in vertices)
+					gl.Begin(faceMode);
+
+					foreach (var index in face.Indices)
 					{
+						if (mesh.HasVertexColors(0))
+						{
+							var color = mesh.VertexColorChannels[0][index];
+							gl.Color(color.R, color.G, color.B, color.A);
+						}
+
+						if (mesh.HasNormals)
+						{
+							var normal = mesh.Normals[index];
+							gl.Normal(normal.X, normal.Y, normal.Z);
+						}
+
+						var vertex = mesh.Vertices[index];
 						gl.Vertex(vertex.X, vertex.Y, vertex.Z);
 					}
-					i++;
+
+					gl.End();
 				}
 			}
 
-			gl.End();
 			gl.Flush();
 		}
 
@@ -66,6 +75,18 @@ namespace LegacyOpenGlApp.Services
 
 			// Load the modelview.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
+		}
+
+		private static uint GetFaceDrawingMode(int faceIndexCount)
+		{
+			switch (faceIndexCount)
+			{
+				case 1: return OpenGL.GL_POINTS;
+				case 2: return OpenGL.GL_LINES;
+				case 3: return OpenGL.GL_TRIANGLES;
+				case 4: return OpenGL.GL_QUADS;
+				default: return OpenGL.GL_POLYGON_MODE;
+			}
 		}
 	}
 }
