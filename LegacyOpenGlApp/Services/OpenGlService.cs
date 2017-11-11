@@ -18,6 +18,8 @@ namespace LegacyOpenGlApp.Services
 		{
 			FeaturesService.SetToggles(gl, SettingsService.Toggles);
 
+			FeaturesService.SetLights(gl, SettingsService.Lights);
+
 			//  Clear the color and depth buffers.
 			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
@@ -25,13 +27,14 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
-
-			FeaturesService.SetLights(gl, SettingsService.Lights);
 			
 			var meshes = Scene.Meshes;
 			foreach (var mesh in meshes)
 			{
-				//TODO: apply material
+				if (Scene.HasMaterials && mesh.MaterialIndex < Scene.MaterialCount)
+				{
+					ApplyMaterial(gl, Scene.Materials[mesh.MaterialIndex]);
+				}
 
 				foreach (var face in mesh.Faces)
 				{
@@ -75,6 +78,60 @@ namespace LegacyOpenGlApp.Services
 
 			// Load the modelview.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
+		}
+
+		private void ApplyMaterial(OpenGL gl, Material mtl)
+		{
+			float[] color;
+
+			color = mtl.HasColorDiffuse
+				? new[] { mtl.ColorDiffuse.R, mtl.ColorDiffuse.G, mtl.ColorDiffuse.B, mtl.ColorDiffuse.A }
+				: new[] { 0.8f, 0.8f, 0.8f, 1.0f };
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_DIFFUSE, color);
+
+			color = mtl.HasColorSpecular
+				? new[] { mtl.ColorSpecular.R, mtl.ColorSpecular.G, mtl.ColorSpecular.B, mtl.ColorSpecular.A }
+				: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
+
+			color = mtl.HasColorAmbient
+				? new[] { mtl.ColorAmbient.R, mtl.ColorAmbient.G, mtl.ColorAmbient.B, mtl.ColorAmbient.A }
+				: new[] { 0.2f, 0.2f, 0.2f, 1.0f };
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_AMBIENT, color);
+
+			color = mtl.HasColorEmissive
+				? new[] { mtl.ColorEmissive.R, mtl.ColorEmissive.G, mtl.ColorEmissive.B, mtl.ColorEmissive.A }
+				: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_EMISSION, color);
+
+
+			if (mtl.HasShininess)
+			{
+				if (mtl.HasShininessStrength)
+				{
+					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, mtl.Shininess * mtl.ShininessStrength);
+				}
+				else
+				{
+					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, mtl.Shininess);
+				}
+			}
+			else
+			{
+				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, 0);
+				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, new[] { 0f, 0f, 0f, 0f });
+			}
+
+			gl.PolygonMode(OpenGL.GL_FRONT_AND_BACK, mtl.HasWireFrame && mtl.IsWireFrameEnabled ? OpenGL.GL_LINE : OpenGL.GL_FILL);
+
+			if (mtl.IsTwoSided && mtl.HasTwoSided)
+			{
+				gl.Disable(OpenGL.GL_CULL_FACE);
+			}
+			else
+			{
+				gl.Enable(OpenGL.GL_CULL_FACE);
+			}
 		}
 
 		private static uint GetFaceDrawingMode(int faceIndexCount)
