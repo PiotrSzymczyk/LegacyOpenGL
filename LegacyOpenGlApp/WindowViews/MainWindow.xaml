@@ -34,7 +34,7 @@
                 
                 <TabItem Header="Scene">
                     <DockPanel Margin="5">
-                        <Label Content="SceneDefinition" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <Label Content="Scene Definition" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                         <StackPanel>
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -54,7 +54,52 @@
                 </TabItem>
                 
                 <TabItem Header="Camera">
-                    
+                    <DockPanel Margin="5">
+                        <Label Content="Camera" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <StackPanel>
+                            <Label Content="Camera: "/>
+                            <Grid Margin="5" DataContext="{Binding Camera}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Eye position: " Grid.Row="0" Grid.Column="0"/>
+                                <Label Content="X:" Grid.Row="0" Grid.Column="1"/>
+                                <TextBox Text="{Binding PositionX}" Grid.Row="0" Grid.Column="2"/>
+                                <Label Content="Y:" Grid.Row="0" Grid.Column="3"/>
+                                <TextBox Text="{Binding PositionY}" Grid.Row="0" Grid.Column="4"/>
+                                <Label Content="Z:" Grid.Row="0" Grid.Column="5"/>
+                                <TextBox Text="{Binding PositionZ}" Grid.Row="0" Grid.Column="6"/>
+
+                                <Label Content="Aim camera at: " Grid.Row="1" Grid.Column="0"/>
+                                <Label Content="X:" Grid.Row="1" Grid.Column="1"/>
+                                <TextBox Text="{Binding AimX}" Grid.Row="1" Grid.Column="2"/>
+                                <Label Content="Y:" Grid.Row="1" Grid.Column="3"/>
+                                <TextBox Text="{Binding AimY}" Grid.Row="1" Grid.Column="4"/>
+                                <Label Content="Z:" Grid.Row="1" Grid.Column="5"/>
+                                <TextBox Text="{Binding AimZ}" Grid.Row="1" Grid.Column="6"/>
+
+                                <Label Content="Up direction: " Grid.Row="2" Grid.Column="0"/>
+                                <Label Content="X:" Grid.Row="2" Grid.Column="1"/>
+                                <TextBox Text="{Binding UpX}" Grid.Row="2" Grid.Column="2"/>
+                                <Label Content="Y:" Grid.Row="2" Grid.Column="3"/>
+                                <TextBox Text="{Binding UpY}" Grid.Row="2" Grid.Column="4"/>
+                                <Label Content="Z:" Grid.Row="2" Grid.Column="5"/>
+                                <TextBox Text="{Binding UpZ}" Grid.Row="2" Grid.Column="6"/>
+                            </Grid>
+                            <Button Content="Set Camera" Click="Button_LoadScene_OnClick" Margin="5"/>
+                        </StackPanel>
+                    </DockPanel>
                 </TabItem>
                 
                 <TabItem Header="Transformations">

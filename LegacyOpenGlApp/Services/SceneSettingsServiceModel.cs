@@ -19,5 +19,7 @@ namespace LegacyOpenGlApp.Services
 		public IList<TransformationModel> Transformations => Models.Transformations;
 
 		public IList<LightModel> Lights => Models.Lights;
+
+		public CameraModel Camera => Models.Camera;
 	}
 }

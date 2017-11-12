@@ -18,6 +18,7 @@ namespace LegacyOpenGlApp.WindowViewModels
 			Toggles = new List<ToggleModel>(model.Toggles);
 			Transformations = new ObservableListProxy<TransformationModel>(() => model.Transformations);
 			Lights = new ObservableListProxy<LightModel>(() => model.Lights);
+			Camera = model.Camera;
 		}
 
 		public IList<ToggleModel> Toggles { get; set; }
@@ -25,6 +26,8 @@ namespace LegacyOpenGlApp.WindowViewModels
 		public IList<TransformationModel> Transformations { get; set; }
 
 		public IList<LightModel> Lights { get; set; }
+
+		public CameraModel Camera { get; set; }
 
 		public string SceneSupportedFormats => SceneDefinitionServiceModel.SupportedFormats;
 

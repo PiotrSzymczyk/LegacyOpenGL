@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\Models\CameraModel.cs" />
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
     <Compile Include="DataAccess\Models\LightModel.cs" />
     <Compile Include="Services\CodeGenerationService.cs" />

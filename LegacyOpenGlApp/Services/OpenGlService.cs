@@ -26,8 +26,14 @@ namespace LegacyOpenGlApp.Services
 			//  Reset the modelview matrix.
 			gl.LoadIdentity();
 
+			gl.LookAt(
+				SettingsService.Camera.PositionX, SettingsService.Camera.PositionY, SettingsService.Camera.PositionZ,
+				SettingsService.Camera.AimX, SettingsService.Camera.AimY, SettingsService.Camera.AimZ,
+				SettingsService.Camera.UpX, SettingsService.Camera.UpY, SettingsService.Camera.UpZ
+			);
+
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
-			
+
 			var meshes = Scene.Meshes;
 			foreach (var mesh in meshes)
 			{

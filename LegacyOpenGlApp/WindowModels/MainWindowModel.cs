@@ -27,5 +27,11 @@ namespace LegacyOpenGlApp.WindowModels
 			get => Models.Lights;
 			set => Models.Lights = value;
 		}
+
+		public CameraModel Camera
+		{
+			get => Models.Camera;
+			set => Models.Camera = value;
+		}
 	}
 }

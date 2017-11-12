@@ -19,7 +19,7 @@ namespace LegacyOpenGlApp.Primitives
 			new TransformationModel { Transform = Transform.Translate, Z = -4f },
 		};
 
-		public  static readonly IList<LightModel> Lights = new List<LightModel>
+		public static readonly IList<LightModel> Lights = new List<LightModel>
 		{
 			new LightModel
 			{
@@ -36,6 +36,19 @@ namespace LegacyOpenGlApp.Primitives
 			}
 		};
 
-		public static string DefaultScenePath = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\scene.off";
+		public static string DefaultScenePath = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\body.obj";
+
+		public static readonly CameraModel Camera = new CameraModel
+		{
+			PositionX = 0,
+			PositionY = 0,
+			PositionZ = 0,
+			AimX = 0,
+			AimY = 0,
+			AimZ = -1,
+			UpX = 0,
+			UpY = 1,
+			UpZ = 0
+		};
 	}
 }

@@ -65,6 +65,14 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}gl.LoadIdentity();");
 			code.AppendLine();
 
+			code.AppendLine($"{_indent}gl.LookAt(");
+			_indent += "\t";
+			code.AppendLine($"{_indent}{settings.Camera.PositionX:F}, {settings.Camera.PositionY:F}, {settings.Camera.PositionZ:F},");
+			code.AppendLine($"{_indent}{settings.Camera.AimX:F}, {settings.Camera.AimY:F}, {settings.Camera.AimZ:F},");
+			code.AppendLine($"{_indent}{settings.Camera.UpX:F}, {settings.Camera.UpY:F}, {settings.Camera.UpZ:F}");
+			_indent = _indent.Substring(0, _indent.Length - 1);
+			code.AppendLine($"{_indent});");
+
 			SetTransformations(settings.Transformations, code);
 			code.AppendLine();
 

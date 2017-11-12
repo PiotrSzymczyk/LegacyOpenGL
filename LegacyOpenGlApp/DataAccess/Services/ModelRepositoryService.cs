@@ -12,5 +12,7 @@ namespace LegacyOpenGlApp.DataAccess.Services
 	    public IList<TransformationModel> Transformations { get; set; } = Config.Transformations.Select(transformation => new TransformationModel(transformation)).ToList();
 
 	    public IList<LightModel> Lights { get; set; } = Config.Lights.Select(light => new LightModel(light)).ToList();
+
+	    public CameraModel Camera { get; set; } = Config.Camera;
     }
 }
