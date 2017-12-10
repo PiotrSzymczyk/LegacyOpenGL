@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
 using SharpGL;
@@ -21,11 +22,11 @@ namespace LegacyOpenGlApp.Services
 					gl.Disable(toggle.Key);
 				}
 			}
-				
 		}
 
-		public static void SetTransformations(OpenGL gl, IList<TransformationModel> transformations)
+		public static void SetTransformations(OpenGL gl, IEnumerable<TransformationModel> transformations, bool isFixedCoordinateSystem = true)
 		{
+			transformations = isFixedCoordinateSystem ? transformations.Reverse() : transformations;
 			foreach (var transformation in transformations)
 			{
 				switch (transformation.Transform)

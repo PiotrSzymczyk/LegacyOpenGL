@@ -40,11 +40,11 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}{{");
 			_indent += "\t";
 
-			SetToggles(settings.Toggles, code);
+			SetToggles(code, settings.Toggles);
 
 			code.AppendLine();
 
-			SetLights(settings.Lights, code);
+			SetLights(code, settings.Lights);
 
 			_indent = _indent.Substring(0, _indent.Length - 1);
 
@@ -73,7 +73,7 @@ namespace LegacyOpenGlApp.Services
 			_indent = _indent.Substring(0, _indent.Length - 1);
 			code.AppendLine($"{_indent});");
 
-			SetTransformations(settings.Transformations, code);
+			SetTransformations(code, settings.Transformations);
 			code.AppendLine();
 
 			foreach (var mesh in scene.Scene.Meshes)
@@ -130,7 +130,7 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void SetToggles(IDictionary<uint, bool> togglesDict, StringBuilder code)
+		private static void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
 		{
 			var toggles = Config.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariable]).ToList();
 
@@ -146,7 +146,7 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void SetLights(IList<LightModel> lights, StringBuilder code)
+		private static void SetLights(StringBuilder code, IList<LightModel> lights)
 		{
 			if (lights.Any() == false) return;
 
@@ -172,12 +172,13 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void SetTransformations(IList<TransformationModel> transformations, StringBuilder code)
+		private static void SetTransformations(StringBuilder code, IList<TransformationModel> transformations, bool isFixedCoordinateSystem = true)
 		{
 			if (transformations.Any() == false) return;
 
 			code.AppendLine($"{_indent}//  Set Transformations");
 
+			transformations = isFixedCoordinateSystem ? transformations.Reverse().ToList() : transformations;
 			foreach (var transformation in transformations)
 			{
 				switch (transformation.Transform)

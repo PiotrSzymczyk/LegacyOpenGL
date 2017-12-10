@@ -26,12 +26,14 @@ namespace LegacyOpenGlApp.Services
 			//  Reset the modelview matrix.
 			gl.LoadIdentity();
 
+			// 1 - Vieweing transformtion
 			gl.LookAt(
 				SettingsService.Camera.PositionX, SettingsService.Camera.PositionY, SettingsService.Camera.PositionZ,
 				SettingsService.Camera.AimX, SettingsService.Camera.AimY, SettingsService.Camera.AimZ,
 				SettingsService.Camera.UpX, SettingsService.Camera.UpY, SettingsService.Camera.UpZ
 			);
 
+			// 2 - Modeling transformation
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
 			var meshes = Scene.Meshes;
@@ -75,14 +77,14 @@ namespace LegacyOpenGlApp.Services
 
 		public void Resize(OpenGL gl)
 		{
-			// Load and clear the projection matrix.
+			// 0 - Projection transformation
 			gl.MatrixMode(OpenGL.GL_PROJECTION);
 			gl.LoadIdentity();
 
 			// Perform a perspective transformation
 			gl.Perspective(45.0f, (float) gl.RenderContextProvider.Width / (float) gl.RenderContextProvider.Height, 0.1f, 100.0f);
 
-			// Load the modelview.
+			// Re-lLoad the modelview.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
 		}
 
