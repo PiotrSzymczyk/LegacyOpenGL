@@ -176,5 +176,5 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\cube.off"
+  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.off"
 }
