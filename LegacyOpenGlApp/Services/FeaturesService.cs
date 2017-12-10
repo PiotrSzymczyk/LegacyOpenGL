@@ -47,21 +47,27 @@ namespace LegacyOpenGlApp.Services
 
 		public static void SetLights(OpenGL gl, IList<LightModel> lights)
 		{
-			uint i = 0;
-			foreach (var light in lights)
+			for (uint i = 0; i < 8; i++)
 			{
-				gl.Enable(OpenGL.GL_LIGHT0+i);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_AMBIENT, light.Ambient);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_DIFFUSE, light.Diffuse);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_SPECULAR, light.Specular);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_POSITION, light.Position);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_SPOT_DIRECTION, light.SpotlightDirection);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_SPOT_EXPONENT, light.SpotlightExponent);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_SPOT_CUTOFF, light.SpotlightCutoff);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_CONSTANT_ATTENUATION, light.ConstantAttenuation);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
-				gl.Light(OpenGL.GL_LIGHT0+i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
-				i++;
+				if (i < lights.Count)
+				{
+					var light = lights[(int) i];
+					gl.Enable(OpenGL.GL_LIGHT0 + i);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_AMBIENT, light.Ambient);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_DIFFUSE, light.Diffuse);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPECULAR, light.Specular);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_POSITION, light.Position);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_DIRECTION, light.SpotlightDirection);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_EXPONENT, light.SpotlightExponent);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_CUTOFF, light.SpotlightCutoff);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_CONSTANT_ATTENUATION, light.ConstantAttenuation);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
+					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
+				}
+				else
+				{
+					gl.Disable(OpenGL.GL_LIGHT0 + i);
+				}
 			}
 		}
 	}

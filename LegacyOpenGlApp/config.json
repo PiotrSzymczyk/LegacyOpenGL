@@ -1,0 +1,180 @@
+﻿{
+  "OpenGlToggles": [
+    {
+      "StateVariable": 100204,
+      "StateVariableName": "GLU_DISPLAY_MODE",
+      "Description": "Display mode",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 2896,
+      "StateVariableName": "GL_LIGHTING",
+      "Description": "Lighting",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2912,
+      "StateVariableName": "GL_FOG",
+      "Description": "Fog",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2883,
+      "StateVariableName": "GL_EDGE_FLAG",
+      "Description": "Edge flag",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 32826,
+      "StateVariableName": "GL_RESCALE_NORMAL_EXT",
+      "Description": "Current normal rescaling on/off",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2903,
+      "StateVariableName": "GL_COLOR_MATERIAL",
+      "Description": "Color tracking",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2897,
+      "StateVariableName": "GL_LIGHT_MODEL_LOCAL_VIEWER",
+      "Description": "Viewer is local",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2898,
+      "StateVariableName": "GL_LIGHT_MODEL_TWO_SIDE",
+      "Description": "Use two-sided lighting",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2832,
+      "StateVariableName": "GL_POINT_SMOOTH",
+      "Description": "Point antialiasing",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2848,
+      "StateVariableName": "GL_LINE_SMOOTH",
+      "Description": "Line antialiasing",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2852,
+      "StateVariableName": "GL_LINE_STIPPLE",
+      "Description": "Line stipple",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2881,
+      "StateVariableName": "GL_POLYGON_SMOOTH",
+      "Description": "Polygon antialiasing",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2882,
+      "StateVariableName": "GL_POLYGON_STIPPLE",
+      "Description": "Polygon stipple",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2884,
+      "StateVariableName": "GL_CULL_FACE",
+      "Description": "Polygon culling",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 32925,
+      "StateVariableName": "GL_MULTISAMPLE",
+      "Description": "Multisample rasterization",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 3089,
+      "StateVariableName": "GL_SCISSOR_TEST",
+      "Description": "Scissoring",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3008,
+      "StateVariableName": "GL_ALPHA_TEST",
+      "Description": "Alpha test enabled",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2960,
+      "StateVariableName": "GL_STENCIL_TEST",
+      "Description": "Stenciling",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2929,
+      "StateVariableName": "GL_DEPTH_TEST",
+      "Description": "Depth buffer",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3042,
+      "StateVariableName": "GL_BLEND",
+      "Description": "Blending",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3024,
+      "StateVariableName": "GL_DITHER",
+      "Description": "Dithering",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 3344,
+      "StateVariableName": "GL_MAP_COLOR",
+      "Description": "True if colors are mapped",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3345,
+      "StateVariableName": "GL_MAP_STENCIL",
+      "Description": "True if stencil values are mapped",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 32804,
+      "StateVariableName": "GL_HISTOGRAM_EXT",
+      "Description": "True if histogramming is enabled",
+      "IsActive": false
+    }
+  ],
+  "Lights": [
+    {
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 1, 1, 1, 1 ],
+      "Specular": [ 1, 1, 1, 1 ],
+      "Position": [ 0, 0, 1, 0 ],
+      "SpotlightDirection": [ 0, 0, -1 ],
+      "SpotlightExponent": 0,
+      "SpotlightCutoff": 180,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    }
+  ],
+  "Transformations": [
+    {
+      "Transform": "Translate",
+      "Z": -5
+    }
+  ],
+  "Camera": {
+    "PositionX": 0,
+    "PositionY": 0,
+    "PositionZ": 0,
+    "AimX": 0,
+    "AimY": 0,
+    "AimZ": -1,
+    "UpX": 0,
+    "UpY": 1,
+    "UpZ": 0
+  },
+  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\cube.off"
+}
