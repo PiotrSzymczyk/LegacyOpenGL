@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using LegacyOpenGlApp.DataAccess.Models;
+using LegacyOpenGlApp.DataAccess.Services;
 using LegacyOpenGlApp.Primitives;
 
 namespace LegacyOpenGlApp.Services
@@ -123,7 +124,7 @@ namespace LegacyOpenGlApp.Services
 
 		private static void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
 		{
-			var toggles = Config.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariable]).ToList();
+			var toggles = ConfigurationService.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariable]).ToList();
 
 			if (toggles.Any() == false) return;
 

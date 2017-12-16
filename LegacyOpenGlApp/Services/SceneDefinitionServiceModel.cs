@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
 using LegacyOpenGlApp.DataAccess.Services;
-using LegacyOpenGlApp.Primitives;
 using Unity;
 
 namespace LegacyOpenGlApp.Services
@@ -13,7 +12,7 @@ namespace LegacyOpenGlApp.Services
 
 		private Scene _scene;
 
-		public string Path { get; set; } = Config.DefaultScenePath;
+		public string Path { get; set; } = ConfigurationService.DefaultScenePath;
 
 		public Scene Scene => _scene ?? (_scene = SceneLoadingService.LoadScene(Path));
 

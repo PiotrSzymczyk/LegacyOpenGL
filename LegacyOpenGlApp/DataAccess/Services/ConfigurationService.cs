@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using LegacyOpenGlApp.DataAccess.Models;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace LegacyOpenGlApp.Primitives
+namespace LegacyOpenGlApp.DataAccess.Services
 {
-	public static class Config
+	public static class ConfigurationService
 	{
 		private const string JsonConfigFilePath = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\config.json";
-		private static dynamic _conf;
-		private static readonly dynamic configuration = _conf ?? (_conf = JsonConvert.DeserializeObject<dynamic>(File.ReadAllText(JsonConfigFilePath)));
-
+		private static JObject _config;
+		private static readonly JObject Config = _config ?? (_config = JObject.Parse(File.ReadAllText(JsonConfigFilePath)));
 
 		public static T LoadSection<T>(string section)
 		{
-			return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(configuration[section]), typeof(T));
+			return Config.TryGetValue(section, StringComparison.OrdinalIgnoreCase, out var sectionContent)
+				? sectionContent.ToObject<T>()
+				: Activator.CreateInstance<T>();
 		}
 
 		public static readonly IList<ToggleModel> OpenGlToggles = LoadSection<List<ToggleModel>>("OpenGlToggles"); 
