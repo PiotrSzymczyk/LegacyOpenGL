@@ -1,4 +1,6 @@
-﻿namespace LegacyOpenGlApp.DataAccess.Models
+﻿using LegacyOpenGlApp.Helpers;
+
+namespace LegacyOpenGlApp.DataAccess.Models
 {
 	public class ToggleModel
 	{
@@ -11,17 +13,19 @@
 			this.IsActive = toggle.IsActive;
 			this.StateVariable = toggle.StateVariable;
 			this.StateVariableName = toggle.StateVariableName;
-			this.Description = toggle.Description;
+			this.Description = toggle.Description?.SplitToLines();
 		}
 
 		public uint StateVariable { get; set; }
 
 		public string StateVariableName { get; set; }
 
+		public string DisplayName { get; set; }
+
 		public string Description { get; set; }
 
 		public bool IsActive { get; set; }
 
-		public override string ToString() => $"{Description} ({StateVariableName})";
+		public override string ToString() => $"{DisplayName} ({StateVariableName})";
 	}
 }

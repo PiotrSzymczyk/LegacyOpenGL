@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows;
-using LegacyOpenGlApp.DataAccess.Models;
-using LegacyOpenGlApp.Primitives;
 using LegacyOpenGlApp.Services;
 using LegacyOpenGlApp.WindowViewModels;
 using SharpGL.SceneGraph;
@@ -24,8 +22,6 @@ namespace LegacyOpenGlApp.WindowModels
 
 		[Dependency]
 		public OpenGlService OpenGlService { get; set; }
-
-		public Random Random = new Random();
 
 		public MainWindow()
 		{

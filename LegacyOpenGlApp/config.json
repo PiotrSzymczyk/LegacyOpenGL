@@ -3,145 +3,147 @@
     {
       "StateVariable": 100204,
       "StateVariableName": "GLU_DISPLAY_MODE",
-      "Description": "Display mode",
-      "IsActive": true
+      "DisplayName": "Display mode",
+      "IsActive": true,
+      "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nPhasellus ut enim nec est rhoncus sodales eu nec tellus. Duis eget efficitur magna. Maecenas tempor iaculis leo, sit amet accumsan magna efficitur ac. Ut porta mattis quam sed pulvinar. Donec et maximus ligula. \nSed id velit diam. Suspendisse placerat libero id sollicitudin consectetur. Morbi sit amet augue massa. Curabitur feugiat convallis augue, nec egestas velit pharetra et. Suspendisse potenti. Suspendisse volutpat massa id lorem sodales bibendum."
     },
     {
       "StateVariable": 2896,
       "StateVariableName": "GL_LIGHTING",
-      "Description": "Lighting",
-      "IsActive": false
+      "DisplayName": "Lighting",
+      "IsActive": false,
+      "Description": "Curabitur elementum feugiat tellus vitae sodales. Fusce imperdiet nec est sed porta. In quis volutpat erat. In ante sapien, volutpat non vulputate sed, vehicula id diam. Proin euismod id nibh nec consectetur. Fusce tincidunt enim sit amet venenatis consectetur. Fusce aliquet dapibus enim, sit amet lacinia nisi tincidunt eget. Ut diam purus, fermentum sit amet magna sit amet, fermentum ultricies justo. Sed porttitor sollicitudin blandit. "
     },
     {
       "StateVariable": 2912,
       "StateVariableName": "GL_FOG",
-      "Description": "Fog",
+      "DisplayName": "Fog",
       "IsActive": false
     },
     {
       "StateVariable": 2883,
       "StateVariableName": "GL_EDGE_FLAG",
-      "Description": "Edge flag",
+      "DisplayName": "Edge flag",
       "IsActive": true
     },
     {
       "StateVariable": 32826,
       "StateVariableName": "GL_RESCALE_NORMAL_EXT",
-      "Description": "Current normal rescaling on/off",
+      "DisplayName": "Current normal rescaling on/off",
       "IsActive": false
     },
     {
       "StateVariable": 2903,
       "StateVariableName": "GL_COLOR_MATERIAL",
-      "Description": "Color tracking",
+      "DisplayName": "Color tracking",
       "IsActive": false
     },
     {
       "StateVariable": 2897,
       "StateVariableName": "GL_LIGHT_MODEL_LOCAL_VIEWER",
-      "Description": "Viewer is local",
+      "DisplayName": "Viewer is local",
       "IsActive": false
     },
     {
       "StateVariable": 2898,
       "StateVariableName": "GL_LIGHT_MODEL_TWO_SIDE",
-      "Description": "Use two-sided lighting",
+      "DisplayName": "Use two-sided lighting",
       "IsActive": false
     },
     {
       "StateVariable": 2832,
       "StateVariableName": "GL_POINT_SMOOTH",
-      "Description": "Point antialiasing",
+      "DisplayName": "Point antialiasing",
       "IsActive": false
     },
     {
       "StateVariable": 2848,
       "StateVariableName": "GL_LINE_SMOOTH",
-      "Description": "Line antialiasing",
+      "DisplayName": "Line antialiasing",
       "IsActive": false
     },
     {
       "StateVariable": 2852,
       "StateVariableName": "GL_LINE_STIPPLE",
-      "Description": "Line stipple",
+      "DisplayName": "Line stipple",
       "IsActive": false
     },
     {
       "StateVariable": 2881,
       "StateVariableName": "GL_POLYGON_SMOOTH",
-      "Description": "Polygon antialiasing",
+      "DisplayName": "Polygon antialiasing",
       "IsActive": false
     },
     {
       "StateVariable": 2882,
       "StateVariableName": "GL_POLYGON_STIPPLE",
-      "Description": "Polygon stipple",
+      "DisplayName": "Polygon stipple",
       "IsActive": false
     },
     {
       "StateVariable": 2884,
       "StateVariableName": "GL_CULL_FACE",
-      "Description": "Polygon culling",
+      "DisplayName": "Polygon culling",
       "IsActive": false
     },
     {
       "StateVariable": 32925,
       "StateVariableName": "GL_MULTISAMPLE",
-      "Description": "Multisample rasterization",
+      "DisplayName": "Multisample rasterization",
       "IsActive": true
     },
     {
       "StateVariable": 3089,
       "StateVariableName": "GL_SCISSOR_TEST",
-      "Description": "Scissoring",
+      "DisplayName": "Scissoring",
       "IsActive": false
     },
     {
       "StateVariable": 3008,
       "StateVariableName": "GL_ALPHA_TEST",
-      "Description": "Alpha test enabled",
+      "DisplayName": "Alpha test enabled",
       "IsActive": false
     },
     {
       "StateVariable": 2960,
       "StateVariableName": "GL_STENCIL_TEST",
-      "Description": "Stenciling",
+      "DisplayName": "Stenciling",
       "IsActive": false
     },
     {
       "StateVariable": 2929,
       "StateVariableName": "GL_DEPTH_TEST",
-      "Description": "Depth buffer",
+      "DisplayName": "Depth buffer",
       "IsActive": false
     },
     {
       "StateVariable": 3042,
       "StateVariableName": "GL_BLEND",
-      "Description": "Blending",
+      "DisplayName": "Blending",
       "IsActive": false
     },
     {
       "StateVariable": 3024,
       "StateVariableName": "GL_DITHER",
-      "Description": "Dithering",
+      "DisplayName": "Dithering",
       "IsActive": true
     },
     {
       "StateVariable": 3344,
       "StateVariableName": "GL_MAP_COLOR",
-      "Description": "True if colors are mapped",
+      "DisplayName": "True if colors are mapped",
       "IsActive": false
     },
     {
       "StateVariable": 3345,
       "StateVariableName": "GL_MAP_STENCIL",
-      "Description": "True if stencil values are mapped",
+      "DisplayName": "True if stencil values are mapped",
       "IsActive": false
     },
     {
       "StateVariable": 32804,
       "StateVariableName": "GL_HISTOGRAM_EXT",
-      "Description": "True if histogramming is enabled",
+      "DisplayName": "True if histogramming is enabled",
       "IsActive": false
     }
   ],

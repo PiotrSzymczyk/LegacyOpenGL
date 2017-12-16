@@ -89,6 +89,7 @@
     <Compile Include="DataAccess\Models\SceneLoading\Normal.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Vertex.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Scene.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Services\CodeGenerationService.cs" />
     <Compile Include="Services\SceneDefinitionServiceModel.cs" />
     <Compile Include="WindowModels\MainWindowModel.cs" />

@@ -25,7 +25,7 @@
                         <ListView Name="TogglesList" ItemsSource="{Binding Toggles}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" FontSize="15" Margin="5"/>
+                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" ToolTip="{Binding Path=Description}" ToolTipService.ShowDuration="60000" FontSize="15" Margin="5"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
