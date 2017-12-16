@@ -147,9 +147,45 @@
   ],
   "Lights": [
     {
+      "Ambient": [ 0.1, 0.1, 0.1, 1 ],
+      "Diffuse": [ 0, 0, 0, 1 ],
+      "Specular": [ 0, 0, 0, 1 ],
+      "Position": [ 0, 0, 1, 0 ],
+      "SpotlightDirection": [ 0, 0, -1 ],
+      "SpotlightExponent": 0,
+      "SpotlightCutoff": 180,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    },
+    {
       "Ambient": [ 0, 0, 0, 1 ],
-      "Diffuse": [ 1, 1, 1, 1 ],
-      "Specular": [ 1, 1, 1, 1 ],
+      "Diffuse": [ 1, 0, 0, 1 ],
+      "Specular": [ 1, 0, 0, 1 ],
+      "Position": [ 0, 0, 1, 0 ],
+      "SpotlightDirection": [ 0, 0, -1 ],
+      "SpotlightExponent": 0,
+      "SpotlightCutoff": 180,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    },
+    {
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 0, 1, 0, 1 ],
+      "Specular": [ 0, 1, 0, 1 ],
+      "Position": [ 0, 0, 1, 0 ],
+      "SpotlightDirection": [ 0, 0, -1 ],
+      "SpotlightExponent": 0,
+      "SpotlightCutoff": 180,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    },
+    {
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 0, 0, 1, 1 ],
+      "Specular": [ 1, 0, 1, 1 ],
       "Position": [ 0, 0, 1, 0 ],
       "SpotlightDirection": [ 0, 0, -1 ],
       "SpotlightExponent": 0,
@@ -160,6 +196,54 @@
     }
   ],
   "Transformations": [
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
     {
       "Transform": "Translate",
       "Z": -5
@@ -176,5 +260,5 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.off"
+  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.obj"
 }

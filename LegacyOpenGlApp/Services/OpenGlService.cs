@@ -1,10 +1,10 @@
-﻿using Assimp;
+﻿using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
 using SharpGL;
 using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-    public class OpenGlService
+	public class OpenGlService
 	{
 		[Dependency]
 		public SceneDefinitionServiceModel OpenGlSceneDefinitionService { get; set; }
@@ -17,8 +17,6 @@ namespace LegacyOpenGlApp.Services
 		public void Draw(OpenGL gl)
 		{
 			FeaturesService.SetToggles(gl, SettingsService.Toggles);
-
-			FeaturesService.SetLights(gl, SettingsService.Lights);
 
 			//  Clear the color and depth buffers.
 			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -36,40 +34,39 @@ namespace LegacyOpenGlApp.Services
 			// 2 - Modeling transformation
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
-			var meshes = Scene.Meshes;
-			foreach (var mesh in meshes)
+			// 3 - Set lights
+			FeaturesService.SetLights(gl, SettingsService.Lights);
+
+			int i = 0;
+
+			// TODO: https://trello.com/c/nHW9FoIa
+			//	if (Scene.HasMaterials)
+			//	{
+			//		ApplyMaterial(gl, Scene.Materials[mesh.MaterialIndex]);
+			//	}
+
+			foreach (var face in Scene.Faces)
 			{
-				if (Scene.HasMaterials && mesh.MaterialIndex < Scene.MaterialCount)
+				var faceMode = GetFaceDrawingMode(face.IndexCount);
+
+				gl.Begin(faceMode);
+
+				foreach (var index in face.Indices)
 				{
-					ApplyMaterial(gl, Scene.Materials[mesh.MaterialIndex]);
-				}
-
-				foreach (var face in mesh.Faces)
-				{
-					var faceMode = GetFaceDrawingMode(face.IndexCount);
-
-					gl.Begin(faceMode);
-
-					foreach (var index in face.Indices)
+					if (Scene.HasNormals)
 					{
-						if (mesh.HasVertexColors(0))
-						{
-							var color = mesh.VertexColorChannels[0][index];
-							gl.Color(color.R, color.G, color.B, color.A);
-						}
-
-						if (mesh.HasNormals)
-						{
-							var normal = mesh.Normals[index];
-							gl.Normal(normal.X, normal.Y, normal.Z);
-						}
-
-						var vertex = mesh.Vertices[index];
-						gl.Vertex(vertex.X, vertex.Y, vertex.Z);
+						var normal = Scene.Normals[(int)index.NormalIndex];
+						gl.Normal(normal.X, normal.Y, normal.Z);
 					}
 
-					gl.End();
+					i++;
+					var vertex = Scene.Vertices[index.VertexIndex];
+					// TODO: https://trello.com/c/Mhj9JaxG
+					// gl.Color((16 + i * 1f % 128) / 128, (16 + i * 2f % 128) / 128, (16 + i * 4f % 128) / 128, 1);
+					gl.Vertex(vertex.X, vertex.Y, vertex.Z);
 				}
+
+				gl.End();
 			}
 
 			gl.Flush();
@@ -82,13 +79,16 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 
 			// Perform a perspective transformation
-			gl.Perspective(45.0f, (float) gl.RenderContextProvider.Width / (float) gl.RenderContextProvider.Height, 0.1f, 100.0f);
+			var xyRatio = (float)gl.RenderContextProvider.Width / gl.RenderContextProvider.Height;
+			gl.Perspective(75.0f, xyRatio, 0.1f, 100.0f);
+			// gl.Ortho(-5 * xyRatio, 5 * xyRatio, -5, 5, 0, 100);
+			// gl.ShadeModel(ShadeModel.Smooth);
 
-			// Re-lLoad the modelview.
+			// Re-load the modelview matrix.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
 		}
 
-		private void ApplyMaterial(OpenGL gl, Material mtl)
+		/*private void ApplyMaterial(OpenGL gl, Material mtl)
 		{
 			float[] color;
 
@@ -140,7 +140,7 @@ namespace LegacyOpenGlApp.Services
 			{
 				gl.Enable(OpenGL.GL_CULL_FACE);
 			}
-		}
+		}*/
 
 		private static uint GetFaceDrawingMode(int faceIndexCount)
 		{

@@ -75,39 +75,30 @@ namespace LegacyOpenGlApp.Services
 
 			SetTransformations(code, settings.Transformations);
 			code.AppendLine();
-
-			foreach (var mesh in scene.Scene.Meshes)
-			{
+			
 				//TODO: Apply material
 
-				foreach (var face in mesh.Faces)
+			foreach (var face in scene.Scene.Faces)
+			{
+				var faceMode = GetFaceDrawingMode(face.IndexCount);
+
+				code.AppendLine($"{_indent}gl.Begin({faceMode});");
+
+				foreach (var indice in face.Indices)
 				{
-					var faceMode = GetFaceDrawingMode(face.IndexCount);
-
-					code.AppendLine($"{_indent}gl.Begin({faceMode});");
-
-					foreach (var index in face.Indices)
+					if (scene.Scene.HasNormals)
 					{
-						if (mesh.HasVertexColors(0))
-						{
-							var color = mesh.VertexColorChannels[0][index];
-							code.AppendLine($"{_indent}gl.Color({color.R:F}, {color.G:F}, {color.B:F}, {color.A:F});");
-						}
-
-						if (mesh.HasNormals)
-						{
-							var normal = mesh.Normals[index];
-							code.AppendLine($"{_indent}gl.Normal({normal.X:F}, {normal.Y:F}, {normal.Z:F});");
-						}
-
-						var vertex = mesh.Vertices[index];
-						code.AppendLine($"{_indent}gl.Vertex({vertex.X:F}, {vertex.Y:F}, {vertex.Z:F});");
+						var normal = scene.Scene.Normals[(int)indice.NormalIndex];
+						code.AppendLine($"{_indent}gl.Normal({normal.X:F}, {normal.Y:F}, {normal.Z:F});");
 					}
 
-					code.AppendLine($"{_indent}gl.End();");
-
-					code.AppendLine();
+					var vertex = scene.Scene.Vertices[indice.VertexIndex];
+					code.AppendLine($"{_indent}gl.Vertex({vertex.X:F}, {vertex.Y:F}, {vertex.Z:F});");
 				}
+
+				code.AppendLine($"{_indent}gl.End();");
+
+				code.AppendLine();
 			}
 			code.AppendLine();
 

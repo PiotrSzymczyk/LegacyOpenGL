@@ -53,6 +53,7 @@ namespace LegacyOpenGlApp.Services
 				if (i < lights.Count)
 				{
 					var light = lights[(int) i];
+
 					gl.Enable(OpenGL.GL_LIGHT0 + i);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_AMBIENT, light.Ambient);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_DIFFUSE, light.Diffuse);
@@ -64,12 +65,19 @@ namespace LegacyOpenGlApp.Services
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_CONSTANT_ATTENUATION, light.ConstantAttenuation);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
+
+					DrawMarkerInLightPosition(light.Position, light.SpotlightDirection);
 				}
 				else
 				{
 					gl.Disable(OpenGL.GL_LIGHT0 + i);
 				}
 			}
+		}
+
+		private static void DrawMarkerInLightPosition(float[] position, float[] direction)
+		{
+			// TODO: https://trello.com/c/PNFXrbEr
 		}
 	}
 }
