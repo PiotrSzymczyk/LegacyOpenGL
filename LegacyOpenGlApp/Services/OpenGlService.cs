@@ -13,6 +13,7 @@ namespace LegacyOpenGlApp.Services
 		public SceneSettingsServiceModel SettingsService { get; set; }
 
 		private Scene Scene => OpenGlSceneDefinitionService.Scene;
+		private int angle = 0;
 
 		public void Draw(OpenGL gl)
 		{
@@ -31,11 +32,19 @@ namespace LegacyOpenGlApp.Services
 				SettingsService.Camera.UpX, SettingsService.Camera.UpY, SettingsService.Camera.UpZ
 			);
 
-			// 2 - Modeling transformation
+			// 2 - Set lights
+			if (gl.IsEnabled(OpenGL.GL_LIGHTING))
+			{
+				gl.PushMatrix();
+				gl.Translate(0, 0, -5);
+				gl.Rotate(angle++, 0, 10, 0);
+				FeaturesService.SetLights(gl, SettingsService.Lights);
+				gl.PopMatrix();
+			}
+
+			// 3 - Modeling transformation
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
-			// 3 - Set lights
-			FeaturesService.SetLights(gl, SettingsService.Lights);
 
 			int i = 0;
 

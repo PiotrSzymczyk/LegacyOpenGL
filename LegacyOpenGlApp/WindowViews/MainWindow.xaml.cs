@@ -57,7 +57,7 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_GenerateCode_OnClick(object sender, RoutedEventArgs e)
 		{
-			System.IO.File.WriteAllText(@"C:\Code\LegacyOpenGL\LegacyOpenGlApp\GeneratedCode\code.cs", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
+			System.IO.File.WriteAllText("generatedCode.cpp", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
 		}
 
 		private void Button_AddLight_OnClick(object sender, RoutedEventArgs e)

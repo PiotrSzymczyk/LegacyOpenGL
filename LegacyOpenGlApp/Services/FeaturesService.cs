@@ -66,7 +66,7 @@ namespace LegacyOpenGlApp.Services
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
 
-					DrawMarkerInLightPosition(light.Position, light.SpotlightDirection);
+					DrawMarkerInLightPosition(gl, light.Position);
 				}
 				else
 				{
@@ -75,9 +75,15 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void DrawMarkerInLightPosition(float[] position, float[] direction)
+		private static void DrawMarkerInLightPosition(OpenGL gl, float[] position)
 		{
-			// TODO: https://trello.com/c/PNFXrbEr
+			gl.Disable(OpenGL.GL_LIGHTING);
+			gl.Color(0.0, 1.0, 1.0);
+			gl.PushMatrix();
+			gl.Translate(position[0], position[1], position[2]);
+			gl.Sphere(gl.NewQuadric(), 0.05, 16, 16);
+			gl.PopMatrix();
+			gl.Enable(OpenGL.GL_LIGHTING);
 		}
 	}
 }
