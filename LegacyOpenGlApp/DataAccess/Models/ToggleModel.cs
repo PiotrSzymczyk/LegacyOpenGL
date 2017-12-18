@@ -4,6 +4,8 @@ namespace LegacyOpenGlApp.DataAccess.Models
 {
 	public class ToggleModel
 	{
+		private string _description;
+
 		public ToggleModel()
 		{	
 		}
@@ -14,7 +16,7 @@ namespace LegacyOpenGlApp.DataAccess.Models
 			this.StateVariable = toggle.StateVariable;
 			this.StateVariableName = toggle.StateVariableName;
 			this.DisplayName = toggle.DisplayName;
-			this.Description = toggle.Description?.SplitToLines();
+			this.Description = toggle._description;
 		}
 
 		public uint StateVariable { get; set; }
@@ -23,7 +25,11 @@ namespace LegacyOpenGlApp.DataAccess.Models
 
 		public string DisplayName { get; set; }
 
-		public string Description { get; set; }
+		public string Description
+		{
+			get => _description.SplitToLines();
+			set => _description = value;
+		}
 
 		public bool IsActive { get; set; }
 
