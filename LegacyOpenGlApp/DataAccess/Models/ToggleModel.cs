@@ -13,6 +13,7 @@ namespace LegacyOpenGlApp.DataAccess.Models
 			this.IsActive = toggle.IsActive;
 			this.StateVariable = toggle.StateVariable;
 			this.StateVariableName = toggle.StateVariableName;
+			this.DisplayName = toggle.DisplayName;
 			this.Description = toggle.Description?.SplitToLines();
 		}
 
