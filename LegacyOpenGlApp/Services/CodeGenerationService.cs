@@ -16,28 +16,64 @@ namespace LegacyOpenGlApp.Services
 		{
 			var code = new StringBuilder();
 
-			code.AppendLine($"{_indent}using SharpGL;");
+			GenerateMainMethod(code);
+
 			code.AppendLine();
-			code.AppendLine($"{_indent}public static class OpenGlGeneratedCode");
-			code.AppendLine($"{_indent}{{");
-			_indent += "\t";
 
 			GenerateInitializeMethod(settings, code);
 
 			code.AppendLine();
 
+			GenerateReshapeMethod(code, settings);
+
+			code.AppendLine();
+
 			GenerateDrawMethod(scene, settings, code);
-
-			_indent = _indent.Substring(0, _indent.Length - 1);
-
-			code.AppendLine($"{_indent}}}");
 
 			return code.ToString();
 		}
 
+		private static void GenerateReshapeMethod(StringBuilder code, SceneSettingsServiceModel settings)
+		{
+			code.AppendLine($"{_indent}void reshape(int w, int h)");
+			code.AppendLine($"{_indent}{{");
+			_indent += "\t";
+
+			code.AppendLine($"{_indent}glViewport(0, 0, (GLsizei) w, (GLsizei) h);");
+			code.AppendLine($"{_indent}glMatrixMode(GL_PROJECTION);");
+			code.AppendLine($"{_indent}glLoadIdentity();");
+			code.AppendLine($"{_indent}int xyRatio = (GLfloat) w / (GLfloat) h;");
+			code.AppendLine($"{_indent}gluPerspective(45.0f, xyRatio, 0.1f, 100.0f);");
+			code.AppendLine($"{_indent}glMatrixMode(GL_MODELVIEW);");
+
+			_indent = _indent.Substring(0, _indent.Length - 1);
+			code.AppendLine($"{_indent}}}");
+		}
+
+		private static void GenerateMainMethod(StringBuilder code)
+		{
+			code.AppendLine($"{_indent}int main(int argc, char** argv)");
+			code.AppendLine($"{_indent}{{");
+			_indent += "\t";
+
+			code.AppendLine($"{_indent}glutInit(&argc, argv);");
+			code.AppendLine($"{_indent}glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);");
+			code.AppendLine($"{_indent}glutInitWindowSize(500, 500);");
+			code.AppendLine($"{_indent}glutInitWindowPosition(100, 100);");
+			code.AppendLine($"{_indent}glutCreateWindow(argv[0]);");
+			code.AppendLine($"{_indent}init();");
+			code.AppendLine($"{_indent}glutDisplayFunc(display);");
+			code.AppendLine($"{_indent}glutReshapeFunc(reshape);");
+			code.AppendLine($"{_indent}glutMainLoop();");
+			code.AppendLine($"{_indent}return 0;");
+
+			_indent = _indent.Substring(0, _indent.Length - 1);
+			code.AppendLine($"{_indent}}}");
+		}
+
 		private static void GenerateInitializeMethod(SceneSettingsServiceModel settings, StringBuilder code)
 		{
-			code.AppendLine($"{_indent}public void OpenGLInitialize(OpenGL gl)");
+			code.AppendLine($"{_indent}void init(void)");
 			code.AppendLine($"{_indent}{{");
 			_indent += "\t";
 
@@ -48,18 +84,17 @@ namespace LegacyOpenGlApp.Services
 			SetLights(code, settings.Lights);
 
 			_indent = _indent.Substring(0, _indent.Length - 1);
-
 			code.AppendLine($"{_indent}}}");
 		}
 
 		private static void GenerateDrawMethod(SceneDefinitionServiceModel scene, SceneSettingsServiceModel settings, StringBuilder code)
 		{
-			code.AppendLine($"{_indent}public void OpenGLDraw(OpenGL gl)");
+			code.AppendLine($"{_indent}void draw(void)");
 			code.AppendLine($"{_indent}{{");
 			_indent += "\t";
 
 			code.AppendLine($"{_indent}//  Clear the color and depth buffers.");
-			code.AppendLine($"{_indent}gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);");
+			code.AppendLine($"{_indent}gl.Clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);");
 			code.AppendLine();
 
 			code.AppendLine($"{_indent}//  Reset the modelview matrix.");
@@ -114,11 +149,11 @@ namespace LegacyOpenGlApp.Services
 		{
 			switch (faceIndexCount)
 			{
-				case 1: return "OpenGL.GL_POINTS";
-				case 2: return "OpenGL.GL_LINES";
-				case 3: return "OpenGL.GL_TRIANGLES";
-				case 4: return "OpenGL.GL_QUADS";
-				default: return "OpenGL.GL_POLYGON_MODE";
+				case 1: return ".GL_POINTS";
+				case 2: return "GL_LINES";
+				case 3: return "GL_TRIANGLES";
+				case 4: return "GL_QUADS";
+				default: return "GL_POLYGON_MODE";
 			}
 		}
 
@@ -133,8 +168,8 @@ namespace LegacyOpenGlApp.Services
 			foreach (var toggle in toggles)
 			{
 				code.AppendLine(toggle.IsActive
-					? $"{_indent}gl.Disable(OpenGL.{toggle.StateVariableName});"
-					: $"{_indent}gl.Enable(OpenGL.{toggle.StateVariableName});");
+					? $"{_indent}gl.Disable({toggle.StateVariableName});"
+					: $"{_indent}gl.Enable({toggle.StateVariableName});");
 			}
 		}
 
@@ -149,16 +184,16 @@ namespace LegacyOpenGlApp.Services
 			{
 				code.AppendLine($"{_indent}gl.Enable(OpenGL.GL_LIGHT{i});");
 
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_AMBIENT, new[] {{ {light.Ambient[0]}, {light.Ambient[1]}, {light.Ambient[2]}, {light.Ambient[3]} }});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_DIFFUSE, new[] {{ {light.Diffuse[0]}, {light.Diffuse[1]}, {light.Diffuse[2]}, {light.Diffuse[3]} }});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_SPECULAR, new[] {{ {light.Specular[0]}, {light.Specular[1]}, {light.Specular[2]}, {light.Specular[3]} }});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_POSITION, new[] {{ {light.Position[0]}, {light.Position[1]}, {light.Position[2]}, {light.Position[3]} }});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_SPOT_DIRECTION, new[] {{ {light.SpotlightDirection[0]}, {light.SpotlightDirection[1]}, {light.SpotlightDirection[2]} }});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_SPOT_EXPONENT, {light.SpotlightExponent});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_SPOT_CUTOFF, {light.SpotlightCutoff});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_CONSTANT_ATTENUATION, {light.ConstantAttenuation});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_LINEAR_ATTENUATION, {light.LinearAttenuation});");
-				code.AppendLine($"{_indent}gl.Light(OpenGL.GL_LIGHT{i}, OpenGL.GL_QUADRATIC_ATTENUATION, {light.QuadraticAttenuation});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_AMBIENT, new[] {{ {light.Ambient[0]}, {light.Ambient[1]}, {light.Ambient[2]}, {light.Ambient[3]} }});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_DIFFUSE, new[] {{ {light.Diffuse[0]}, {light.Diffuse[1]}, {light.Diffuse[2]}, {light.Diffuse[3]} }});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_SPECULAR, new[] {{ {light.Specular[0]}, {light.Specular[1]}, {light.Specular[2]}, {light.Specular[3]} }});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_POSITION, new[] {{ {light.Position[0]}, {light.Position[1]}, {light.Position[2]}, {light.Position[3]} }});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_SPOT_DIRECTION, new[] {{ {light.SpotlightDirection[0]}, {light.SpotlightDirection[1]}, {light.SpotlightDirection[2]} }});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_SPOT_EXPONENT, {light.SpotlightExponent});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_SPOT_CUTOFF, {light.SpotlightCutoff});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_CONSTANT_ATTENUATION, {light.ConstantAttenuation});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_LINEAR_ATTENUATION, {light.LinearAttenuation});");
+				code.AppendLine($"{_indent}gl.Light(GL_LIGHT{i}, GL_QUADRATIC_ATTENUATION, {light.QuadraticAttenuation});");
 				code.AppendLine();
 				i++;
 			}
