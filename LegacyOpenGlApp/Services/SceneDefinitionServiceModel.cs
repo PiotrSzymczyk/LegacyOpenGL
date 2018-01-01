@@ -14,7 +14,12 @@ namespace LegacyOpenGlApp.Services
 
 		public string Path { get; set; } = ConfigurationService.DefaultScenePath;
 
-		public Scene Scene => _scene ?? (_scene = SceneLoadingService.LoadScene(Path));
+		public Scene Scene => _scene ?? (_scene = new Scene
+		{
+			Geometry = SceneLoadingService.LoadGeometry(Path),
+			Materials = SceneLoadingService.LoadMaterials("C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.mtl"),
+			Texture = SceneLoadingService.LoadTexture("C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\Cube.bmp")
+		});
 
 		public string SupportedFormats => SceneLoadingService.SupportedFormats.Aggregate((accum, curr) => string.Join("\t", accum, curr));
 

@@ -1,4 +1,5 @@
-﻿using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
+﻿using System.Linq;
+using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
 using SharpGL;
 using Unity;
 
@@ -12,7 +13,10 @@ namespace LegacyOpenGlApp.Services
 		[Dependency]
 		public SceneSettingsServiceModel SettingsService { get; set; }
 
-		private Scene Scene => OpenGlSceneDefinitionService.Scene;
+		private Geometry Geometry => OpenGlSceneDefinitionService.Scene.Geometry;
+		private Material[] Materials => OpenGlSceneDefinitionService.Scene.Materials;
+		private Texture Texture => OpenGlSceneDefinitionService.Scene.Texture;
+
 		private int angle = 0;
 
 		public void Draw(OpenGL gl)
@@ -36,8 +40,8 @@ namespace LegacyOpenGlApp.Services
 			if (gl.IsEnabled(OpenGL.GL_LIGHTING))
 			{
 				gl.PushMatrix();
-				gl.Translate(0, 0, -5);
-				gl.Rotate(angle++, 0, 10, 0);
+				//gl.Translate(0, 0, -5);
+				//gl.Rotate(angle++, 0, 10, 0);
 				FeaturesService.SetLights(gl, SettingsService.Lights);
 				gl.PopMatrix();
 			}
@@ -48,13 +52,14 @@ namespace LegacyOpenGlApp.Services
 
 			int i = 0;
 
-			// TODO: https://trello.com/c/nHW9FoIa
-			//	if (Scene.HasMaterials)
-			//	{
-			//		ApplyMaterial(gl, Scene.Materials[mesh.MaterialIndex]);
-			//	}
+			if (Materials.Any())
+			{
+				ApplyMaterial(gl, Materials[0]);
+			}
 
-			foreach (var face in Scene.Faces)
+			SetTexture(gl);
+
+			foreach (var face in Geometry.Faces)
 			{
 				var faceMode = GetFaceDrawingMode(face.IndexCount);
 
@@ -62,14 +67,20 @@ namespace LegacyOpenGlApp.Services
 
 				foreach (var index in face.Indices)
 				{
-					if (Scene.HasNormals)
+					if (Geometry.HasNormals)
 					{
-						var normal = Scene.Normals[(int)index.NormalIndex];
+						var normal = Geometry.Normals[index.Normal];
 						gl.Normal(normal.X, normal.Y, normal.Z);
 					}
 
+					if (Geometry.HasTextures)
+					{
+						var texCoord = Geometry.TextureCoordinates[index.Texture];
+						gl.TexCoord(texCoord.X, texCoord.Y, texCoord.W);
+					}
+
 					i++;
-					var vertex = Scene.Vertices[index.VertexIndex];
+					var vertex = Geometry.Vertices[index.Vertex];
 					// TODO: https://trello.com/c/Mhj9JaxG
 					// gl.Color((16 + i * 1f % 128) / 128, (16 + i * 2f % 128) / 128, (16 + i * 4f % 128) / 128, 1);
 					gl.Vertex(vertex.X, vertex.Y, vertex.Z);
@@ -79,6 +90,21 @@ namespace LegacyOpenGlApp.Services
 			}
 
 			gl.Flush();
+		}
+
+		private void SetTexture(OpenGL gl)
+		{
+			var textures = new uint[1];
+			gl.GenTextures(1, textures);
+			gl.BindTexture(OpenGL.GL_TEXTURE_2D, textures.First());
+			gl.PixelStore(OpenGL.GL_UNPACK_ALIGNMENT, 1);
+			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_REPEAT);
+			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, OpenGL.GL_REPEAT);
+			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
+			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
+			gl.TexEnv(OpenGL.GL_TEXTURE_ENV, OpenGL.GL_TEXTURE_ENV_MODE, OpenGL.GL_MODULATE);
+
+			gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGB, Texture.Width, Texture.Height, 0, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, Texture.ImageData);
 		}
 
 		public void Resize(OpenGL gl)
@@ -97,59 +123,32 @@ namespace LegacyOpenGlApp.Services
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
 		}
 
-		/*private void ApplyMaterial(OpenGL gl, Material mtl)
+		private void ApplyMaterial(OpenGL gl, Material mtl)
 		{
-			float[] color;
-
-			color = mtl.HasColorDiffuse
-				? new[] { mtl.ColorDiffuse.R, mtl.ColorDiffuse.G, mtl.ColorDiffuse.B, mtl.ColorDiffuse.A }
-				: new[] { 0.8f, 0.8f, 0.8f, 1.0f };
-			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_DIFFUSE, color);
-
-			color = mtl.HasColorSpecular
-				? new[] { mtl.ColorSpecular.R, mtl.ColorSpecular.G, mtl.ColorSpecular.B, mtl.ColorSpecular.A }
-				: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
-			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
-
-			color = mtl.HasColorAmbient
-				? new[] { mtl.ColorAmbient.R, mtl.ColorAmbient.G, mtl.ColorAmbient.B, mtl.ColorAmbient.A }
-				: new[] { 0.2f, 0.2f, 0.2f, 1.0f };
-			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_AMBIENT, color);
-
-			color = mtl.HasColorEmissive
-				? new[] { mtl.ColorEmissive.R, mtl.ColorEmissive.G, mtl.ColorEmissive.B, mtl.ColorEmissive.A }
-				: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
-			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_EMISSION, color);
-
-
-			if (mtl.HasShininess)
+			if (mtl.IlluminationModel >= 1)
 			{
-				if (mtl.HasShininessStrength)
+				var color = mtl.AmbientColor != null
+					? new[] { mtl.AmbientColor.R, mtl.AmbientColor.G, mtl.AmbientColor.B, mtl.AmbientColor.A }
+					: new[] { 0.2f, 0.2f, 0.2f, 1.0f };
+				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_AMBIENT, color);
+
+				color = mtl.DiffuseColor != null
+					? new[] { mtl.DiffuseColor.R, mtl.DiffuseColor.G, mtl.DiffuseColor.B, mtl.DiffuseColor.A }
+					: new[] { 0.8f, 0.8f, 0.8f, 1.0f };
+				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_DIFFUSE, color);
+
+				if (mtl.IlluminationModel >= 2)
 				{
-					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, mtl.Shininess * mtl.ShininessStrength);
+					color = mtl.SpecularColor != null
+						? new[] { mtl.SpecularColor.R, mtl.SpecularColor.G, mtl.SpecularColor.B, mtl.SpecularColor.A }
+						: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
+					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
 				}
-				else
-				{
-					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, mtl.Shininess);
-				}
-			}
-			else
-			{
-				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, 0);
-				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, new[] { 0f, 0f, 0f, 0f });
+
 			}
 
-			gl.PolygonMode(OpenGL.GL_FRONT_AND_BACK, mtl.HasWireFrame && mtl.IsWireFrameEnabled ? OpenGL.GL_LINE : OpenGL.GL_FILL);
-
-			if (mtl.IsTwoSided && mtl.HasTwoSided)
-			{
-				gl.Disable(OpenGL.GL_CULL_FACE);
-			}
-			else
-			{
-				gl.Enable(OpenGL.GL_CULL_FACE);
-			}
-		}*/
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, 0);
+		}
 
 		private static uint GetFaceDrawingMode(int faceIndexCount)
 		{

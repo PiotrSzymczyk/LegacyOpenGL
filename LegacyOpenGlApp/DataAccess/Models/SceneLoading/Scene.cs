@@ -1,17 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace LegacyOpenGlApp.DataAccess.Models.SceneLoading
+﻿namespace LegacyOpenGlApp.DataAccess.Models.SceneLoading
 {
 	public class Scene
 	{
-		public IList<Vertex> Vertices { get; set; }
+		public Geometry Geometry { get; set; }
 
-		public IList<Normal> Normals { get; set; }
+		public Material[] Materials { get; set; }
 
-		public IList<TextureCoordinate> TextureCoordinates { get; set; }
-
-		public IList<Face> Faces { get; set; }
-
-		public bool HasNormals => Normals.Count > 0;
+		public Texture Texture { get; set; }
 	}
 }

@@ -8,6 +8,13 @@
       "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nPhasellus ut enim nec est rhoncus sodales eu nec tellus. Duis eget efficitur magna. Maecenas tempor iaculis leo, sit amet accumsan magna efficitur ac. Ut porta mattis quam sed pulvinar. Donec et maximus ligula. \nSed id velit diam. Suspendisse placerat libero id sollicitudin consectetur. Morbi sit amet augue massa. Curabitur feugiat convallis augue, nec egestas velit pharetra et. Suspendisse potenti. Suspendisse volutpat massa id lorem sodales bibendum."
     },
     {
+      "StateVariable": 3553,
+      "StateVariableName": "GL_TEXTURE_2D",
+      "DisplayName": "Textures",
+      "IsActive": false,
+      "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse volutpat massa id lorem sodales bibendum."
+    },
+    {
       "StateVariable": 2896,
       "StateVariableName": "GL_LIGHTING",
       "DisplayName": "Lighting",
@@ -187,7 +194,7 @@
     {
       "Ambient": [ 0, 0, 0, 1 ],
       "Diffuse": [ 0, 0, 1, 1 ],
-      "Specular": [ 1, 0, 1, 1 ],
+      "Specular": [ 0, 0, 1, 1 ],
       "Position": [ 0, 0, 1, 1 ],
       "SpotlightDirection": [ 0, 0, -1 ],
       "SpotlightExponent": 0,
@@ -225,14 +232,6 @@
     {
       "Transform": "Rotate",
       "Y": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Y": 45
-    },
-    {
-      "Transform": "Rotate",
-      "X": 45
     },
     {
       "Transform": "Rotate",

@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JeremyAnsel.Media.WavefrontObj, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6d0d0cd7fe8b54ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\JeremyAnsel.Media.WavefrontObj.1.0.1\lib\net40\JeremyAnsel.Media.WavefrontObj.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -81,8 +84,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataAccess\Models\CameraModel.cs" />
+    <Compile Include="DataAccess\Models\SceneLoading\Geometry.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Indice.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Face.cs" />
+    <Compile Include="DataAccess\Models\SceneLoading\Color.cs" />
+    <Compile Include="DataAccess\Models\SceneLoading\Material.cs" />
+    <Compile Include="DataAccess\Models\SceneLoading\Texture.cs" />
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
     <Compile Include="DataAccess\Models\LightModel.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\TextureCoordinate.cs" />

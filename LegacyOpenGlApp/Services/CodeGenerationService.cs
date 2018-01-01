@@ -127,7 +127,7 @@ namespace LegacyOpenGlApp.Services
 			
 				//TODO: Apply material
 
-			foreach (var face in scene.Scene.Faces)
+			foreach (var face in scene.Scene.Geometry.Faces)
 			{
 				var faceMode = GetFaceDrawingMode(face.IndexCount);
 
@@ -135,13 +135,13 @@ namespace LegacyOpenGlApp.Services
 
 				foreach (var indice in face.Indices)
 				{
-					if (scene.Scene.HasNormals)
+					if (scene.Scene.Geometry.HasNormals)
 					{
-						var normal = scene.Scene.Normals[(int)indice.NormalIndex];
+						var normal = scene.Scene.Geometry.Normals[indice.Normal];
 						code.AppendLine($"{_indent}glNormal({normal.X:F}, {normal.Y:F}, {normal.Z:F});");
 					}
 
-					var vertex = scene.Scene.Vertices[indice.VertexIndex];
+					var vertex = scene.Scene.Geometry.Vertices[indice.Vertex];
 					code.AppendLine($"{_indent}glVertex({vertex.X:F}, {vertex.Y:F}, {vertex.Z:F});");
 				}
 
