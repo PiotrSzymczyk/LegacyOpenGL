@@ -8,6 +8,12 @@
       "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nPhasellus ut enim nec est rhoncus sodales eu nec tellus. Duis eget efficitur magna. Maecenas tempor iaculis leo, sit amet accumsan magna efficitur ac. Ut porta mattis quam sed pulvinar. Donec et maximus ligula. \nSed id velit diam. Suspendisse placerat libero id sollicitudin consectetur. Morbi sit amet augue massa. Curabitur feugiat convallis augue, nec egestas velit pharetra et. Suspendisse potenti. Suspendisse volutpat massa id lorem sodales bibendum."
     },
     {
+      "StateVariable": 2929,
+      "StateVariableName": "GL_DEPTH_TEST",
+      "DisplayName": "Depth buffer",
+      "IsActive": false
+    },
+    {
       "StateVariable": 3553,
       "StateVariableName": "GL_TEXTURE_2D",
       "DisplayName": "Textures",
@@ -118,12 +124,6 @@
       "IsActive": false
     },
     {
-      "StateVariable": 2929,
-      "StateVariableName": "GL_DEPTH_TEST",
-      "DisplayName": "Depth buffer",
-      "IsActive": false
-    },
-    {
       "StateVariable": 3042,
       "StateVariableName": "GL_BLEND",
       "DisplayName": "Blending",
@@ -156,49 +156,37 @@
   ],
   "Lights": [
     {
-      "Ambient": [ 0.1, 0.1, 0.1, 1 ],
-      "Diffuse": [ 0, 0, 0, 1 ],
-      "Specular": [ 0, 0, 0, 1 ],
-      "Position": [ 0, 0, 1, 0 ],
-      "SpotlightDirection": [ 0, 0, -1 ],
+      "Ambient": [0, 0, 0, 1],
+      "Diffuse": [1, 0, 0, 1],
+      "Specular": [1, 0, 0, 1],
+      "Position": [1, 0, -1, 1],
+      "SpotlightDirection": [-1, 0, -1],
       "SpotlightExponent": 0,
-      "SpotlightCutoff": 180,
+      "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
     },
     {
-      "Ambient": [ 0, 0, 0, 1 ],
-      "Diffuse": [ 1, 0, 0, 1 ],
-      "Specular": [ 1, 0, 0, 1 ],
-      "Position": [ 0, 0, 1, 1 ],
-      "SpotlightDirection": [ 0, 0, -1 ],
+      "Ambient": [0, 0, 0, 1],
+      "Diffuse": [0, 1, 0, 1],
+      "Specular": [0, 1, 0, 1],
+      "Position": [0, 0, -1, 1],
+      "SpotlightDirection": [0, 0, -1],
       "SpotlightExponent": 0,
-      "SpotlightCutoff": 180,
+      "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
     },
     {
-      "Ambient": [ 0, 0, 0, 1 ],
-      "Diffuse": [ 0, 1, 0, 1 ],
-      "Specular": [ 0, 1, 0, 1 ],
-      "Position": [ 0, 0, 1, 1 ],
-      "SpotlightDirection": [ 0, 0, -1 ],
+      "Ambient": [0, 0, 0, 1],
+      "Diffuse": [0, 0, 1, 1],
+      "Specular": [0, 0, 1, 1],
+      "Position": [-1, 0, -1, 1],
+      "SpotlightDirection": [1, 0, -1],
       "SpotlightExponent": 0,
-      "SpotlightCutoff": 180,
-      "ConstantAttenuation": 1,
-      "LinearAttenuation": 0,
-      "QuadraticAttenuation": 0
-    },
-    {
-      "Ambient": [ 0, 0, 0, 1 ],
-      "Diffuse": [ 0, 0, 1, 1 ],
-      "Specular": [ 0, 0, 1, 1 ],
-      "Position": [ 0, 0, 1, 1 ],
-      "SpotlightDirection": [ 0, 0, -1 ],
-      "SpotlightExponent": 0,
-      "SpotlightCutoff": 180,
+      "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
@@ -247,7 +235,7 @@
     },
     {
       "Transform": "Translate",
-      "Z": -5
+      "Z": -2
     }
   ],
   "Camera": {
@@ -261,5 +249,7 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultScenePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.obj"
+  "DefaultGeometryPath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.obj",
+  "DefaultMaterialsPath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.mtl",
+  "DefaultTexturePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.bmp"
 }

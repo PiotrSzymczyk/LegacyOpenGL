@@ -13,6 +13,14 @@ namespace LegacyOpenGlApp.DataAccess.Models.SceneLoading
 			A = 1 - dissolveFactor;
 		}
 
+		public Color(float r, float g, float b, float a = 1)
+		{
+			R = r;
+			G = g;
+			B = b;
+			A = a;
+		}
+
 		public float R { get; set; }
 
 		public float G { get; set; }

@@ -1,6 +1,43 @@
 newmtl default
+
+newmtl red
+  Tr 0  0
+  illum 2
+  Ka 1 0 0
+  Kd 1 0 0
+  Ks 0.2 0 0
+
+newmtl green
+  Tr 0  0
+  illum 2
+  Ka 0 1 0
+  Kd 0 1 0
+  Ks 0 0.2 0
+
+newmtl blue
+  Tr 0  0
+  illum 2
+  Ka 0 0 1
+  Kd  0 0 1
+  Ks 0 0 0.2
+
+newmtl ambient
   Tr 0  0
   illum 2
   Ka 1 1 1
+  Kd 0 0 0
+  Ks 0 0 0
+
+newmtl diffuse
+  Tr 0  0
+  illum 2
+  Ka 0 0 0
   Kd 1 1 1
-  Ks 0.2 0.2 0.2
+  Ks 0 0 0
+  
+newmtl specular
+  Tr 0  0
+  illum 2
+  Ka 0 0 0
+  Kd 0 0 0
+  Ks 0.3 0.3 0.3

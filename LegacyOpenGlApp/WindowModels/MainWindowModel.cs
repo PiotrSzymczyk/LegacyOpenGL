@@ -33,5 +33,11 @@ namespace LegacyOpenGlApp.WindowModels
 			get => Models.Camera;
 			set => Models.Camera = value;
 		}
+
+		public ProjectionTransformation ProjectionTransformation
+		{
+			get => Models.ProjectionTransformation;
+			set => Models.ProjectionTransformation = value;
+		}
 	}
 }

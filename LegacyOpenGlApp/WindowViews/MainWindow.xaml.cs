@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using LegacyOpenGlApp.Services;
 using LegacyOpenGlApp.WindowViewModels;
@@ -26,6 +27,7 @@ namespace LegacyOpenGlApp.WindowModels
 		public MainWindow()
 		{
 			InitializeComponent();
+			OpenGlControl.DrawFPS = true;
 		}
 
 		private void OpenGLControl_OnOpenGLDraw(object sender, OpenGLEventArgs args)
@@ -57,7 +59,8 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_GenerateCode_OnClick(object sender, RoutedEventArgs e)
 		{
-			System.IO.File.WriteAllText("generatedCode.cpp", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
+			File.WriteAllText("generatedCode.cpp", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
+			Process.Start(Path.GetFullPath("generatedCode.cpp"));
 		}
 
 		private void Button_AddLight_OnClick(object sender, RoutedEventArgs e)
@@ -77,21 +80,64 @@ namespace LegacyOpenGlApp.WindowModels
 			}
 		}
 
-		private void Button_SelectDir_OnClick(object sender, RoutedEventArgs e)
+		private void Button_SelectScenePath_OnClick(object sender, RoutedEventArgs e)
+		{
+			var path = SelectPath();
+			if (path != null)
+			{
+				ViewModel.ScenePath = path;
+			}
+		}
+
+		private void Button_SelectMaterialsPath_OnClick(object sender, RoutedEventArgs e)
+		{
+			var path = SelectPath();
+			if (path != null)
+			{
+				ViewModel.MaterialsPath = path;
+			}
+		}
+
+		private void Button_SelectTexturePath_OnClick(object sender, RoutedEventArgs e)
+		{
+			var path = SelectPath();
+			if (path != null)
+			{
+				ViewModel.TexturePath = path;
+			}
+		}
+
+		private string SelectPath()
 		{
 			using (var dialog = new System.Windows.Forms.OpenFileDialog())
 			{
 				var result = dialog.ShowDialog();
 				if (result == System.Windows.Forms.DialogResult.OK)
 				{
-					ViewModel.ScenePath = dialog.FileName;
+					return dialog.FileName;
 				}
+				return null;
 			}
 		}
 
 		private void Button_LoadScene_OnClick(object sender, RoutedEventArgs e)
 		{
 			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+		}
+
+		private void Button_LoadMaterials_OnClick(object sender, RoutedEventArgs e)
+		{
+			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+		}
+
+		private void Button_LoadTexture_OnClick(object sender, RoutedEventArgs e)
+		{
+			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+		}
+
+		private void Button_SetProjection_OnClick(object sender, RoutedEventArgs e)
+		{
+			OpenGlService.Resize(OpenGlControl.OpenGL);
 		}
 	}
 }

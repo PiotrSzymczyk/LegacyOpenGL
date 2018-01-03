@@ -107,6 +107,9 @@
     <Compile Include="Services\OpenGlService.cs" />
     <Compile Include="Services\SceneSettingsServiceModel.cs" />
     <Compile Include="DataAccess\Services\SceneLoadingService.cs" />
+    <Compile Include="DataAccess\Models\Ortographic.cs" />
+    <Compile Include="DataAccess\Models\Perspective.cs" />
+    <Compile Include="DataAccess\Models\ProjectionTransformation.cs" />
     <Compile Include="WindowViewModels\AddLightWindowViewModel.cs" />
     <Compile Include="WindowViews\AddLightWindow.xaml.cs">
       <DependentUpon>AddLightWindow.xaml</DependentUpon>

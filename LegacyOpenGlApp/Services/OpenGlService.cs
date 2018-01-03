@@ -15,9 +15,8 @@ namespace LegacyOpenGlApp.Services
 
 		private Geometry Geometry => OpenGlSceneDefinitionService.Scene.Geometry;
 		private Material[] Materials => OpenGlSceneDefinitionService.Scene.Materials;
+		private int SelectedMaterialIndex => OpenGlSceneDefinitionService.Scene.SelectedMaterial;
 		private Texture Texture => OpenGlSceneDefinitionService.Scene.Texture;
-
-		private int angle = 0;
 
 		public void Draw(OpenGL gl)
 		{
@@ -39,22 +38,15 @@ namespace LegacyOpenGlApp.Services
 			// 2 - Set lights
 			if (gl.IsEnabled(OpenGL.GL_LIGHTING))
 			{
-				gl.PushMatrix();
-				//gl.Translate(0, 0, -5);
-				//gl.Rotate(angle++, 0, 10, 0);
 				FeaturesService.SetLights(gl, SettingsService.Lights);
-				gl.PopMatrix();
 			}
 
 			// 3 - Modeling transformation
 			FeaturesService.SetTransformations(gl, SettingsService.Transformations);
 
-
-			int i = 0;
-
 			if (Materials.Any())
 			{
-				ApplyMaterial(gl, Materials[0]);
+				ApplyMaterial(gl, Materials[SelectedMaterialIndex]);
 			}
 
 			SetTexture(gl);
@@ -78,11 +70,8 @@ namespace LegacyOpenGlApp.Services
 						var texCoord = Geometry.TextureCoordinates[index.Texture];
 						gl.TexCoord(texCoord.X, texCoord.Y, texCoord.W);
 					}
-
-					i++;
+					
 					var vertex = Geometry.Vertices[index.Vertex];
-					// TODO: https://trello.com/c/Mhj9JaxG
-					// gl.Color((16 + i * 1f % 128) / 128, (16 + i * 2f % 128) / 128, (16 + i * 4f % 128) / 128, 1);
 					gl.Vertex(vertex.X, vertex.Y, vertex.Z);
 				}
 
@@ -115,9 +104,14 @@ namespace LegacyOpenGlApp.Services
 
 			// Perform a perspective transformation
 			var xyRatio = (float)gl.RenderContextProvider.Width / gl.RenderContextProvider.Height;
-			gl.Perspective(75.0f, xyRatio, 0.1f, 100.0f);
-			// gl.Ortho(-5 * xyRatio, 5 * xyRatio, -5, 5, 0, 100);
-			// gl.ShadeModel(ShadeModel.Smooth);
+			if (SettingsService.ProjectionTransformation.SelectedIndex == 0)
+			{
+				gl.Perspective(75.0f, xyRatio, 0.1f, 100.0f);
+			}
+			else
+			{
+				gl.Ortho(-2 * xyRatio, 2 * xyRatio, -2, 2, 0.1, 100);
+			}
 
 			// Re-load the modelview matrix.
 			gl.MatrixMode(OpenGL.GL_MODELVIEW);
@@ -125,27 +119,20 @@ namespace LegacyOpenGlApp.Services
 
 		private void ApplyMaterial(OpenGL gl, Material mtl)
 		{
-			if (mtl.IlluminationModel >= 1)
-			{
-				var color = mtl.AmbientColor != null
-					? new[] { mtl.AmbientColor.R, mtl.AmbientColor.G, mtl.AmbientColor.B, mtl.AmbientColor.A }
-					: new[] { 0.2f, 0.2f, 0.2f, 1.0f };
-				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_AMBIENT, color);
+			var color = mtl.AmbientColor != null
+				? new[] {mtl.AmbientColor.R, mtl.AmbientColor.G, mtl.AmbientColor.B, mtl.AmbientColor.A}
+				: new[] {0.2f, 0.2f, 0.2f, 1.0f};
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_AMBIENT, color);
 
-				color = mtl.DiffuseColor != null
-					? new[] { mtl.DiffuseColor.R, mtl.DiffuseColor.G, mtl.DiffuseColor.B, mtl.DiffuseColor.A }
-					: new[] { 0.8f, 0.8f, 0.8f, 1.0f };
-				gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_DIFFUSE, color);
+			color = mtl.DiffuseColor != null
+				? new[] {mtl.DiffuseColor.R, mtl.DiffuseColor.G, mtl.DiffuseColor.B, mtl.DiffuseColor.A}
+				: new[] {0.8f, 0.8f, 0.8f, 1.0f};
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_DIFFUSE, color);
 
-				if (mtl.IlluminationModel >= 2)
-				{
-					color = mtl.SpecularColor != null
-						? new[] { mtl.SpecularColor.R, mtl.SpecularColor.G, mtl.SpecularColor.B, mtl.SpecularColor.A }
-						: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
-					gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
-				}
-
-			}
+			color = mtl.SpecularColor != null
+				? new[] {mtl.SpecularColor.R, mtl.SpecularColor.G, mtl.SpecularColor.B, mtl.SpecularColor.A}
+				: new[] {0.0f, 0.0f, 0.0f, 1.0f};
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
 
 			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, 0);
 		}

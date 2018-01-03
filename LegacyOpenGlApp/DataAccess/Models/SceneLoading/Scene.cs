@@ -7,5 +7,7 @@
 		public Material[] Materials { get; set; }
 
 		public Texture Texture { get; set; }
+
+		public int SelectedMaterial { get; set; }
 	}
 }

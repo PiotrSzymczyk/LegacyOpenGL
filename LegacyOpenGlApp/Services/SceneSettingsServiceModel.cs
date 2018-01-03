@@ -21,5 +21,7 @@ namespace LegacyOpenGlApp.Services
 		public IList<LightModel> Lights => Models.Lights;
 
 		public CameraModel Camera => Models.Camera;
+
+		public ProjectionTransformation ProjectionTransformation => Models.ProjectionTransformation;
 	}
 }

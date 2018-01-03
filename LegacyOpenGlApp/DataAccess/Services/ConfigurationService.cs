@@ -25,7 +25,11 @@ namespace LegacyOpenGlApp.DataAccess.Services
 
 		public static readonly IList<LightModel> Lights = LoadSection<List<LightModel>>("Lights");
 
-		public static string DefaultScenePath = LoadSection<string>("DefaultScenePath");
+		public static string DefaultGeometryPath = LoadSection<string>("DefaultGeometryPath");
+
+		public static string DefaultMaterialsPath = LoadSection<string>("DefaultMaterialsPath");
+
+		public static string DefaultTexturePath = LoadSection<string>("DefaultTexturePath");
 
 		public static readonly CameraModel Camera = LoadSection<CameraModel> ("Camera");
 	}
