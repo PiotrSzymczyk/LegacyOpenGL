@@ -249,7 +249,7 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultGeometryPath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.obj",
-  "DefaultMaterialsPath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.mtl",
-  "DefaultTexturePath": "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\Models\\cube.bmp"
+  "DefaultGeometryPath": ".\\Models\\cube.obj",
+  "DefaultMaterialsPath": ".\\Models\\cube.mtl",
+  "DefaultTexturePath": ".\\Models\\cube.bmp"
 }

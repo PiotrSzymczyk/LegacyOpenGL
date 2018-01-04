@@ -53,7 +53,7 @@
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Camera">
+                <TabItem Header="Camera and Projection">
                     <StackPanel>
                         <DockPanel Margin="5">
                             <Label Content="Camera" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
