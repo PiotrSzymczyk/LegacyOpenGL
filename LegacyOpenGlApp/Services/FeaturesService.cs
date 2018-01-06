@@ -78,10 +78,14 @@ namespace LegacyOpenGlApp.Services
 		private static void DrawMarkerInLightPosition(OpenGL gl, float[] position)
 		{
 			gl.Disable(OpenGL.GL_LIGHTING);
-			gl.Color(0.0, 1.0, 1.0);
 			gl.PushMatrix();
 			gl.Translate(position[0], position[1], position[2]);
+			gl.Color(1.0, 1.0, 0);
 			gl.Sphere(gl.NewQuadric(), 0.05, 16, 16);
+			gl.Color(0.4, 0.4, 0.4);
+			gl.Translate(0, -0.04, 0);
+			gl.Rotate(90,1,0,0);
+			gl.Cylinder(gl.NewQuadric(),0.02, 0.02, 0.06, 16, 16);
 			gl.PopMatrix();
 			gl.Enable(OpenGL.GL_LIGHTING);
 		}

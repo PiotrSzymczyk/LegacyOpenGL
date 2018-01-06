@@ -49,7 +49,7 @@ namespace LegacyOpenGlApp.Services
 				ApplyMaterial(gl, Materials[SelectedMaterialIndex]);
 			}
 
-			SetTexture(gl);
+			var textures = SetTexture(gl);
 
 			foreach (var face in Geometry.Faces)
 			{
@@ -77,11 +77,12 @@ namespace LegacyOpenGlApp.Services
 
 				gl.End();
 			}
+			gl.DeleteTextures(1, textures);
 
 			gl.Flush();
 		}
 
-		private void SetTexture(OpenGL gl)
+		private uint[] SetTexture(OpenGL gl)
 		{
 			var textures = new uint[1];
 			gl.GenTextures(1, textures);
@@ -94,6 +95,7 @@ namespace LegacyOpenGlApp.Services
 			gl.TexEnv(OpenGL.GL_TEXTURE_ENV, OpenGL.GL_TEXTURE_ENV_MODE, OpenGL.GL_MODULATE);
 
 			gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGB, Texture.Width, Texture.Height, 0, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, Texture.ImageData);
+			return textures;
 		}
 
 		public void Resize(OpenGL gl)
