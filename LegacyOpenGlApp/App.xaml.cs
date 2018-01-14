@@ -12,6 +12,7 @@ namespace LegacyOpenGlApp
 	/// </summary>
 	public partial class App : Application
 	{
+		private string JsonConfigFilePath = "config.json";
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			CultureInfo customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
@@ -19,9 +20,14 @@ namespace LegacyOpenGlApp
 
 			System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
+			if (e.Args.Length == 1)
+			{
+				JsonConfigFilePath = e.Args[0];
+			}
+
 			IUnityContainer container = new UnityContainer();
 
-			container.RegisterType<ConfigurationService>(new ContainerControlledLifetimeManager(), new InjectionProperty("JsonConfigFilePath", "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\config.json"));
+			container.RegisterType<ConfigurationService>(new ContainerControlledLifetimeManager(), new InjectionProperty("JsonConfigFilePath", JsonConfigFilePath));
 			container.RegisterType<ModelRepositoryService>(new ContainerControlledLifetimeManager());
 			container.RegisterType<SceneServiceModel>(new ContainerControlledLifetimeManager());
 			MainWindow mainWindow = container.Resolve<MainWindow>();

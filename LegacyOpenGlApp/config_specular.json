@@ -1,0 +1,176 @@
+﻿{
+  "OpenGlToggles": [
+    {
+      "StateVariable": 100204,
+      "StateVariableName": "GLU_DISPLAY_MODE",
+      "DisplayName": "Display mode",
+      "IsActive": true,
+      "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nPhasellus ut enim nec est rhoncus sodales eu nec tellus. Duis eget efficitur magna. Maecenas tempor iaculis leo, sit amet accumsan magna efficitur ac. Ut porta mattis quam sed pulvinar. Donec et maximus ligula. \nSed id velit diam. Suspendisse placerat libero id sollicitudin consectetur. Morbi sit amet augue massa. Curabitur feugiat convallis augue, nec egestas velit pharetra et. Suspendisse potenti. Suspendisse volutpat massa id lorem sodales bibendum."
+    },
+    {
+      "StateVariable": 2929,
+      "StateVariableName": "GL_DEPTH_TEST",
+      "DisplayName": "Depth buffer",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 3553,
+      "StateVariableName": "GL_TEXTURE_2D",
+      "DisplayName": "Textures",
+      "IsActive": false,
+      "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse volutpat massa id lorem sodales bibendum."
+    },
+    {
+      "StateVariable": 2896,
+      "StateVariableName": "GL_LIGHTING",
+      "DisplayName": "Lighting",
+      "IsActive": true,
+      "Description": "Curabitur elementum feugiat tellus vitae sodales. Fusce imperdiet nec est sed porta. In quis volutpat erat. In ante sapien, volutpat non vulputate sed, vehicula id diam. Proin euismod id nibh nec consectetur. Fusce tincidunt enim sit amet venenatis consectetur. Fusce aliquet dapibus enim, sit amet lacinia nisi tincidunt eget. Ut diam purus, fermentum sit amet magna sit amet, fermentum ultricies justo. Sed porttitor sollicitudin blandit. "
+    },
+    {
+      "StateVariable": 2912,
+      "StateVariableName": "GL_FOG",
+      "DisplayName": "Fog",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2883,
+      "StateVariableName": "GL_EDGE_FLAG",
+      "DisplayName": "Edge flag",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 32826,
+      "StateVariableName": "GL_RESCALE_NORMAL_EXT",
+      "DisplayName": "Current normal rescaling on/off",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2903,
+      "StateVariableName": "GL_COLOR_MATERIAL",
+      "DisplayName": "Color tracking",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2897,
+      "StateVariableName": "GL_LIGHT_MODEL_LOCAL_VIEWER",
+      "DisplayName": "Viewer is local",
+      "IsActive": false,
+      "Description": "The location of the viewpoint affects the calculations for highlights produced by specular reflectance. The intensity of the highlight at a particular vertex depends on the normal at that vertex, the direction from the vertex to the light source, and the direction from the vertex to the viewpoint. If the viewpoint is infinitely away, the direction between it and any vertex in the scene remains constant.\nA local viewpoint tends to yield more realistic results, but since the direction has to be calculated for each vertex, overall performance is decreased with a local viewpoint."
+    },
+    {
+      "StateVariable": 2898,
+      "StateVariableName": "GL_LIGHT_MODEL_TWO_SIDE",
+      "DisplayName": "Use two-sided lighting",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2884,
+      "StateVariableName": "GL_CULL_FACE",
+      "DisplayName": "Polygon culling",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 32925,
+      "StateVariableName": "GL_MULTISAMPLE",
+      "DisplayName": "Multisample rasterization",
+      "IsActive": true
+    },
+    {
+      "StateVariable": 3089,
+      "StateVariableName": "GL_SCISSOR_TEST",
+      "DisplayName": "Scissoring",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3008,
+      "StateVariableName": "GL_ALPHA_TEST",
+      "DisplayName": "Alpha test enabled",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 2960,
+      "StateVariableName": "GL_STENCIL_TEST",
+      "DisplayName": "Stenciling",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3042,
+      "StateVariableName": "GL_BLEND",
+      "DisplayName": "Blending",
+      "IsActive": false
+    },
+    {
+      "StateVariable": 3024,
+      "StateVariableName": "GL_DITHER",
+      "DisplayName": "Dithering",
+      "IsActive": true
+    }
+  ],
+  "Lights": [
+    {
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 1, 1, 1, 1 ],
+      "Specular": [ 1, 1, 1, 1 ],
+      "Position": [ 1, 0, -1, 1 ],
+      "SpotlightDirection": [ -1, 0, -1 ],
+      "SpotlightExponent": 0,
+      "SpotlightCutoff": 90,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    }
+  ],
+  "Transformations": [
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Z": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "Y": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
+    {
+      "Transform": "Rotate",
+      "X": 45
+    },
+    {
+      "Transform": "Translate",
+      "Z": -2
+    }
+  ],
+  "Camera": {
+    "PositionX": -1,
+    "PositionY": 0,
+    "PositionZ": -0.7,
+    "AimX": 0,
+    "AimY": 0,
+    "AimZ": -1.4,
+    "UpX": 0,
+    "UpY": 1,
+    "UpZ": 0
+  },
+  "DefaultObjFilePath": ".\\Scene\\Models\\spheres.obj",
+  "DefaultMtlFilePath": ".\\Scene\\Materials\\spheres.mtl",
+  "DefaultTexturePath": ".\\Scene\\Textures\\cube_crate.jpg"
+}

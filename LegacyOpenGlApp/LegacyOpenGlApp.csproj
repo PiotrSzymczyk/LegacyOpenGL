@@ -163,6 +163,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="config_specular.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
