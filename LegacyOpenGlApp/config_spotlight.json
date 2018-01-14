@@ -4,7 +4,7 @@
       "StateVariable": 2929,
       "StateVariableName": "GL_DEPTH_TEST",
       "DisplayName": "Depth buffer",
-      "IsActive": false,
+      "IsActive": true,
       "Description": "The depth buffer is generally used for hidden-surface elimination.\nIf a new candidate color for a pixel appears, it's drawn only if the corresponding object is closer than the previous object. In this way, after the entire scene has been rendered, only objects that aren't obscured by other items remain. Initially, the clearing value for the depth buffer is a value that's as far from the viewpoint as possible, so the depth of any object is nearer than that value."
     },
     {
@@ -18,7 +18,7 @@
       "StateVariable": 2896,
       "StateVariableName": "GL_LIGHTING",
       "DisplayName": "Lighting",
-      "IsActive": false,
+      "IsActive": true,
       "Description": "With OpenGL, lighting needs to be enabled explicitly. If lighting isn't enabled, the current color is simply mapped onto the current vertex, and no calculations concerning normals, light sources, the lighting model, or material properties are performed."
     },
     {
@@ -145,10 +145,10 @@
       "Ambient": [ 0, 0, 0, 1 ],
       "Diffuse": [ 1, 0, 0, 1 ],
       "Specular": [ 1, 0, 0, 1 ],
-      "Position": [ 1, 0, -1, 1 ],
-      "SpotlightDirection": [ -1, 0, -1 ],
-      "SpotlightExponent": 0,
-      "SpotlightCutoff": 90,
+      "Position": [ 1, 0, 0, 1 ],
+      "SpotlightDirection": [ -1, 0, -2.5 ],
+      "SpotlightExponent": 1,
+      "SpotlightCutoff": 10,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
@@ -157,10 +157,10 @@
       "Ambient": [ 0, 0, 0, 1 ],
       "Diffuse": [ 0, 1, 0, 1 ],
       "Specular": [ 0, 1, 0, 1 ],
-      "Position": [ 0, 0, 0, 1 ],
-      "SpotlightDirection": [ 0, 0, -1 ],
-      "SpotlightExponent": 0,
-      "SpotlightCutoff": 90,
+      "Position": [ 0, 1, 0, 1 ],
+      "SpotlightDirection": [ 0, -1, -2.5 ],
+      "SpotlightExponent": 1,
+      "SpotlightCutoff": 10,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
@@ -169,10 +169,22 @@
       "Ambient": [ 0, 0, 0, 1 ],
       "Diffuse": [ 0, 0, 1, 1 ],
       "Specular": [ 0, 0, 1, 1 ],
-      "Position": [ -1, 0, -1, 1 ],
-      "SpotlightDirection": [ 1, 0, -1 ],
-      "SpotlightExponent": 0,
-      "SpotlightCutoff": 90,
+      "Position": [ -1, 0, 0, 1 ],
+      "SpotlightDirection": [ 1, 0, -2.5 ],
+      "SpotlightExponent": 1,
+      "SpotlightCutoff": 10,
+      "ConstantAttenuation": 1,
+      "LinearAttenuation": 0,
+      "QuadraticAttenuation": 0
+    },
+    {
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 1, 1, 1, 1 ],
+      "Specular": [ 1, 1, 1, 1 ],
+      "Position": [ 0, -1, 0, 1 ],
+      "SpotlightDirection": [ 0, 1, -2.5 ],
+      "SpotlightExponent": 1,
+      "SpotlightCutoff": 10,
       "ConstantAttenuation": 1,
       "LinearAttenuation": 0,
       "QuadraticAttenuation": 0
@@ -180,60 +192,14 @@
   ],
   "Transformations": [
     {
-      "Transform": "Rotate",
-      "Z": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Z": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Z": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Z": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Y": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Y": 45
-    },
-    {
-      "Transform": "Rotate",
-      "Y": 45
-    },
-    {
-      "Transform": "Rotate",
-      "X": 45
-    },
-    {
-      "Transform": "Rotate",
-      "X": 45
-    },
-    {
-      "Transform": "Rotate",
-      "X": 45
-    },
-    {
       "Transform": "Translate",
-      "Z": -2
-    },
-    {
-      "Transform": "Scale",
-      "X": 1,
-      "Y": 1,
-      "Z": 1
+      "Z": -5
     }
   ],
   "Camera": {
     "PositionX": 0,
     "PositionY": 0,
-    "PositionZ": 0,
+    "PositionZ": 2,
     "AimX": 0,
     "AimY": 0,
     "AimZ": -1,
@@ -241,7 +207,7 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultObjFilePath": ".\\Scene\\Models\\cube.obj",
-  "DefaultMtlFilePath": ".\\Scene\\Materials\\cube.mtl",
+  "DefaultObjFilePath": ".\\Scene\\Models\\torus_on_plane.obj",
+  "DefaultMtlFilePath": ".\\Scene\\Materials\\torus_on_plane.mtl",
   "DefaultTexturePath": ".\\Scene\\Textures\\cube_FF.jpg"
 }

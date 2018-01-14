@@ -1,0 +1,35 @@
+newmtl all
+	Ka 0.4 0.4 0.4
+	Kd 0.4 0.4 0.4
+	Ks 0.8 0.8 0.8
+	Ns 16
+
+newmtl ambient_only
+	Ka 0.6 0.6 0.6
+
+newmtl diffuse_only
+	Kd 0.6 0.6 0.6
+
+newmtl specular_only_low_exponent
+	Ks 0.8 0.8 0.8
+	Ns 9
+
+newmtl specular_only_medium_exponent_1
+	Ks 0.8 0.8 0.8
+	Ns 16
+	
+newmtl specular_only_medium_exponent_2
+	Ks 0.8 0.8 0.8
+	Ns 25
+
+newmtl specular_only_medium_exponent_3
+	Ks 0.8 0.8 0.8
+	Ns 36
+
+newmtl specular_only_medium_exponent_4
+	Ks 0.8 0.8 0.8
+	Ns 49
+
+newmtl specular_only_high_exponent
+	Ks 0.8 0.8 0.8
+	Ns 64

@@ -163,6 +163,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="config_spotlight.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="config_specular.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -170,6 +173,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scene\Materials\cube.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Materials\torus_on_plane.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Scene\Materials\spheres.mtl">
@@ -191,6 +197,12 @@
     <Folder Include="ValueConverters\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Scene\Models\monkey.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Models\torus_on_plane.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Scene\Models\spheres.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
