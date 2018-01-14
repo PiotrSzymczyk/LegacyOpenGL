@@ -3,34 +3,37 @@ using System.Collections.Generic;
 using System.IO;
 using LegacyOpenGlApp.DataAccess.Models;
 using Newtonsoft.Json.Linq;
+using Unity;
 
 namespace LegacyOpenGlApp.DataAccess.Services
 {
-	public static class ConfigurationService
+	public class ConfigurationService
 	{
-		private const string JsonConfigFilePath = "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\config.json";
-		private static JObject _config;
-		private static readonly JObject Config = _config ?? (_config = JObject.Parse(File.ReadAllText(JsonConfigFilePath)));
+		[Dependency]
+		public string JsonConfigFilePath { get; set; }
 
-		public static T LoadSection<T>(string section)
+		private JObject _config;
+		private JObject Config => _config ?? (_config = JObject.Parse(File.ReadAllText(JsonConfigFilePath)));
+
+		public T LoadSection<T>(string section)
 		{
 			return Config.TryGetValue(section, StringComparison.OrdinalIgnoreCase, out var sectionContent)
 				? sectionContent.ToObject<T>()
 				: Activator.CreateInstance<T>();
 		}
 
-		public static readonly IList<ToggleModel> OpenGlToggles = LoadSection<List<ToggleModel>>("OpenGlToggles"); 
+		public IList<ToggleModel> OpenGlToggles => LoadSection<List<ToggleModel>>("OpenGlToggles"); 
 
-		public static readonly IList<TransformationModel> Transformations = LoadSection<List<TransformationModel>>("Transformations");
+		public IList<TransformationModel> Transformations => LoadSection<List<TransformationModel>>("Transformations");
 
-		public static readonly IList<LightModel> Lights = LoadSection<List<LightModel>>("Lights");
+		public IList<LightModel> Lights => LoadSection<List<LightModel>>("Lights");
 
-		public static string DefaultGeometryPath = Path.GetFullPath(LoadSection<string>("DefaultObjFilePath"));
+		public string DefaultGeometryPath => Path.GetFullPath(LoadSection<string>("DefaultObjFilePath"));
 
-		public static string DefaultMaterialsPath = Path.GetFullPath(LoadSection<string>("DefaultMtlFilePath"));
+		public string DefaultMaterialsPath => Path.GetFullPath(LoadSection<string>("DefaultMtlFilePath"));
 
-		public static string DefaultTexturePath = Path.GetFullPath(LoadSection<string>("DefaultTexturePath"));
+		public string DefaultTexturePath => Path.GetFullPath(LoadSection<string>("DefaultTexturePath"));
 
-		public static readonly CameraModel Camera = LoadSection<CameraModel> ("Camera");
+		public CameraModel Camera => LoadSection<CameraModel> ("Camera");
 	}
 }

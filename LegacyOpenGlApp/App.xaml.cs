@@ -21,6 +21,7 @@ namespace LegacyOpenGlApp
 
 			IUnityContainer container = new UnityContainer();
 
+			container.RegisterType<ConfigurationService>(new ContainerControlledLifetimeManager(), new InjectionProperty("JsonConfigFilePath", "C:\\Code\\LegacyOpenGL\\LegacyOpenGlApp\\config.json"));
 			container.RegisterType<ModelRepositoryService>(new ContainerControlledLifetimeManager());
 			container.RegisterType<SceneServiceModel>(new ContainerControlledLifetimeManager());
 			MainWindow mainWindow = container.Resolve<MainWindow>();

@@ -2,20 +2,46 @@
 using System.Linq;
 using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.Primitives;
+using Unity;
 
 namespace LegacyOpenGlApp.DataAccess.Services
 {
-    public class ModelRepositoryService
-    {
-	    public IList<ToggleModel> Toggles { get; set; } = ConfigurationService.OpenGlToggles.Select(toggle => new ToggleModel(toggle)).ToList();
+	public class ModelRepositoryService
+	{
+		[Dependency]
+		public ConfigurationService ConfigurationService { get; set; }
 
-	    public IList<TransformationModel> Transformations { get; set; } = ConfigurationService.Transformations.Select(transformation => new TransformationModel(transformation)).ToList();
+		private IList<ToggleModel> _toggles;
+		private IList<TransformationModel> _transformationModels;
+		private IList<LightModel> _lightModels;
+		private CameraModel _cameraModel;
 
-	    public IList<LightModel> Lights { get; set; } = ConfigurationService.Lights.Select(light => new LightModel(light)).ToList();
+		public IList<ToggleModel> Toggles
+		{
+			get => _toggles ?? (_toggles = ConfigurationService.OpenGlToggles.Select(toggle => new ToggleModel(toggle)).ToList());
+			set => _toggles = value;
+		}
 
-	    public CameraModel Camera { get; set; } = ConfigurationService.Camera;
+		public IList<TransformationModel> Transformations
+		{
+			get => _transformationModels ?? (_transformationModels = ConfigurationService.Transformations
+				       .Select(transformation => new TransformationModel(transformation)).ToList());
+			set => _transformationModels = value;
+		}
 
-	    public ProjectionTransformation ProjectionTransformation { get; set; } =
+		public IList<LightModel> Lights
+		{
+			get => _lightModels ?? (_lightModels = ConfigurationService.Lights.Select(light => new LightModel(light)).ToList());
+			set => _lightModels = value;
+		}
+
+		public CameraModel Camera
+		{
+			get => _cameraModel ?? (_cameraModel = ConfigurationService.Camera);
+			set => _cameraModel = value;
+		}
+
+		public ProjectionTransformation ProjectionTransformation { get; set; } =
 		    new ProjectionTransformation
 		    {
 			    Perspective = new Perspective
@@ -37,5 +63,5 @@ namespace LegacyOpenGlApp.DataAccess.Services
 		    };
 
 	    public TextureEnvironmentModeModel TextureEnvMode = new TextureEnvironmentModeModel{ Mode = TextureEnvironmentMode.GL_MODULATE };
-    }
+	}
 }

@@ -24,6 +24,9 @@ namespace LegacyOpenGlApp.WindowModels
 		[Dependency]
 		public OpenGlService OpenGlService { get; set; }
 
+		[Dependency]
+		public CodeGenerationService CodeGenerationService { get; set; }
+
 		public MainWindow()
 		{
 			InitializeComponent();

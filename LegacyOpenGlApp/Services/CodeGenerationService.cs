@@ -6,14 +6,18 @@ using LegacyOpenGlApp.DataAccess.Models;
 using LegacyOpenGlApp.DataAccess.Services;
 using LegacyOpenGlApp.Primitives;
 using SharpGL;
+using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-	public static class CodeGenerationService
+	public class CodeGenerationService
 	{
-		static string _indent = "";
+		[Dependency]
+		public ConfigurationService ConfigurationService { get; set; }
 
-		public static string GenerateCode(SceneServiceModel scene, OpenGLSettingsServiceModel settings)
+		string _indent = "";
+
+		public string GenerateCode(SceneServiceModel scene, OpenGLSettingsServiceModel settings)
 		{
 			var code = new StringBuilder();
 
@@ -34,7 +38,7 @@ namespace LegacyOpenGlApp.Services
 			return code.ToString();
 		}
 
-		private static void GenerateReshapeMethod(StringBuilder code, OpenGLSettingsServiceModel settings)
+		private void GenerateReshapeMethod(StringBuilder code, OpenGLSettingsServiceModel settings)
 		{
 			code.AppendLine($"{_indent}void reshape(int w, int h)");
 			code.AppendLine($"{_indent}{{");
@@ -51,7 +55,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static void GenerateMainMethod(StringBuilder code)
+		private void GenerateMainMethod(StringBuilder code)
 		{
 			code.AppendLine($"{_indent}int main(int argc, char** argv)");
 			code.AppendLine($"{_indent}{{");
@@ -72,7 +76,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static void GenerateInitializeMethod(OpenGLSettingsServiceModel settings, StringBuilder code)
+		private void GenerateInitializeMethod(OpenGLSettingsServiceModel settings, StringBuilder code)
 		{
 			code.AppendLine($"{_indent}void init(void)");
 			code.AppendLine($"{_indent}{{");
@@ -95,7 +99,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static void GenerateDrawMethod(SceneServiceModel scene, OpenGLSettingsServiceModel settings, StringBuilder code)
+		private void GenerateDrawMethod(SceneServiceModel scene, OpenGLSettingsServiceModel settings, StringBuilder code)
 		{
 			code.AppendLine($"{_indent}void draw(void)");
 			code.AppendLine($"{_indent}{{");
@@ -158,7 +162,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static string GetFaceDrawingMode(int faceIndexCount)
+		private string GetFaceDrawingMode(int faceIndexCount)
 		{
 			switch (faceIndexCount)
 			{
@@ -170,10 +174,10 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static bool IsLightingEnabled(IDictionary<uint, bool> toggles) =>
+		private bool IsLightingEnabled(IDictionary<uint, bool> toggles) =>
 			toggles.Single(toggle => toggle.Key == OpenGL.GL_LIGHTING).Value;
 
-		private static void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
+		private void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
 		{
 			var toggles = ConfigurationService.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariable]).ToList();
 
@@ -189,7 +193,7 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void DefineLights(StringBuilder code, IList<LightModel> lights)
+		private void DefineLights(StringBuilder code, IList<LightModel> lights)
 		{
 			if (lights.Any() == false) return;
 
@@ -213,7 +217,7 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		public static void PositionLights(StringBuilder code, IList<LightModel> lights)
+		public void PositionLights(StringBuilder code, IList<LightModel> lights)
 		{
 			if (lights.Any() == false) return;
 
@@ -229,7 +233,7 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void SetTransformations(StringBuilder code, IList<TransformationModel> transformations, bool isFixedCoordinateSystem = true)
+		private void SetTransformations(StringBuilder code, IList<TransformationModel> transformations, bool isFixedCoordinateSystem = true)
 		{
 			if (transformations.Any() == false) return;
 
