@@ -55,7 +55,8 @@
       "StateVariable": 2897,
       "StateVariableName": "GL_LIGHT_MODEL_LOCAL_VIEWER",
       "DisplayName": "Viewer is local",
-      "IsActive": false
+      "IsActive": false,
+      "Description": "The location of the viewpoint affects the calculations for highlights produced by specular reflectance. The intensity of the highlight at a particular vertex depends on the normal at that vertex, the direction from the vertex to the light source, and the direction from the vertex to the viewpoint. If the viewpoint is infinitely away, the direction between it and any vertex in the scene remains constant.\nA local viewpoint tends to yield more realistic results, but since the direction has to be calculated for each vertex, overall performance is decreased with a local viewpoint."
     },
     {
       "StateVariable": 2898,
@@ -156,11 +157,11 @@
   ],
   "Lights": [
     {
-      "Ambient": [0, 0, 0, 1],
-      "Diffuse": [1, 0, 0, 1],
-      "Specular": [1, 0, 0, 1],
-      "Position": [1, 0, -1, 1],
-      "SpotlightDirection": [-1, 0, -1],
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 1, 0, 0, 1 ],
+      "Specular": [ 1, 0, 0, 1 ],
+      "Position": [ 1, 0, -1, 1 ],
+      "SpotlightDirection": [ -1, 0, -1 ],
       "SpotlightExponent": 0,
       "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
@@ -168,11 +169,11 @@
       "QuadraticAttenuation": 0
     },
     {
-      "Ambient": [0, 0, 0, 1],
-      "Diffuse": [0, 1, 0, 1],
-      "Specular": [0, 1, 0, 1],
-      "Position": [0, 0, -1, 1],
-      "SpotlightDirection": [0, 0, -1],
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 0, 1, 0, 1 ],
+      "Specular": [ 0, 1, 0, 1 ],
+      "Position": [ 0, 0, 0, 1 ],
+      "SpotlightDirection": [ 0, 0, -1 ],
       "SpotlightExponent": 0,
       "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
@@ -180,11 +181,11 @@
       "QuadraticAttenuation": 0
     },
     {
-      "Ambient": [0, 0, 0, 1],
-      "Diffuse": [0, 0, 1, 1],
-      "Specular": [0, 0, 1, 1],
-      "Position": [-1, 0, -1, 1],
-      "SpotlightDirection": [1, 0, -1],
+      "Ambient": [ 0, 0, 0, 1 ],
+      "Diffuse": [ 0, 0, 1, 1 ],
+      "Specular": [ 0, 0, 1, 1 ],
+      "Position": [ -1, 0, -1, 1 ],
+      "SpotlightDirection": [ 1, 0, -1 ],
       "SpotlightExponent": 0,
       "SpotlightCutoff": 90,
       "ConstantAttenuation": 1,
@@ -236,6 +237,12 @@
     {
       "Transform": "Translate",
       "Z": -2
+    },
+    {
+      "Transform": "Scale",
+      "X": 1,
+      "Y": 1,
+      "Z": 1
     }
   ],
   "Camera": {
@@ -249,7 +256,7 @@
     "UpY": 1,
     "UpZ": 0
   },
-  "DefaultGeometryPath": ".\\Models\\cube.obj",
-  "DefaultMaterialsPath": ".\\Models\\cube.mtl",
-  "DefaultTexturePath": ".\\Models\\cube.bmp"
+  "DefaultObjFilePath": ".\\Scene\\Models\\cube.obj",
+  "DefaultMtlFilePath": ".\\Scene\\Materials\\cube.mtl",
+  "DefaultTexturePath": ".\\Scene\\Textures\\cube_FF.jpg"
 }

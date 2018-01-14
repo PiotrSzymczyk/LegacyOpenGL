@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using LegacyOpenGlApp.DataAccess.Models;
+using LegacyOpenGlApp.Primitives;
 
 namespace LegacyOpenGlApp.DataAccess.Services
 {
@@ -20,19 +21,21 @@ namespace LegacyOpenGlApp.DataAccess.Services
 			    Perspective = new Perspective
 			    {
 				    Aspect = 1.15571773f,
-					Fovy = 45,
+					Fovy = 60,
 					Far = 100,
 					Near = 0.1f
 				},
 			    Ortographic = new Ortographic
 			    {
-				    Left = -2 * 1.15571773f,
-				    Right = 2 * 1.15571773f,
-				    Top = 2,
-				    Bottom = -2,
+				    Left = -1.15571773f,
+				    Right = 1.15571773f,
+				    Top = 1,
+				    Bottom = -1,
 				    Far = 100,
 				    Near = 0.1f
 				}
 		    };
-	}
+
+	    public TextureEnvironmentModeModel TextureEnvMode = new TextureEnvironmentModeModel{ Mode = TextureEnvironmentMode.GL_MODULATE };
+    }
 }

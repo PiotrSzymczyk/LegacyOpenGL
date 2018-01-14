@@ -90,6 +90,7 @@
     <Compile Include="DataAccess\Models\SceneLoading\Color.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Material.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Texture.cs" />
+    <Compile Include="DataAccess\Models\TextureEnvironmentModeModel.cs" />
     <Compile Include="DataAccess\Services\ModelRepositoryService.cs" />
     <Compile Include="DataAccess\Models\LightModel.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\TextureCoordinate.cs" />
@@ -97,15 +98,16 @@
     <Compile Include="DataAccess\Models\SceneLoading\Vertex.cs" />
     <Compile Include="DataAccess\Models\SceneLoading\Scene.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Primitives\TextureEnvironmentMode.cs" />
     <Compile Include="Services\CodeGenerationService.cs" />
-    <Compile Include="Services\SceneDefinitionServiceModel.cs" />
+    <Compile Include="Services\SceneServiceModel.cs" />
     <Compile Include="WindowModels\MainWindowModel.cs" />
     <Compile Include="DataAccess\Models\TransformationModel.cs" />
     <Compile Include="Primitives\ObservableListProxy.cs" />
     <Compile Include="Primitives\Transform.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\OpenGlService.cs" />
-    <Compile Include="Services\SceneSettingsServiceModel.cs" />
+    <Compile Include="Services\OpenGLSettingsServiceModel.cs" />
     <Compile Include="DataAccess\Services\SceneLoadingService.cs" />
     <Compile Include="DataAccess\Models\Ortographic.cs" />
     <Compile Include="DataAccess\Models\Perspective.cs" />
@@ -161,7 +163,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="config.json" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Materials\cube.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Materials\spheres.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Models\cube.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -173,6 +186,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ValueConverters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scene\Models\spheres.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Textures\cube_crate.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scene\Textures\cube_FF.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WindowViews\Resources\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WindowViews\Resources\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AssimpNet.3.3.1\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.3.3.1\build\AssimpNet.targets')" />

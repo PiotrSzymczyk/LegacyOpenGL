@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow"  Width="1600" Height="860" Left="0" Top="0">
+        Title="LegacyOpenGL"  Width="1600" Height="860" Left="0" Top="0">
     <Window.Resources>
+        <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,48 +18,52 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="12*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TabControl>
-                <TabItem Header="State toggles">
+                <TabItem Header="State toggles" FontSize="18">
                     <DockPanel Margin="5">
-                        <Label Content="StateVariables" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <Label Content="Binary state variables" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                         <ListView Name="TogglesList" ItemsSource="{Binding Toggles}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" ToolTip="{Binding Path=Description}" ToolTipService.ShowDuration="60000" FontSize="15" Margin="5"/>
+                                    <CheckBox Content="{Binding}" IsChecked="{Binding Path=IsActive}" ToolTip="{Binding Path=Description}" ToolTipService.ShowDuration="60000" FontSize="20" Margin="5"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Transformations">
+                <TabItem Header="Transformations" FontSize="18">
                     <DockPanel Margin="10">
-                        <Label Content="Transformations" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
-                        <Grid DockPanel.Dock="Bottom">
+                        <Label Content="Transformations" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                        <Grid DockPanel.Dock="Bottom" Height="50">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Content="-" Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform"/>
-                            <Button Content="+" Grid.Column="1" Margin="3" Click="Button_OnClick_AddTransform"/>
+                            <Button Grid.Column="0" Margin="3" Click="Button_OnClick_RemoveTransform">
+                                <Image Source="Resources/minus.png"/>
+                            </Button>
+                            <Button Grid.Column="1" Margin="3" Click="Button_OnClick_AddTransform">
+                                <Image Source="Resources/plus.png"/>
+                            </Button>
                         </Grid>
                         <ListView Name="TransformationsList" ItemsSource="{Binding Transformations}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding}" FontSize="15" Padding="5"/>
+                                    <Label Content="{Binding}" FontSize="20" Padding="5"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Camera and Projection">
+                <TabItem Header="Camera and Projection" FontSize="18">
                     <StackPanel>
                         <DockPanel Margin="5">
-                            <Label Content="Camera" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                            <Label Content="Camera" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                             <StackPanel>
                                 <Label Content="Camera: "/>
                                 <Grid Margin="5" DataContext="{Binding Camera}">
@@ -98,14 +105,14 @@
                                     <Label Content="Z:" Grid.Row="2" Grid.Column="5"/>
                                     <TextBox Text="{Binding UpZ}" Grid.Row="2" Grid.Column="6"/>
                                 </Grid>
-                                <Button Content="Set Camera" Click="Button_LoadScene_OnClick" Margin="5"/>
+                                <Button Content="Set Camera" Margin="5" Height ="50" FontSize="20"/>
                             </StackPanel>
                         </DockPanel>
                         
                         <DockPanel Margin="5">
-                            <Label Content="Projection transformation" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                            <Label Content="Projection transformation" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                             <TabControl SelectedIndex="{Binding Path=ProjectionTransformation.SelectedIndex}">
-                                <TabItem Header="Perspective">
+                                <TabItem Header="Perspective" FontSize="18">
                                     <Grid Margin="25,0,200,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="3*"/>
@@ -129,7 +136,7 @@
                                     </Grid>
                                 </TabItem>
 
-                                <TabItem Header="Ortographic">
+                                <TabItem Header="Ortographic" FontSize="18">
                                     <Grid Margin="25,0,200,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="3*"/>
@@ -159,38 +166,42 @@
                                 </TabItem>
                             </TabControl>
                         </DockPanel>
-                        <Button Content="Set projection transformation" Click="Button_SetProjection_OnClick" DockPanel.Dock="Bottom"></Button>
+                        <Button Content="Set projection transformation" Click="Button_SetProjection_OnClick" DockPanel.Dock="Bottom" Height="50" FontSize="20"/>
                     </StackPanel>
                 </TabItem>
 
-                <TabItem Header="Lighting">
+                <TabItem Header="Lighting" FontSize="18">
                     <DockPanel Margin="10">
-                        <Label Content="Lights" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
+                        <Label Content="Lights" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top" />
                         <Grid DockPanel.Dock="Bottom">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Content="-" Click="Button_RemoveLight_OnClick" Grid.Column="0" Margin="3"/>
-                            <Button Content="+" Click="Button_AddLight_OnClick" Grid.Column="1" Margin="3"/>
+                            <Button Click="Button_RemoveLight_OnClick" Grid.Column="0" Margin="3" Height="50">
+                                <Image Source="Resources/minus.png"/>
+                            </Button>
+                            <Button Click="Button_AddLight_OnClick" Grid.Column="1" Margin="3" Height="50">
+                                <Image Source="Resources/plus.png"/>
+                            </Button>
                         </Grid>
                         <ListView Name="LightsList" ItemsSource="{Binding Lights}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding}" FontSize="15" Padding="5"/>
+                                    <Label Content="{Binding}" FontSize="20" Padding="5"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Scene">
+                <TabItem Header="Scene" FontSize="18">
                     <DockPanel Margin="5">
                         <StackPanel DockPanel.Dock="Top">
-                            <Label Content="Scene Definition" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center"/>
+                            <Label Content="Scene Definition" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center"/>
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="12*"/>
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
@@ -198,7 +209,7 @@
                                 <TextBox Text="{Binding Path=ScenePath}" Grid.Column="1"/>
                                 <Button Content="..." Click="Button_SelectScenePath_OnClick" DockPanel.Dock="Right" Grid.Column="2"/>
                             </Grid>
-                            <Button Content="Load Scene" Click="Button_LoadScene_OnClick" Margin="5"/>
+                            <Button Content="Load Scene" Click="Button_LoadScene_OnClick" Margin="5" Height ="50" FontSize="20"/>
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="4*"/>
@@ -220,13 +231,14 @@
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Surfaces / Materials">
+                <TabItem Header="Surfaces / Materials" FontSize="18">
                     <DockPanel Margin="5">
-                        <Label Content="Surfaces / Materials" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-                        <StackPanel>
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                            <Label Content="Surfaces / Materials" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="12*"/>
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
@@ -234,26 +246,27 @@
                                 <TextBox Text="{Binding Path=MaterialsPath}" Grid.Column="1"/>
                                 <Button Content="..." Click="Button_SelectMaterialsPath_OnClick" DockPanel.Dock="Right" Grid.Column="2"/>
                             </Grid>
-                            <Button Content="Load materials" Click="Button_LoadMaterials_OnClick" Margin="5"/>
+                            <Button Content="Load materials" Click="Button_LoadMaterials_OnClick" Margin="5" Height ="50" FontSize="20"/>
 
-                            <ListView Name="MaterialsList" ItemsSource="{Binding Path=Scene.Materials}" SelectedIndex="{Binding SelectedMaterialIndex}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Content="{Binding}" FontSize="15" Padding="5"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+
                         </StackPanel>
+                        <ListView Name="MaterialsList" ItemsSource="{Binding Path=Scene.Materials}" SelectedIndex="{Binding SelectedMaterialIndex}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding}" FontSize="20" Padding="5"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </DockPanel>
                 </TabItem>
 
-                <TabItem Header="Texturing">
+                <TabItem Header="Texturing" FontSize="18">
                     <DockPanel Margin="5">
-                        <Label Content="Textures" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-                        <StackPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <Label Content="Textures" FontSize="25" FontWeight="Bold"  HorizontalAlignment="Center"/>
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="12*"/>
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
@@ -261,12 +274,17 @@
                                 <TextBox Text="{Binding Path=TexturePath}" Grid.Column="1"/>
                                 <Button Content="..." Click="Button_SelectTexturePath_OnClick" DockPanel.Dock="Right" Grid.Column="2"/>
                             </Grid>
-                            <Button Content="Load Texture" Click="Button_LoadTexture_OnClick" Margin="5"/>
+                            <Button Content="Load Texture" Click="Button_LoadTexture_OnClick" Margin="5" Height ="50" FontSize="20"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Texture Environment Mode: "/>
+                                <ComboBox SelectedItem="{Binding Path=TextureEnvMode.Mode}" ItemsSource="{Binding TextureEnvModeValues}" Width="180"/>
+                            </StackPanel>
                         </StackPanel>
                     </DockPanel>
                 </TabItem>
             </TabControl>
-            <Button Content="Generate code" Click="Button_GenerateCode_OnClick" Margin="100,5,100,5" Grid.Row="1"/>
+            <Button Content="Generate code" Click="Button_GenerateCode_OnClick" Margin="100,5,100,5" Grid.Row="1" Height ="50" FontSize="20"/>
         </Grid>
         <sharpGL:OpenGLControl Name="OpenGlControl" Grid.Column="1" OpenGLDraw="OpenGLControl_OnOpenGLDraw" Resized="OpenGLControl_OnResized"  DrawFPS="True"></sharpGL:OpenGLControl>
     </Grid>

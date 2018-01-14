@@ -39,5 +39,11 @@ namespace LegacyOpenGlApp.WindowModels
 			get => Models.ProjectionTransformation;
 			set => Models.ProjectionTransformation = value;
 		}
+
+		public TextureEnvironmentModeModel TextureEnvMode
+		{
+			get => Models.TextureEnvMode;
+			set => Models.TextureEnvMode = value;
+		}
 	}
 }

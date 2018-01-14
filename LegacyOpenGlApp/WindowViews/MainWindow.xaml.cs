@@ -59,7 +59,7 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_GenerateCode_OnClick(object sender, RoutedEventArgs e)
 		{
-			File.WriteAllText("generatedCode.cpp", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneDefinitionService, OpenGlService.SettingsService));
+			File.WriteAllText("generatedCode.cpp", CodeGenerationService.GenerateCode(OpenGlService.OpenGlSceneService, OpenGlService.SettingsService));
 			Process.Start(Path.GetFullPath("generatedCode.cpp"));
 		}
 
@@ -122,17 +122,19 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void Button_LoadScene_OnClick(object sender, RoutedEventArgs e)
 		{
-			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+			ViewModel.SceneServiceModel.ReloadScene();
+			ViewModel.ScenePath = ViewModel.ScenePath;
 		}
 
 		private void Button_LoadMaterials_OnClick(object sender, RoutedEventArgs e)
 		{
-			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+			ViewModel.SceneServiceModel.ReloadScene();
+			ViewModel.MaterialsPath = ViewModel.MaterialsPath;
 		}
 
 		private void Button_LoadTexture_OnClick(object sender, RoutedEventArgs e)
 		{
-			ViewModel.SceneDefinitionServiceModel.ReloadScene();
+			ViewModel.SceneServiceModel.ReloadScene();
 		}
 
 		private void Button_SetProjection_OnClick(object sender, RoutedEventArgs e)

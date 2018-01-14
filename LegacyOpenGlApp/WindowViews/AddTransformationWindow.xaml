@@ -5,7 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LegacyOpenGlApp.WindowViews"
         mc:Ignorable="d"
-        Title="AddTransformationWindow" Height="191" Width="298">
+        Title="Add Transformation" Height="221" Width="442">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
     <StackPanel>
         <TabControl SelectedIndex="{Binding Path=Transform}" Margin="0,0,0,10">
             <TabItem Header="Translate">
@@ -30,7 +38,7 @@
                     <TextBox  Text="{Binding Path=TranslateZ}" Grid.Column="1"  Grid.Row="2"/>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Rotate">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -53,7 +61,7 @@
                     <TextBox  Text="{Binding Path=RotateZ}" Grid.Column="1"  Grid.Row="2"/>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Scale">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -77,6 +85,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Add Transformation" Click="Button_AddTransformation_OnClick"></Button>
+        <Button Content="Add Transformation" Click="Button_AddTransformation_OnClick" FontSize="18"/>
     </StackPanel>
 </Window>

@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
+﻿using LegacyOpenGlApp.DataAccess.Models.SceneLoading;
 using LegacyOpenGlApp.DataAccess.Services;
 using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-	public class SceneDefinitionServiceModel
+	public class SceneServiceModel
 	{
 		[Dependency]
 		public SceneLoadingService SceneLoadingService { get; set; }
@@ -22,8 +21,6 @@ namespace LegacyOpenGlApp.Services
 			Materials = SceneLoadingService.LoadMaterials(MaterialsPath),
 			Texture = SceneLoadingService.LoadTexture(TexturePath)
 		});
-
-		public string SupportedFormats => SceneLoadingService.SupportedFormats.Aggregate((accum, curr) => string.Join("\t", accum, curr));
 
 		public void ReloadScene() => _scene = null;
 	}

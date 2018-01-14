@@ -25,7 +25,12 @@ namespace LegacyOpenGlApp.DataAccess.Models
 
 	    public float Z { get; set; }
 
-	    public override string ToString() => string.Format("{0} ( X: {1}{4}, Y: {2}{4}, Z: {3}{4} )", Transform, X, Y, Z, GetSymbol());
+	    public override string ToString() => string.Format("{0} ( X: {1}{4}, Y: {2}{4}, Z: {3}{4} )",
+			Transform,
+			Transform != Transform.Scale ? X : 100 * X,
+		    Transform != Transform.Scale ? Y : 100 * Y,
+		    Transform != Transform.Scale ? Z : 100 * Z,
+			GetSymbol());
 
 	    private char? GetSymbol()
 	    {

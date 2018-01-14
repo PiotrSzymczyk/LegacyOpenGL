@@ -6,7 +6,7 @@ using Unity;
 
 namespace LegacyOpenGlApp.Services
 {
-    public class SceneSettingsServiceModel
+    public class OpenGLSettingsServiceModel
 	{
 		[Dependency]
 		public ModelRepositoryService Models { get; set; }
@@ -23,5 +23,7 @@ namespace LegacyOpenGlApp.Services
 		public CameraModel Camera => Models.Camera;
 
 		public ProjectionTransformation ProjectionTransformation => Models.ProjectionTransformation;
+
+		public TextureEnvironmentModeModel TextureEnvMode => Models.TextureEnvMode;
 	}
 }

@@ -8,15 +8,15 @@ namespace LegacyOpenGlApp.Services
 	public class OpenGlService
 	{
 		[Dependency]
-		public SceneDefinitionServiceModel OpenGlSceneDefinitionService { get; set; }
+		public SceneServiceModel OpenGlSceneService { get; set; }
 
 		[Dependency]
-		public SceneSettingsServiceModel SettingsService { get; set; }
+		public OpenGLSettingsServiceModel SettingsService { get; set; }
 
-		private Geometry Geometry => OpenGlSceneDefinitionService.Scene.Geometry;
-		private Material[] Materials => OpenGlSceneDefinitionService.Scene.Materials;
-		private int SelectedMaterialIndex => OpenGlSceneDefinitionService.Scene.SelectedMaterial;
-		private Texture Texture => OpenGlSceneDefinitionService.Scene.Texture;
+		private Geometry Geometry => OpenGlSceneService.Scene.Geometry;
+		private Material[] Materials => OpenGlSceneService.Scene.Materials;
+		private int SelectedMaterialIndex => OpenGlSceneService.Scene.SelectedMaterial;
+		private Texture Texture => OpenGlSceneService.Scene.Texture;
 
 		public void Draw(OpenGL gl)
 		{
@@ -49,7 +49,7 @@ namespace LegacyOpenGlApp.Services
 				ApplyMaterial(gl, Materials[SelectedMaterialIndex]);
 			}
 
-			var textures = SetTexture(gl);
+			SetTexture(gl);
 
 			foreach (var face in Geometry.Faces)
 			{
@@ -77,25 +77,25 @@ namespace LegacyOpenGlApp.Services
 
 				gl.End();
 			}
-			gl.DeleteTextures(1, textures);
+			gl.DeleteTextures(1, new []{ OpenGL.GL_TEXTURE0 });
 
 			gl.Flush();
 		}
 
-		private uint[] SetTexture(OpenGL gl)
+		private void SetTexture(OpenGL gl)
 		{
 			var textures = new uint[1];
 			gl.GenTextures(1, textures);
-			gl.BindTexture(OpenGL.GL_TEXTURE_2D, textures.First());
+			gl.BindTexture(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE0);
 			gl.PixelStore(OpenGL.GL_UNPACK_ALIGNMENT, 1);
 			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_REPEAT);
 			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, OpenGL.GL_REPEAT);
 			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
 			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, OpenGL.GL_LINEAR);
-			gl.TexEnv(OpenGL.GL_TEXTURE_ENV, OpenGL.GL_TEXTURE_ENV_MODE, OpenGL.GL_MODULATE);
+
+			gl.TexEnv(OpenGL.GL_TEXTURE_ENV, OpenGL.GL_TEXTURE_ENV_MODE, (int)SettingsService.TextureEnvMode.Mode);
 
 			gl.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGB, Texture.Width, Texture.Height, 0, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, Texture.ImageData);
-			return textures;
 		}
 
 		public void Resize(OpenGL gl)
@@ -105,14 +105,24 @@ namespace LegacyOpenGlApp.Services
 			gl.LoadIdentity();
 
 			// Perform a perspective transformation
-			var xyRatio = (float)gl.RenderContextProvider.Width / gl.RenderContextProvider.Height;
 			if (SettingsService.ProjectionTransformation.SelectedIndex == 0)
 			{
-				gl.Perspective(75.0f, xyRatio, 0.1f, 100.0f);
+				gl.Perspective(
+					SettingsService.ProjectionTransformation.Perspective.Fovy,
+					SettingsService.ProjectionTransformation.Perspective.Aspect,
+					SettingsService.ProjectionTransformation.Perspective.Near,
+					SettingsService.ProjectionTransformation.Perspective.Far);
 			}
 			else
 			{
-				gl.Ortho(-2 * xyRatio, 2 * xyRatio, -2, 2, 0.1, 100);
+				gl.Ortho(
+					SettingsService.ProjectionTransformation.Ortographic.Left,
+					SettingsService.ProjectionTransformation.Ortographic.Right,
+					SettingsService.ProjectionTransformation.Ortographic.Bottom,
+					SettingsService.ProjectionTransformation.Ortographic.Top,
+					SettingsService.ProjectionTransformation.Ortographic.Near,
+					SettingsService.ProjectionTransformation.Ortographic.Far
+					);
 			}
 
 			// Re-load the modelview matrix.
@@ -136,7 +146,12 @@ namespace LegacyOpenGlApp.Services
 				: new[] {0.0f, 0.0f, 0.0f, 1.0f};
 			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SPECULAR, color);
 
-			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, 0);
+			color = mtl.EmissiveColor != null
+				? new[] { mtl.EmissiveColor.R, mtl.EmissiveColor.G, mtl.EmissiveColor.B, mtl.EmissiveColor.A }
+				: new[] { 0.0f, 0.0f, 0.0f, 1.0f };
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_EMISSION, color);
+
+			gl.Material(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_SHININESS, mtl.SpecularExponent);
 		}
 
 		private static uint GetFaceDrawingMode(int faceIndexCount)

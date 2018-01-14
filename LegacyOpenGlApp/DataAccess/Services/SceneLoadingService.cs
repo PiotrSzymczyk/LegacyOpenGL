@@ -9,7 +9,7 @@ namespace LegacyOpenGlApp.DataAccess.Services
 {
     public class SceneLoadingService
     {
-		public string[] SupportedFormats => new[] { ".obj" };
+		private string _sceneFormat => ".obj";
 
 	    public Scene LoadScene(string objPath, string mtlPath, string texturePath)
 	    {
@@ -25,10 +25,9 @@ namespace LegacyOpenGlApp.DataAccess.Services
 	    {
 		    path = Path.GetFullPath(path);
 
-		    if (SupportedFormats.Contains(GetFileExtension(path)))
+		    if (path.EndsWith(_sceneFormat))
 		    {
 			    var obj = ObjFile.FromFile(path);
-
 
 				return new Geometry
 				{
@@ -73,11 +72,6 @@ namespace LegacyOpenGlApp.DataAccess.Services
 				Width = bitmap.Width,
 				ImageData = bytes
 		    };
-	    }
-
-	    private static string GetFileExtension(string path)
-	    {
-		    return path.Substring(path.LastIndexOf('.'));
 	    }
     }
 }

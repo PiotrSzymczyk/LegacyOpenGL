@@ -22,7 +22,7 @@ namespace LegacyOpenGlApp
 			IUnityContainer container = new UnityContainer();
 
 			container.RegisterType<ModelRepositoryService>(new ContainerControlledLifetimeManager());
-			container.RegisterType<SceneDefinitionServiceModel>(new ContainerControlledLifetimeManager());
+			container.RegisterType<SceneServiceModel>(new ContainerControlledLifetimeManager());
 			MainWindow mainWindow = container.Resolve<MainWindow>();
 			mainWindow.Show();
 		}

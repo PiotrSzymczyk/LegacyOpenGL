@@ -13,7 +13,7 @@ namespace LegacyOpenGlApp.Services
 	{
 		static string _indent = "";
 
-		public static string GenerateCode(SceneDefinitionServiceModel scene, SceneSettingsServiceModel settings)
+		public static string GenerateCode(SceneServiceModel scene, OpenGLSettingsServiceModel settings)
 		{
 			var code = new StringBuilder();
 
@@ -34,7 +34,7 @@ namespace LegacyOpenGlApp.Services
 			return code.ToString();
 		}
 
-		private static void GenerateReshapeMethod(StringBuilder code, SceneSettingsServiceModel settings)
+		private static void GenerateReshapeMethod(StringBuilder code, OpenGLSettingsServiceModel settings)
 		{
 			code.AppendLine($"{_indent}void reshape(int w, int h)");
 			code.AppendLine($"{_indent}{{");
@@ -72,7 +72,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static void GenerateInitializeMethod(SceneSettingsServiceModel settings, StringBuilder code)
+		private static void GenerateInitializeMethod(OpenGLSettingsServiceModel settings, StringBuilder code)
 		{
 			code.AppendLine($"{_indent}void init(void)");
 			code.AppendLine($"{_indent}{{");
@@ -95,7 +95,7 @@ namespace LegacyOpenGlApp.Services
 			code.AppendLine($"{_indent}}}");
 		}
 
-		private static void GenerateDrawMethod(SceneDefinitionServiceModel scene, SceneSettingsServiceModel settings, StringBuilder code)
+		private static void GenerateDrawMethod(SceneServiceModel scene, OpenGLSettingsServiceModel settings, StringBuilder code)
 		{
 			code.AppendLine($"{_indent}void draw(void)");
 			code.AppendLine($"{_indent}{{");

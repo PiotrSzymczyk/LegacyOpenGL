@@ -5,7 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LegacyOpenGlApp.WindowViewModels"
         mc:Ignorable="d"
-        Title="AddLightWindow" Height="328.286" Width="353.143">
+        Title="Add Light" Height="383.862" Width="472.05">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
     <StackPanel>
         <Grid Margin="5">
             <Grid.RowDefinitions>
@@ -83,18 +94,18 @@
             <Label Content="Spotlight exponent" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3"/>
             <TextBox Text="{Binding Path=SpotlightExponent}" Grid.Row="7" Grid.Column="2"/>
 
-            <Label Content="Spotlight cutoff" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="5"/>
+            <Label Content="   Spotlight cutoff" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="5"/>
             <TextBox Text="{Binding Path=SpotlightCutoff}" Grid.Row="7" Grid.Column="8"/>
 
             <Label Content="Constant attenuation" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3"/>
             <TextBox Text="{Binding Path=ConstantAttenuation}" Grid.Row="9" Grid.Column="2"/>
 
-            <Label Content="Linear attenuation" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="5"/>
+            <Label Content="   Linear attenuation" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="5"/>
             <TextBox Text="{Binding Path=LinearAttenuation}" Grid.Row="9" Grid.Column="8"/>
 
             <Label Content="Quadratic attenuation" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3"/>
             <TextBox Text="{Binding Path=QuadraticAttenuation}" Grid.Row="10" Grid.Column="2"/>
         </Grid>
-        <Button Content="Add Light" Click="Button_AddLight_OnClick"/>
+        <Button Content="Add Light" Click="Button_AddLight_OnClick" FontSize="18"/>
     </StackPanel>
 </Window>

@@ -22,21 +22,21 @@ namespace LegacyOpenGlApp.DataAccess.Models
 			this.QuadraticAttenuation = light.QuadraticAttenuation;
 		}
 
-		public float[] Ambient { get; set; }
+		public float[] Ambient { get; set; } = new float[4];
 
-		public float[] Diffuse { get; set; }
+		public float[] Diffuse { get; set; } = new float[4];
 
-		public float[] Specular { get; set; }
+		public float[] Specular { get; set; } = new float[4];
 
-		public float[] Position { get; set; }
+		public float[] Position { get; set; } = new float[4];
 
-		public float[] SpotlightDirection { get; set; }
+		public float[] SpotlightDirection { get; set; } = new float[3];
 
 		public float SpotlightExponent { get; set; }
 
 		public float SpotlightCutoff { get; set; }
 
-		public float ConstantAttenuation { get; set; }
+		public float ConstantAttenuation { get; set; } = 1;
 
 		public float LinearAttenuation { get; set; }
 
