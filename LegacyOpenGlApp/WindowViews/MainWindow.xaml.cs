@@ -40,6 +40,10 @@ namespace LegacyOpenGlApp.WindowModels
 
 		private void OpenGLControl_OnResized(object sender, OpenGLEventArgs args)
 		{
+			var xyRatio = (float)args.OpenGL.RenderContextProvider.Width / args.OpenGL.RenderContextProvider.Height;
+			ViewModel.ProjectionTransformation.Perspective.Aspect = xyRatio;
+			ViewModel.ProjectionTransformation.Ortographic.Right = xyRatio;
+			ViewModel.ProjectionTransformation.Ortographic.Left = -xyRatio;
 			OpenGlService.Resize(args.OpenGL);
 		}
 

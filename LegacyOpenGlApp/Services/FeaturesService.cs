@@ -66,7 +66,7 @@ namespace LegacyOpenGlApp.Services
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
 
-					DrawMarkerInLightPosition(gl, light.Position);
+					DrawMarkerInLightPosition(gl, light.Position, light.Ambient, light.Diffuse, light.Specular);
 				}
 				else
 				{
@@ -75,19 +75,28 @@ namespace LegacyOpenGlApp.Services
 			}
 		}
 
-		private static void DrawMarkerInLightPosition(OpenGL gl, float[] position)
+		private static void DrawMarkerInLightPosition(OpenGL gl, float[] position, float[] ambient, float[] diffuse, float[] specular)
 		{
-			gl.Disable(OpenGL.GL_LIGHTING);
-			gl.PushMatrix();
-			gl.Translate(position[0], position[1], position[2]);
-			gl.Color(1.0, 1.0, 0);
-			gl.Sphere(gl.NewQuadric(), 0.05, 16, 16);
-			gl.Color(0.4, 0.4, 0.4);
-			gl.Translate(0, -0.04, 0);
-			gl.Rotate(90,1,0,0);
-			gl.Cylinder(gl.NewQuadric(),0.02, 0.02, 0.06, 16, 16);
-			gl.PopMatrix();
-			gl.Enable(OpenGL.GL_LIGHTING);
+			if (position[3] != 0)
+			{
+				var r = ambient[0] + diffuse[0] + specular[0];
+				var g = ambient[1] + diffuse[1] + specular[1];
+				var b = ambient[2] + diffuse[2] + specular[2];
+				var sum = r + b + g;
+				sum = sum == 0 ? 1 : sum;
+				var color = new[] { 0.2 + 3 * r / sum, 0.2 + 3 * g / sum, 0.2 + 3 * b / sum };
+				gl.Disable(OpenGL.GL_LIGHTING);
+				gl.PushMatrix();
+				gl.Translate(position[0], position[1], position[2]);
+				gl.Color(color);
+				gl.Sphere(gl.NewQuadric(), 0.05, 16, 16);
+				gl.Color(0.75, 0.75, 0.75);
+				gl.Translate(0, -0.04, 0);
+				gl.Rotate(90, 1, 0, 0);
+				gl.Cylinder(gl.NewQuadric(), 0.02, 0.02, 0.06, 16, 16);
+				gl.PopMatrix();
+				gl.Enable(OpenGL.GL_LIGHTING);
+			}
 		}
 	}
 }
