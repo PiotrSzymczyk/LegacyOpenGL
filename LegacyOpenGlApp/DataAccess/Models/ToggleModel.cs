@@ -1,4 +1,5 @@
 ﻿using LegacyOpenGlApp.Helpers;
+using SharpGL;
 
 namespace LegacyOpenGlApp.DataAccess.Models
 {
@@ -14,14 +15,18 @@ namespace LegacyOpenGlApp.DataAccess.Models
 		{
 			this.IsActive = toggle.IsActive;
 			this.StateVariable = toggle.StateVariable;
-			this.StateVariableName = toggle.StateVariableName;
 			this.DisplayName = toggle.DisplayName;
 			this.Description = toggle._description;
 		}
+		
 
-		public uint StateVariable { get; set; }
+		public uint StateVariableValue =>
+			(uint) (typeof(OpenGL)
+				.GetField(StateVariable) ?? typeof(OpenGL)
+				        .GetField(StateVariable + "_EXT"))
+				.GetRawConstantValue();
 
-		public string StateVariableName { get; set; }
+		public string StateVariable { get; set; }
 
 		public string DisplayName { get; set; }
 
@@ -33,6 +38,6 @@ namespace LegacyOpenGlApp.DataAccess.Models
 
 		public bool IsActive { get; set; }
 
-		public override string ToString() => $"{DisplayName} ({StateVariableName})";
+		public override string ToString() => $"{DisplayName} ({StateVariable})";
 	}
 }

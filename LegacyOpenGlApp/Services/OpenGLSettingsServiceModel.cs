@@ -13,7 +13,7 @@ namespace LegacyOpenGlApp.Services
 
 		public IDictionary<uint, bool> Toggles =>
 			Models.Toggles.ToDictionary(
-				toggle => toggle.StateVariable,
+				toggle => toggle.StateVariableValue,
 				toggle => toggle.IsActive);
 
 		public IList<TransformationModel> Transformations => Models.Transformations;

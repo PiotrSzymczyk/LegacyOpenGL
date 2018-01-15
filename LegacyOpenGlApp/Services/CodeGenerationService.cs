@@ -179,7 +179,7 @@ namespace LegacyOpenGlApp.Services
 
 		private void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
 		{
-			var toggles = ConfigurationService.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariable]).ToList();
+			var toggles = ConfigurationService.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariableValue]).ToList();
 
 			if (toggles.Any() == false) return;
 
@@ -188,8 +188,8 @@ namespace LegacyOpenGlApp.Services
 			foreach (var toggle in toggles)
 			{
 				code.AppendLine(toggle.IsActive
-					? $"{_indent}glDisable({toggle.StateVariableName});"
-					: $"{_indent}glEnable({toggle.StateVariableName});");
+					? $"{_indent}glDisable({toggle.StateVariable});"
+					: $"{_indent}glEnable({toggle.StateVariable});");
 			}
 		}
 

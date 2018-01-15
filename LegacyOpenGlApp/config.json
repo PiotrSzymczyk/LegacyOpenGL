@@ -1,141 +1,119 @@
 ﻿{
   "OpenGlToggles": [
     {
-      "StateVariable": 2929,
-      "StateVariableName": "GL_DEPTH_TEST",
+      "StateVariable": "GL_DEPTH_TEST",
       "DisplayName": "Depth buffer",
       "IsActive": false,
       "Description": "The depth buffer is generally used for hidden-surface elimination.\nIf a new candidate color for a pixel appears, it's drawn only if the corresponding object is closer than the previous object. In this way, after the entire scene has been rendered, only objects that aren't obscured by other items remain. Initially, the clearing value for the depth buffer is a value that's as far from the viewpoint as possible, so the depth of any object is nearer than that value."
     },
     {
-      "StateVariable": 3553,
-      "StateVariableName": "GL_TEXTURE_2D",
+      "StateVariable": "GL_TEXTURE_2D",
       "DisplayName": "Textures",
       "IsActive": false,
       "Description": "Enables two-dimentional texture mapping"
     },
     {
-      "StateVariable": 2896,
-      "StateVariableName": "GL_LIGHTING",
+      "StateVariable": "GL_LIGHTING",
       "DisplayName": "Lighting",
       "IsActive": false,
       "Description": "With OpenGL, lighting needs to be enabled explicitly. If lighting isn't enabled, the current color is simply mapped onto the current vertex, and no calculations concerning normals, light sources, the lighting model, or material properties are performed."
     },
     {
-      "StateVariable": 2912,
-      "StateVariableName": "GL_FOG",
+      "StateVariable": "GL_FOG",
       "DisplayName": "Fog",
       "IsActive": false,
       "Description": "When fog is enabled, objects that are farther from the viewpoint begin to fade."
     },
     {
-      "StateVariable": 32826,
-      "StateVariableName": "GL_RESCALE_NORMAL",
+      "StateVariable": "GL_RESCALE_NORMAL",
       "DisplayName": "Current normal rescaling on/off",
       "IsActive": false,
       "Description": "If unit-length normals were supplied, and only uniform scaling was performed (that is, the same scaling value for x, y, and z), this toggle can be used to scale the normals by a constant factor, derived from the modelview transformation matrix, to return them to unit length after transformation."
     },
     {
-      "StateVariable": 2897,
-      "StateVariableName": "GL_LIGHT_MODEL_LOCAL_VIEWER",
+      "StateVariable": "GL_LIGHT_MODEL_LOCAL_VIEWER",
       "DisplayName": "Viewer is local",
       "IsActive": false,
       "Description": "The location of the viewpoint affects the calculations for highlights produced by specular reflectance. The intensity of the highlight at a particular vertex depends on the normal at that vertex, the direction from the vertex to the light source, and the direction from the vertex to the viewpoint. If the viewpoint is infinitely away, the direction between it and any vertex in the scene remains constant.\nA local viewpoint tends to yield more realistic results, but since the direction has to be calculated for each vertex, overall performance is decreased with a local viewpoint."
     },
     {
-      "StateVariable": 2898,
-      "StateVariableName": "GL_LIGHT_MODEL_TWO_SIDE",
+      "StateVariable": "GL_LIGHT_MODEL_TWO_SIDE",
       "DisplayName": "Use two-sided lighting",
       "IsActive": false,
       "Description": "OpenGL reverses the surface normals for back-facing polygons; this means that the surface normals of visible back- and front-facing polygons face, rather than point away from, the viewer. As a result, all polygons are illuminated correctly. However, these additional operations usually make two-sided lighting perform slower than the default one-sided lighting."
     },
     {
-      "StateVariable": 2832,
-      "StateVariableName": "GL_POINT_SMOOTH",
+      "StateVariable": "GL_POINT_SMOOTH",
       "DisplayName": "Point antialiasing",
       "IsActive": false
     },
     {
-      "StateVariable": 2848,
-      "StateVariableName": "GL_LINE_SMOOTH",
+      "StateVariable": "GL_LINE_SMOOTH",
       "DisplayName": "Line antialiasing",
       "IsActive": false
     },
     {
-      "StateVariable": 2852,
-      "StateVariableName": "GL_LINE_STIPPLE",
+      "StateVariable": "GL_LINE_STIPPLE",
       "DisplayName": "Line stipple",
       "IsActive": false
     },
     {
-      "StateVariable": 2881,
-      "StateVariableName": "GL_POLYGON_SMOOTH",
+      "StateVariable": "GL_POLYGON_SMOOTH",
       "DisplayName": "Polygon antialiasing",
       "IsActive": false
     },
     {
-      "StateVariable": 2882,
-      "StateVariableName": "GL_POLYGON_STIPPLE",
+      "StateVariable": "GL_POLYGON_STIPPLE",
       "DisplayName": "Polygon stipple",
       "IsActive": false
     },
     {
-      "StateVariable": 2884,
-      "StateVariableName": "GL_CULL_FACE",
+      "StateVariable": "GL_CULL_FACE",
       "DisplayName": "Polygon culling",
       "IsActive": false
     },
     {
-      "StateVariable": 32925,
-      "StateVariableName": "GL_MULTISAMPLE",
+      "StateVariable": "GL_MULTISAMPLE",
       "DisplayName": "Multisample rasterization",
       "IsActive": true
     },
     {
-      "StateVariable": 3089,
-      "StateVariableName": "GL_SCISSOR_TEST",
+      "StateVariable": "GL_SCISSOR_TEST",
       "DisplayName": "Scissoring",
       "IsActive": false
     },
     {
-      "StateVariable": 3008,
-      "StateVariableName": "GL_ALPHA_TEST",
+      "StateVariable": "GL_ALPHA_TEST",
       "DisplayName": "Alpha test enabled",
       "IsActive": false
     },
     {
-      "StateVariable": 2960,
-      "StateVariableName": "GL_STENCIL_TEST",
+      "StateVariable": "GL_STENCIL_TEST",
       "DisplayName": "Stenciling",
       "IsActive": false
     },
     {
-      "StateVariable": 3042,
-      "StateVariableName": "GL_BLEND",
+      "StateVariable": "GL_BLEND",
       "DisplayName": "Blending",
       "IsActive": false
     },
     {
-      "StateVariable": 3024,
-      "StateVariableName": "GL_DITHER",
+      "StateVariable": "GL_DITHER",
       "DisplayName": "Dithering",
       "IsActive": true
     },
     {
-      "StateVariable": 3344,
-      "StateVariableName": "GL_MAP_COLOR",
+      "StateVariable": "GL_MAP_COLOR",
       "DisplayName": "True if colors are mapped",
       "IsActive": false
     },
     {
-      "StateVariable": 3345,
-      "StateVariableName": "GL_MAP_STENCIL",
+      "StateVariable": "GL_MAP_STENCIL",
       "DisplayName": "True if stencil values are mapped",
       "IsActive": false
     },
     {
-      "StateVariable": 32804,
-      "StateVariableName": "GL_HISTOGRAM",
+      "StateVariable": "GL_HISTOGRAM",
       "DisplayName": "True if histogramming is enabled",
       "IsActive": false
     }
