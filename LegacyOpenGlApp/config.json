@@ -1,21 +1,21 @@
 ﻿{
-  "OpenGlToggles": [
+  "OpenGlFlags": [
     {
       "StateVariable": "GL_DEPTH_TEST",
       "DisplayName": "Depth buffer",
-      "IsActive": false,
+      "IsActive": true,
       "Description": "The depth buffer is generally used for hidden-surface elimination.\nIf a new candidate color for a pixel appears, it's drawn only if the corresponding object is closer than the previous object. In this way, after the entire scene has been rendered, only objects that aren't obscured by other items remain. Initially, the clearing value for the depth buffer is a value that's as far from the viewpoint as possible, so the depth of any object is nearer than that value."
     },
     {
       "StateVariable": "GL_TEXTURE_2D",
       "DisplayName": "Textures",
-      "IsActive": false,
+      "IsActive": true,
       "Description": "Enables two-dimentional texture mapping"
     },
     {
       "StateVariable": "GL_LIGHTING",
       "DisplayName": "Lighting",
-      "IsActive": false,
+      "IsActive": true,
       "Description": "With OpenGL, lighting needs to be enabled explicitly. If lighting isn't enabled, the current color is simply mapped onto the current vertex, and no calculations concerning normals, light sources, the lighting model, or material properties are performed."
     },
     {
@@ -159,43 +159,53 @@
   "Transformations": [
     {
       "Transform": "Rotate",
-      "Z": 45
+      "Z": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Z": 45
+      "Z": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Z": 45
+      "Z": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Z": 45
+      "Z": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Y": 45
+      "Y": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Y": 45
+      "Y": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "Y": 45
+      "Y": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "X": 45
+      "X": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "X": 45
+      "X": 1,
+      "Angle": 45
     },
     {
       "Transform": "Rotate",
-      "X": 45
+      "X": 1,
+      "Angle": 45
     },
     {
       "Transform": "Translate",
@@ -221,5 +231,5 @@
   },
   "DefaultObjFilePath": ".\\Scene\\Models\\cube.obj",
   "DefaultMtlFilePath": ".\\Scene\\Materials\\cube.mtl",
-  "DefaultTexturePath": ".\\Scene\\Textures\\cube_FF.jpg"
+  "DefaultTexturePath": ".\\Scene\\Textures\\cube_crate.jpg"
 }

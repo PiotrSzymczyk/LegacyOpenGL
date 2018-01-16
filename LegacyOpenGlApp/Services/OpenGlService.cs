@@ -84,8 +84,6 @@ namespace LegacyOpenGlApp.Services
 
 		private void SetTexture(OpenGL gl)
 		{
-			var textures = new uint[1];
-			gl.GenTextures(1, textures);
 			gl.BindTexture(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE0);
 			gl.PixelStore(OpenGL.GL_UNPACK_ALIGNMENT, 1);
 			gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_REPEAT);

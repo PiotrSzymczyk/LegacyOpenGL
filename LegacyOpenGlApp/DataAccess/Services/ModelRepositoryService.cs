@@ -18,7 +18,7 @@ namespace LegacyOpenGlApp.DataAccess.Services
 
 		public IList<ToggleModel> Toggles
 		{
-			get => _toggles ?? (_toggles = ConfigurationService.OpenGlToggles.Select(toggle => new ToggleModel(toggle)).ToList());
+			get => _toggles ?? (_toggles = ConfigurationService.OpenGlFlags.Select(toggle => new ToggleModel(toggle)).ToList());
 			set => _toggles = value;
 		}
 

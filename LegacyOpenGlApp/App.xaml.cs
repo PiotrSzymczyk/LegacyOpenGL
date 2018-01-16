@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.IO;
 using System.Windows;
 using LegacyOpenGlApp.DataAccess.Services;
 using LegacyOpenGlApp.Services;
@@ -12,7 +14,7 @@ namespace LegacyOpenGlApp
 	/// </summary>
 	public partial class App : Application
 	{
-		private string JsonConfigFilePath = "config.json";
+		private string JsonConfigFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			CultureInfo customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();

@@ -210,21 +210,23 @@
                                 <Button Content="..." Click="Button_SelectScenePath_OnClick" DockPanel.Dock="Right" Grid.Column="2"/>
                             </Grid>
                             <Button Content="Load Scene" Click="Button_LoadScene_OnClick" Margin="5" Height ="50" FontSize="20"/>
-                            <Grid Margin="5">
+                            <Grid Margin="42">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Number of vertices:" HorizontalContentAlignment="Center" Grid.Column="0"/>
-                                <Label Content="{Binding VertexCount}" HorizontalContentAlignment="Center" Grid.Column="1"/>
-                                <Label Content="Normals:" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="{Binding NormalCount}" HorizontalContentAlignment="Center" Grid.Column="3"/>
-                                <Label Content="Number of faces:" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="{Binding FaceCount}" HorizontalContentAlignment="Center" Grid.Column="5"/>
+                                <Label Content="Number of vertices:"  Grid.Column="0"/>
+                                <Label Content="{Binding VertexCount}" Grid.Column="1"/>
+                                <Label Content="Number of normal vectors:" Grid.Column="0" Grid.Row="1"/>
+                                <Label Content="{Binding NormalCount}" Grid.Column="1" Grid.Row="1"/>
+                                <Label Content="Number of faces:" Grid.Column="0" Grid.Row="2"/>
+                                <Label Content="{Binding FaceCount}" Grid.Column="1" Grid.Row="2"/>
                             </Grid>
                         </StackPanel>
                         

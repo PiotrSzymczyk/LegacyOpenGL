@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using LegacyOpenGlApp.DataAccess.Models;
 using Newtonsoft.Json.Linq;
 using Unity;
@@ -22,18 +23,23 @@ namespace LegacyOpenGlApp.DataAccess.Services
 				: Activator.CreateInstance<T>();
 		}
 
-		public IList<ToggleModel> OpenGlToggles => LoadSection<List<ToggleModel>>("OpenGlToggles"); 
+		public IList<ToggleModel> OpenGlFlags => LoadSection<List<ToggleModel>>("OpenGlFlags"); 
 
 		public IList<TransformationModel> Transformations => LoadSection<List<TransformationModel>>("Transformations");
 
 		public IList<LightModel> Lights => LoadSection<List<LightModel>>("Lights");
 
-		public string DefaultGeometryPath => Path.GetFullPath(LoadSection<string>("DefaultObjFilePath"));
+		public string DefaultGeometryPath => GetAbsolutePath(LoadSection<string>("DefaultObjFilePath"));
+		
+		public string DefaultMaterialsPath => GetAbsolutePath(LoadSection<string>("DefaultMtlFilePath"));
 
-		public string DefaultMaterialsPath => Path.GetFullPath(LoadSection<string>("DefaultMtlFilePath"));
-
-		public string DefaultTexturePath => Path.GetFullPath(LoadSection<string>("DefaultTexturePath"));
+		public string DefaultTexturePath => GetAbsolutePath(LoadSection<string>("DefaultTexturePath"));
 
 		public CameraModel Camera => LoadSection<CameraModel> ("Camera");
+
+		private string GetAbsolutePath(string path)
+		{
+			return Path.IsPathRooted(path) ? path : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+		}
 	}
 }

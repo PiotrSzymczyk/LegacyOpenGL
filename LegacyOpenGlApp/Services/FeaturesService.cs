@@ -9,6 +9,8 @@ namespace LegacyOpenGlApp.Services
 {
 	public static class FeaturesService
 	{
+		public static bool IsPositional(LightModel light) => light.Position[3] != 0;
+
 		public static void SetToggles(OpenGL gl, IDictionary<uint, bool> toggles)
 		{
 			foreach (var toggle in toggles)
@@ -35,7 +37,7 @@ namespace LegacyOpenGlApp.Services
 						gl.Translate(transformation.X, transformation.Y, transformation.Z);
 						break;
 					case Transform.Rotate:
-						gl.Rotate(transformation.X, transformation.Y, transformation.Z);
+						gl.Rotate(transformation.Angle, transformation.X, transformation.Y, transformation.Z);
 						break;
 					case Transform.Scale:
 						gl.Scale(transformation.X, transformation.Y, transformation.Z);
@@ -59,12 +61,15 @@ namespace LegacyOpenGlApp.Services
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_DIFFUSE, light.Diffuse);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPECULAR, light.Specular);
 					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_POSITION, light.Position);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_DIRECTION, light.SpotlightDirection);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_EXPONENT, light.SpotlightExponent);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_CUTOFF, light.SpotlightCutoff);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_CONSTANT_ATTENUATION, light.ConstantAttenuation);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
-					gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
+					if (IsPositional(light))
+					{
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_DIRECTION, light.SpotlightDirection);
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_EXPONENT, light.SpotlightExponent);
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_SPOT_CUTOFF, light.SpotlightCutoff);
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_CONSTANT_ATTENUATION, light.ConstantAttenuation);
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_LINEAR_ATTENUATION, light.LinearAttenuation);
+						gl.Light(OpenGL.GL_LIGHT0 + i, OpenGL.GL_QUADRATIC_ATTENUATION, light.QuadraticAttenuation);
+					}
 
 					DrawMarkerInLightPosition(gl, light.Position, light.Ambient, light.Diffuse, light.Specular);
 				}

@@ -179,7 +179,7 @@ namespace LegacyOpenGlApp.Services
 
 		private void SetToggles(StringBuilder code, IDictionary<uint, bool> togglesDict)
 		{
-			var toggles = ConfigurationService.OpenGlToggles.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariableValue]).ToList();
+			var toggles = ConfigurationService.OpenGlFlags.Where(toggle => toggle.IsActive != togglesDict[toggle.StateVariableValue]).ToList();
 
 			if (toggles.Any() == false) return;
 
